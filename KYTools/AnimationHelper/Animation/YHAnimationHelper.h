@@ -49,6 +49,8 @@ private:
 	uint32					m_index;
 	float					m_delayUnit;
 	CCDictionary *			m_userInfo;
+	
+	friend class YHAnimationDefiner;
 };
 
 /**
@@ -112,6 +114,7 @@ class YHSpriteDefiner
 {
 public:
 
+	YHSpriteDefiner() : m_anchorPoint(ccp(0.5f, 0.5f)), m_position(CCPointZero), m_zOrder(0) {}
 	YHSpriteDefiner(CCDictionary * dict);
 	~YHSpriteDefiner() {}
 

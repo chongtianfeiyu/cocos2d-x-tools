@@ -25,19 +25,16 @@ YHEffectDefiner::YHEffectDefiner(CCDictionary * dict)
 		{
 			m_type = kEffectDefineType_Piece1;
 		}
-		
-		CCString * name = dynamic_cast<CCString *>(dict->objectForKey("PieceKey"));
-		m_animationName = string(name->getCString());
 	}
 	else
 	{
 		m_type = kEffectDefineType_Piece1;
 	}
 	
-	if (m_type == kEffectDefineType_Piece1)
-	{
-		
-	}
+	CCString * name = dynamic_cast<CCString *>(dict->objectForKey("PieceKey"));
+	m_animationName = string(name->getCString());
+	
+	m_spriteDefiner = YHSpriteDefiner((CCDictionary *)dict->objectForKey("SpriteDefiner"));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +66,17 @@ void YHEffectFactory::addEffectDefiner(const string & key, YHEffectDefiner * def
 	m_definerCache->setObject(definer, key.c_str());
 }
 
+void YHEffectFactory::addEffectDefiner(CCDictionary * dict)
+{
+	CCDictElement * e = NULL;
+	CCDICT_FOREACH(dict, e)
+	{
+		YHEffectDefiner * definer = new YHEffectDefiner((CCDictionary *)e->getObject());
+		definer->autorelease();
+		addEffectDefiner(e->getStrKey(), definer);
+	}
+}
+
 void YHEffectFactory::cleanAllEffectDefiners()
 {
 	m_definerCache->removeAllObjects();
@@ -77,6 +85,12 @@ void YHEffectFactory::cleanAllEffectDefiners()
 void YHEffectFactory::cleanAllSprites()
 {
 	m_effectCache->removeAllObjects();
+}
+
+void YHEffectFactory::cleanAll()
+{
+	cleanAllEffectDefiners();
+	cleanAllSprites();
 }
 
 YHDefaultFiniteEffect * YHEffectFactory::finiteEffectFromCache()
@@ -98,6 +112,13 @@ YHDefaultFiniteEffect * YHEffectFactory::finiteEffectFromCache()
 	return fe;
 }
 
+void YHEffectFactory::adjustSprite(CCSprite * sp, const YHEffectDefiner * definer)
+{
+	sp->setAnchorPoint(definer->getSpriteDefiner().getAnchorPoint());
+	sp->setPosition(definer->getSpriteDefiner().getPosition());
+	sp->setZOrder(definer->getSpriteDefiner().getZOrder());
+}
+
 CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * definer)
 {
 	if (definer->getType() == kEffectDefineType_Piece1)
@@ -105,6 +126,7 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 		YHDefaultFiniteEffect * effect = finiteEffectFromCache();
 		CCAnimate * animate = YHAnimationCache::sharedAnimationCache()->animateForKey(definer->getAnimationName());
 		effect->reset(animate);
+		adjustSprite(effect, definer);
 		return effect;
 	}
 	else if (definer->getType() == kEffectDefineType_Piece2)
@@ -122,6 +144,8 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 		left->reset(animate);
 		left->setRotation(-180);
 		right->addChild(left);
+		
+		adjustSprite(right, definer);
 		
 		return right;
 	}
@@ -158,6 +182,8 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 		leftBottom->setPosition(centerPoint);
 		leftBottom->setRotation(-270);
 		rightTop->addChild(leftBottom);
+		
+		adjustSprite(rightTop, definer);
 		
 		return rightTop;
 	}

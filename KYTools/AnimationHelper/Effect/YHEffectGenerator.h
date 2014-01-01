@@ -5,6 +5,7 @@
 #include <cocos2d.h>
 #include <KYTools/cocos2d-extension/CCSpecialSprite.h>
 #include <KYTools/AnimationHelper/Effect/YHFiniteEffect.h>
+#include <KYTools/AnimationHelper/Animation/YHAnimationHelper.h>
 
 using namespace std;
 using namespace cocos2d;
@@ -17,7 +18,7 @@ typedef enum _YHEffectDefineType_
 {
 	kEffectDefineType_Piece1,		// 由 1 个特效组合
 	kEffectDefineType_Piece2,		// 由 2 个特效组合, 默认原始图的切片是右边
-	kEffectDefineType_Piece4,		// 由 3 个特效组合, 默认原始图的切片是右上角
+	kEffectDefineType_Piece4,		// 由 4 个特效组合, 默认原始图的切片是右上角
 }YHEffectDefineType;
 
 /**
@@ -38,6 +39,9 @@ public:
 	const char *			getAnimationName() const { return m_animationName.c_str(); }
 	void					setAnimationName(const char * name) { m_animationName = name; }
 	
+	/// getter/setter YHSpriteDefiner
+	CC_SYNTHESIZE_PASS_BY_REF(YHSpriteDefiner, m_spriteDefiner, SpriteDefiner);
+	
 private:
 	YHEffectDefineType		m_type;
 	std::string				m_animationName;
@@ -47,18 +51,29 @@ private:
  * 特效工厂类, 主要负责生成带有动画效果的 CCSprite 对象
  * @author Zhenyu Yao
  */
-class YHEffectFactory
+class YHEffectFactory : public YHObject
 {
 public:
 	
 	YHEffectFactory();
 	~YHEffectFactory();
 	
+	/// 初始化
+	virtual bool init()
+	{
+		return true;
+	}
+	
+	CREATE_FUNC(YHEffectFactory);
+	
 	/// 从缓存中获得 YHEffectDefiner 对象
 	YHEffectDefiner *			effectDefinerForKey(const string & key);
 	
 	/// 将 YHEffectDefiner 对象放入到缓存中
 	void						addEffectDefiner(const string & key, YHEffectDefiner * definer);
+	
+	/// 从 CCDictionary 中读出 YHEffectDefiner 放入到缓存中
+	void						addEffectDefiner(CCDictionary * dict);
 	
 	/// 清空缓存中的所有 YHEffectDefiner 对象
 	void						cleanAllEffectDefiners();
@@ -79,6 +94,9 @@ private:
 	
 	/// 从缓存中获得 YHDefaultFiniteEffect 对象
 	YHDefaultFiniteEffect *		finiteEffectFromCache();
+	
+	/// 调整出现的特效
+	void						adjustSprite(CCSprite * sp, const YHEffectDefiner * definer);
 	
 private:
 	CCDictionary *				m_definerCache;

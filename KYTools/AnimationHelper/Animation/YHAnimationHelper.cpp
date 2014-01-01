@@ -24,7 +24,7 @@ YHAnimationFrameDefiner::YHAnimationFrameDefiner(CCDictionary * dict)
 	
 	// Delay units
 	CCString * strDelayUnits = dynamic_cast<CCString *>(dict->objectForKey("DelayUnits"));
-	m_delayUnit = strDelayUnits->floatValue();
+	m_delayUnit = strDelayUnits != NULL ? strDelayUnits->floatValue() : 1.0f;
 	
 	// UserData
 	m_userInfo = dynamic_cast<CCDictionary *>(dict->objectForKey("UserInfo"));
@@ -93,7 +93,7 @@ void YHAnimationDefiner::parse_ver2(CCDictionary * dict)
 	
 	// RestoreOriginFrame
 	CCString * strRestoreOriginFrame = dynamic_cast<CCString *>(dict->objectForKey("RestoreOriginFrame"));
-	m_restoreOriginFrame = strRestoreOriginFrame->boolValue();
+	m_restoreOriginFrame = strRestoreOriginFrame != NULL ? strRestoreOriginFrame->boolValue() : false;
 	
 	// resources
 	for (uint32 i = point.x; i <= point.y; ++i)
@@ -108,7 +108,9 @@ void YHAnimationDefiner::parse_ver2(CCDictionary * dict)
 	CCARRAY_FOREACH(frames, pObj)
 	{
 		CCDictionary * frameDict = dynamic_cast<CCDictionary *>(pObj);
-		m_frameDefiners.push_back(YHAnimationFrameDefiner(frameDict));
+		YHAnimationFrameDefiner frameDefiner = YHAnimationFrameDefiner(frameDict);
+		frameDefiner.m_index = frameDefiner.m_index - point.x;		// 计算出实际帧的 Index
+		m_frameDefiners.push_back(frameDefiner);
 	}
 }
 
@@ -116,11 +118,17 @@ void YHAnimationDefiner::parse_ver2(CCDictionary * dict)
 // YHSpriteDefiner
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-YHSpriteDefiner::YHSpriteDefiner(CCDictionary * dict)
+YHSpriteDefiner::YHSpriteDefiner(CCDictionary * dict) :
+m_anchorPoint(ccp(0.5f, 0.5f)),
+m_position(CCPointZero),
+m_zOrder(0)
 {
-	m_anchorPoint = CCPointFromString(dict->valueForKey("Anchor")->getCString());
-	m_position = CCPointFromString(dict->valueForKey("Position")->getCString());
-	m_zOrder = dict->valueForKey("ZOrder")->intValue();
+	if (dict != NULL)
+	{
+		m_anchorPoint = CCPointFromString(dict->valueForKey("Anchor")->getCString());
+		m_position = CCPointFromString(dict->valueForKey("Position")->getCString());
+		m_zOrder = dict->valueForKey("ZOrder")->intValue();
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

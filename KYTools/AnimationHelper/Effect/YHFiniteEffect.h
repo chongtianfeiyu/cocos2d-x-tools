@@ -6,6 +6,23 @@
 
 using namespace cocos2d;
 
+class YHDefaultFiniteEffect;
+
+/**
+ * 特效动画的委托
+ * @author Zhenyu Yao
+ */
+class YHFiniteEffectDelegate
+{
+public:
+	
+	/**
+	 * 特效动画播放结束
+	 * @param effect 播放结束的特效
+	 */
+	virtual void effectFinish(YHDefaultFiniteEffect * effect) = 0;
+};
+
 /**
  * 默认限定特效播放的实现
  * @author Zhenyu Yao
@@ -13,10 +30,13 @@ using namespace cocos2d;
 class YHDefaultFiniteEffect : public CCSprite, public YHIFiniteEffect
 {
 public: /** Create Functions **/
-	YHDefaultFiniteEffect() : m_active(false) {}
+	YHDefaultFiniteEffect() : m_active(false), m_delegate(NULL) {}
 	~YHDefaultFiniteEffect() { this->cleanup(); }
 	
 	CCSPRITE_CREATE_FUNCTIONS(YHDefaultFiniteEffect);
+	
+	/// 委托
+	CC_SYNTHESIZE(YHFiniteEffectDelegate *, m_delegate, Delegate);
 	
 public: /* Override Functions */
 	

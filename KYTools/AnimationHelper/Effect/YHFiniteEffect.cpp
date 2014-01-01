@@ -14,8 +14,11 @@ void YHDefaultFiniteEffect::setParent(CCNode* parent)
 	if (parent == NULL)
 	{
 		m_active = false;
-		this->cleanup();
-		this->removeAllChildren();
+		if (this->getChildren() != NULL && this->getChildren()->count() != 0)
+		{
+			this->cleanup();
+			this->removeAllChildren();
+		}
 	}
 }
 
@@ -110,7 +113,11 @@ void YHDefaultFiniteEffect::autoRemoveFromParent()
 
 void YHDefaultFiniteEffect::onFinishHandler()
 {
+	if (m_delegate != NULL)
+		m_delegate->effectFinish(this);
+	
 	autoRemoveFromParent();
 }
+
 
 
