@@ -80,7 +80,6 @@ protected:
 	CCPoint m_endAnchorPoint;
 };
 
-
 #endif /* defined(__cocos2d_x_Utils__CCActionExtension__) */
 
 

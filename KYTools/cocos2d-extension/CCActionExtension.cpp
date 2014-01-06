@@ -8,7 +8,10 @@
 
 #include <KYTools/cocos2d-extension/CCActionExtension.h>
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // CCAnchorPointBy
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 bool CCAnchorPointBy::initWithDuration(float duration, const CCPoint & deltaPoint)
 {
 	bool result = CCActionInterval::initWithDuration(duration);
@@ -33,7 +36,7 @@ CCObject * CCAnchorPointBy::copyWithZone(CCZone *pZone)
 	
 	CCActionInterval::copyWithZone(pZone);
 	
-	action->initWithDuration(m_fDuration, m_deltaAnchorPoint);
+	action->m_deltaAnchorPoint = this->m_deltaAnchorPoint;
 	
 	CC_SAFE_DELETE(pNewZone);
 	
@@ -72,7 +75,9 @@ CCAnchorPointBy * CCAnchorPointBy::create(float duration, const CCPoint & deltaP
 	return NULL;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // CCAnchorPointTo
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 bool CCAnchorPointTo::initWithDuration(float duration, const cocos2d::CCPoint & endPoint)
 {
@@ -97,7 +102,7 @@ CCObject * CCAnchorPointTo::copyWithZone(CCZone * pZone)
 	
 	CCAnchorPointBy::copyWithZone(pZone);
 	
-	action->initWithDuration(m_fDuration, m_endAnchorPoint);
+	action->m_endAnchorPoint = this->m_endAnchorPoint;
 	
 	return action;
 }
@@ -120,9 +125,6 @@ CCAnchorPointTo * CCAnchorPointTo::create(float duration, const cocos2d::CCPoint
 	CC_SAFE_DELETE(instance);
 	return instance;
 }
-
-
-
 
 
 

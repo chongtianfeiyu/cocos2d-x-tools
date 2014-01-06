@@ -22,6 +22,21 @@ void YHDefaultFiniteEffect::setParent(CCNode* parent)
 	}
 }
 
+void YHDefaultFiniteEffect::setColor(const ccColor3B &color3)
+{
+	CCSprite::setColor(color3);
+	
+	CCObject * obj = NULL;
+	CCARRAY_FOREACH(m_pChildren, obj)
+	{
+		if (dynamic_cast<CCNodeRGBA *>(obj) != NULL)
+		{
+			CCNodeRGBA * nodeRGBA = (CCNodeRGBA *)obj;
+			nodeRGBA->setColor(color3);
+		}
+	}
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // YHDefaultFiniteEffect
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +51,11 @@ void YHDefaultFiniteEffect::resetBasicParams()
 	this->setSkewX(0.0f);
 	this->setSkewY(0.0f);
 	this->setAnchorPoint(ccp(0.5f, 0.5f));
+	
+	ccBlendFunc blendFunc;
+	blendFunc.src = CC_BLEND_SRC;
+	blendFunc.dst = CC_BLEND_DST;
+	this->setBlendFunc(blendFunc);
 }
 
 void YHDefaultFiniteEffect::reset(cocos2d::CCFiniteTimeAction * finiteAction)

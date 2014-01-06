@@ -10,6 +10,7 @@
 #define __AndroidaBooM__YHAnimationHelper__
 
 #include <KYTools/YHTypes.h>
+#include <KYTools/AnimationHelper/Animation/YHAnimationKeyEvents.h>
 
 using namespace std;
 using namespace cocos2d;
@@ -114,7 +115,15 @@ class YHSpriteDefiner
 {
 public:
 
-	YHSpriteDefiner() : m_anchorPoint(ccp(0.5f, 0.5f)), m_position(CCPointZero), m_zOrder(0) {}
+	YHSpriteDefiner() :
+	m_anchorPoint(ccp(0.5f, 0.5f)),
+	m_position(CCPointZero),
+	m_zOrder(0)
+	{
+		m_blendFunc.src = CC_BLEND_SRC;
+		m_blendFunc.dst = CC_BLEND_DST;
+	}
+	
 	YHSpriteDefiner(CCDictionary * dict);
 	~YHSpriteDefiner() {}
 
@@ -127,10 +136,39 @@ public:
 	/// z 序列
 	int					getZOrder() const { return m_zOrder; }
 
+	/// BlendFunc
+	CC_SYNTHESIZE(ccBlendFunc, m_blendFunc, BlendFunc);
+	
 private:
 	CCPoint				m_anchorPoint;
 	CCPoint				m_position;
 	int					m_zOrder;
+};
+
+/**
+ * Action & YHAnimationKeyEvents
+ * @author Zhenyu Yao
+ */
+class YHAnimationPair : public YHObject
+{
+public:
+	
+	YHAnimationPair() : m_action(NULL), m_keyEvents(NULL)
+	{
+	}
+	
+	virtual ~YHAnimationPair()
+	{
+		CC_SAFE_RELEASE_NULL(m_action);
+		CC_SAFE_RELEASE_NULL(m_keyEvents);
+	}
+	
+	/// Action
+	CC_SYNTHESIZE_RETAIN(CCAction *, m_action, Action);
+	
+	/// YHAnimationKeyEvents;
+	CC_SYNTHESIZE_RETAIN(YHAnimationKeyEvents *, m_keyEvents, KeyEvents);
+	
 };
 
 /**
@@ -170,6 +208,13 @@ public:		/** Static Functions **/
 	 */
 	static CCRepeatForever * createForeverAnimate(CCAnimation * animation);
 
+	/**
+	 * 创建 YHAnimationPair 对象
+	 * @param animation 动画
+	 * @return YHAnimationPair 对象
+	 */
+	static YHAnimationPair * createAnimationPair(CCAnimation * animation, bool loop);
+	
 	/**
 	 * 让 sprite 播放动画
 	 * @param animation 运行的动画

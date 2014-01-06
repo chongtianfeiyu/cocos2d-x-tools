@@ -13,6 +13,7 @@
 // Animation
 #include <KYTools/AnimationHelper/Animation/YHAnimationCache.h>
 #include <KYTools/AnimationHelper/Animation/YHAnimationHelper.h>
+#include <KYTools/AnimationHelper/Animation/YHAnimationKeyEvents.h>
 #include <KYTools/AnimationHelper/Action/ActionContext.h>
 #include <KYTools/AnimationHelper/Action/AnimationTypes.h>
 #include <KYTools/AnimationHelper/Action/YHCCActionHelper.h>

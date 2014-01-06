@@ -117,6 +117,7 @@ void YHEffectFactory::adjustSprite(CCSprite * sp, const YHEffectDefiner * define
 	sp->setAnchorPoint(definer->getSpriteDefiner().getAnchorPoint());
 	sp->setPosition(definer->getSpriteDefiner().getPosition());
 	sp->setZOrder(definer->getSpriteDefiner().getZOrder());
+	sp->setBlendFunc(definer->getSpriteDefiner().getBlendFunc());
 }
 
 CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * definer)

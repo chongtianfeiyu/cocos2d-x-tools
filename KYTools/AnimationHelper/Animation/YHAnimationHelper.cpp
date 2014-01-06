@@ -123,11 +123,21 @@ m_anchorPoint(ccp(0.5f, 0.5f)),
 m_position(CCPointZero),
 m_zOrder(0)
 {
+	m_blendFunc.src = CC_BLEND_SRC;
+	m_blendFunc.dst = CC_BLEND_DST;
+	
 	if (dict != NULL)
 	{
 		m_anchorPoint = CCPointFromString(dict->valueForKey("Anchor")->getCString());
 		m_position = CCPointFromString(dict->valueForKey("Position")->getCString());
 		m_zOrder = dict->valueForKey("ZOrder")->intValue();
+		
+		CCDictionary * blendFuncDict = (CCDictionary *)dict->objectForKey("BlendFunc");
+		if (blendFuncDict != NULL)
+		{
+			m_blendFunc.src = blendFuncDict->valueForKey("Src")->uintValue();
+			m_blendFunc.dst = blendFuncDict->valueForKey("Dst")->uintValue();
+		}
 	}
 }
 
@@ -202,6 +212,22 @@ CCAnimate * YHAnimationHelper::createAnimate(CCAnimation * animation)
 CCRepeatForever * YHAnimationHelper::createForeverAnimate(CCAnimation * animation)
 {
 	return CCRepeatForever::create(createAnimate(animation));
+}
+
+YHAnimationPair * YHAnimationHelper::createAnimationPair(CCAnimation * animation, bool loop)
+{
+	CCAction * action = NULL;
+	if (loop)
+		action = createForeverAnimate(animation);
+	else
+		action = createAnimate(animation);
+	
+	YHAnimationKeyEvents * keyEvents = YHAnimationKeyEvents::create(animation, loop);
+	YHAnimationPair * animPair = new YHAnimationPair();
+	animPair->autorelease();
+	animPair->setAction(action);
+	animPair->setKeyEvents(keyEvents);
+	return animPair;
 }
 
 void YHAnimationHelper::runAnimation(CCAnimation * animation, CCSprite * sprite)

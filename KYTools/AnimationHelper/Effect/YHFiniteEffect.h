@@ -41,6 +41,7 @@ public: /** Create Functions **/
 public: /* Override Functions */
 	
 	virtual void		setParent(CCNode* parent);
+	virtual void 		setColor(const ccColor3B& color3);
 	
 public: /** YHIFiniteEffect **/
 	virtual bool		isActive() { return m_active; }
