@@ -22,12 +22,8 @@ class YHByteArray : public YHObject, public YHIByteBuffer
 	
 public:
 	
-	YHByteArray()
+	YHByteArray() : m_writerIndex(0), m_readerIndex(0), m_order(kByteOrder_BigEndian), m_buffer(NULL)
 	{
-		m_writerIndex = 0;
-		m_readerIndex = 0;
-		m_order = kByteOrder_BigEndian;
-		m_buffer = NULL;
 	}
 	
 	~YHByteArray()

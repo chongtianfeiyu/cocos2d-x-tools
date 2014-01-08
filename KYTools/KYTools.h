@@ -38,6 +38,7 @@
 #include <KYTools/Utils/Buffer/YHGameLogicPackage.h>
 #include <KYTools/Utils/Net/YHHttpClient.h>
 #include <KYTools/Utils/Net/YHSocketClient.h>
+#include <KYTools/Utils/Encry/YHEncryHelper.h>
 
 // UI
 #include <KYTools/UI/YHUITileBackground.h>
@@ -53,6 +54,11 @@
 // extension
 #include <KYTools/cocos2d-extension/CCActionExtension.h>
 #include <KYTools/cocos2d-extension/CCSpecialSprite.h>
+
+// third party
+#include <KYTools/libs/jsoncpp/include/json/json.h>
+#include <KYTools/libs/pthreadcc/pthreadcc.h>
+#include <KYTools/libs/socketcc/socketcc.h>
 
 #endif
 

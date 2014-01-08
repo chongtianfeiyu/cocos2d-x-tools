@@ -118,7 +118,8 @@ public:
 	YHSpriteDefiner() :
 	m_anchorPoint(ccp(0.5f, 0.5f)),
 	m_position(CCPointZero),
-	m_zOrder(0)
+	m_zOrder(0),
+	m_randomRotate(false)
 	{
 		m_blendFunc.src = CC_BLEND_SRC;
 		m_blendFunc.dst = CC_BLEND_DST;
@@ -138,6 +139,9 @@ public:
 
 	/// BlendFunc
 	CC_SYNTHESIZE(ccBlendFunc, m_blendFunc, BlendFunc);
+	
+	/// 是否随机旋转
+	CC_SYNTHESIZE(bool, m_randomRotate, RandomRotate);
 	
 private:
 	CCPoint				m_anchorPoint;

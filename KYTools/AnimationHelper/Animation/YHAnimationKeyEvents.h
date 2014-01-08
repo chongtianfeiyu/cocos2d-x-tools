@@ -12,7 +12,8 @@
 #include <KYTools/YHTypes.h>
 
 /**
- * YHAnimationKeyEvents 当触发动画关键事件时, 会
+ * YHAnimationKeyEvents 当触发动画关键事件时, 会触发
+ * @author Zhenyu Yao
  */
 class YHAnimationKeyEventsDelegate
 {

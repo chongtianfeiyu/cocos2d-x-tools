@@ -121,7 +121,8 @@ void YHAnimationDefiner::parse_ver2(CCDictionary * dict)
 YHSpriteDefiner::YHSpriteDefiner(CCDictionary * dict) :
 m_anchorPoint(ccp(0.5f, 0.5f)),
 m_position(CCPointZero),
-m_zOrder(0)
+m_zOrder(0),
+m_randomRotate(false)
 {
 	m_blendFunc.src = CC_BLEND_SRC;
 	m_blendFunc.dst = CC_BLEND_DST;
@@ -131,6 +132,7 @@ m_zOrder(0)
 		m_anchorPoint = CCPointFromString(dict->valueForKey("Anchor")->getCString());
 		m_position = CCPointFromString(dict->valueForKey("Position")->getCString());
 		m_zOrder = dict->valueForKey("ZOrder")->intValue();
+		m_randomRotate = dict->valueForKey("RandomRotate")->boolValue();
 		
 		CCDictionary * blendFuncDict = (CCDictionary *)dict->objectForKey("BlendFunc");
 		if (blendFuncDict != NULL)

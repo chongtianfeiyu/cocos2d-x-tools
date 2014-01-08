@@ -193,6 +193,65 @@ bool CCRectContainsRect(cocos2d::CCRect& rect1, cocos2d::CCRect& rect2)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+// 分辨率处理
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void adapterLandscapeResolution()
+{
+	CCDirector * pDirector = CCDirector::sharedDirector();
+	
+	// 屏幕适配
+	CCSize designSize = pDirector->getWinSize();
+	if ((designSize.width == 960 && designSize.height == 640)			// iPhone4, 4S, iPod4
+		|| (designSize.width == 1136 && designSize.height == 640)		// iPhone5, iPod5
+		|| (designSize.width == 1024 && designSize.height == 768))		// iPad1,2, iPad mini
+	{
+		designSize.width *= 0.5f;
+		designSize.height *= 0.5f;
+	}
+	else if (designSize.width == 2048 && designSize.height == 1536)		// iPad3
+	{
+		designSize.width *= 0.25f;
+		designSize.height *= 0.25f;
+	}
+	else																// 其他分辨率 & iPhone3GS
+	{
+		designSize.width = 480;
+		designSize.height = 320;
+	}
+	
+	pDirector->setContentScaleFactor(2.0f);
+	pDirector->getOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedHeight);
+}
+
+void adapterPortraitResolution()
+{
+	CCDirector * pDirector = CCDirector::sharedDirector();
+	
+	CCSize designSize = pDirector->getWinSize();
+	if ((designSize.width == 640 && designSize.height == 960)
+		|| (designSize.width == 640 && designSize.height == 1136)
+		|| (designSize.width == 768 && designSize.height == 1024))
+	{
+		designSize.width *= 0.5f;
+		designSize.height *= 0.5f;
+	}
+	else if (designSize.width == 1536 && designSize.height == 2048)
+	{
+		designSize.width *= 0.25f;
+		designSize.height *= 0.25f;
+	}
+	else
+	{
+		designSize.width = 320;
+		designSize.height = 480;
+	}
+	
+	pDirector->setContentScaleFactor(2.0f);
+	pDirector->getOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedHeight);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // 字符串处理
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

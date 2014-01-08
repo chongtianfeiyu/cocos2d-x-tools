@@ -118,6 +118,8 @@ void YHEffectFactory::adjustSprite(CCSprite * sp, const YHEffectDefiner * define
 	sp->setPosition(definer->getSpriteDefiner().getPosition());
 	sp->setZOrder(definer->getSpriteDefiner().getZOrder());
 	sp->setBlendFunc(definer->getSpriteDefiner().getBlendFunc());
+	if (definer->getSpriteDefiner().getRandomRotate())
+		sp->setRotation(CCRANDOM_0_1() * 360.0f);
 }
 
 CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * definer)
