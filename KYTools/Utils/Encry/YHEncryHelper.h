@@ -26,10 +26,18 @@ public:
 	/**
 	 * 对传入的二进制数据进行加密, 需要手动 release 返回的 YHByteArray 对象
 	 * @param data 待加密的数据
-	 * @param secret 解密需要的密码
+	 * @param secret 加密需要的密码
 	 * @return 加密后的数据, 需要手动 release 返回的 YHByteArray 对象
 	 */
 	virtual YHByteArray * encode(YHByteArray * data, YHByteArray * secret) = 0;
+	
+	/**
+	 * 将传入的数据进行加密后, 将数据写入到指定的文件中
+	 * @param file 存储路径
+	 * @param data 待加密的数据
+	 * @param secret 加密需要的密码
+	 */
+	virtual void encodeToFile(const std::string & file, YHByteArray * data, YHByteArray * secret);
 	
 	/**
 	 * 对传入的二进制数据解密, 需要手动 release 返回的 YHByteArray 对象

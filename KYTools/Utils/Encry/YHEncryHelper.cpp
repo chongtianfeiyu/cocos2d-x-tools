@@ -71,6 +71,26 @@ YHEncryHelper * YHEncryHelper::sharedInstance()
 	return s_instance;
 }
 
+void YHEncryHelper::encodeToFile(const std::string & file, YHByteArray * data, YHByteArray * secret)
+{
+	std::string writeablePath = cocos2d::CCFileUtils::sharedFileUtils()->getWritablePath();
+	std::string fullpath = writeablePath + "/" + file;
+	
+	FILE * pFile = fopen(fullpath.c_str(), "w");
+	if (pFile == NULL)
+		return;
+	
+	// 数据加密
+	data = encode(data, secret);
+	
+	// 写入到文件
+	fwrite(data->getBuffer(), data->readableBytes(), 1, pFile);
+	
+	// 释放资源
+	fclose(pFile);
+	CC_SAFE_RELEASE(data);
+}
+
 YHByteArray * YHEncryHelper::decodeWithFile(const std::string & file, YHByteArray * secret)
 {
 	std::string fullpath = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(file.c_str());
