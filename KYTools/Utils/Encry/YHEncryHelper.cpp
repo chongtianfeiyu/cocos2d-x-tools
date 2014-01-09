@@ -26,10 +26,9 @@ public:
 		uint32 charsLen = secret->readableBytes();
 		uint32 dataLength = data->readableBytes();
 		
-		uint32 j = 0;
-		for (uint32 i = 0; i < dataLength; i += j)
+		for (uint32 i = 0; i < dataLength; i += charsLen)
 		{
-			for (j = 0; i + j < dataLength && j < charsLen; ++j)
+			for (uint32 j = 0; i + j < dataLength && j < charsLen; ++j)
 			{
 				uint32 index = i + j;
 				char ch1 = data->getChar(index);
@@ -84,7 +83,6 @@ YHByteArray * YHEncryHelper::decodeWithFile(const std::string & file, YHByteArra
 	fseek(pFile, 0, SEEK_END);
 	uint32 size = ftell(pFile);
 	fseek(pFile, 0, SEEK_SET);
-	CCLOG("file size: %u", size);
 	
 	// 从文件读取数据
 	YHByteArray * data = new YHByteArray();
@@ -97,8 +95,6 @@ YHByteArray * YHEncryHelper::decodeWithFile(const std::string & file, YHByteArra
 	YHByteArray * result = decode(data, secret);
 	CC_SAFE_RELEASE_NULL(data);
 	return result;
-	
-//	return data;
 }
 
 

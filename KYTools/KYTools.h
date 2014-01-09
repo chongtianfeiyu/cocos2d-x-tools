@@ -26,6 +26,7 @@
 #include <KYTools/Utils/Common/CommonUtils.h>
 #include <KYTools/Utils/Common/YHAllocator.h>
 #include <KYTools/Utils/Common/YHEventDispatcher.h>
+#include <KYTools/Utils/Common/YHJsonHelper.h>
 #include <KYTools/Utils/Geometry/YHGeometry.h>
 #include <KYTools/Utils/Debug/GLES-Render.h>
 #include <KYTools/Utils/Sound/SoundController.h>
