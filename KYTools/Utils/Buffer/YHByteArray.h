@@ -14,7 +14,7 @@
 
 /**
  * YHByteArray 对 YHIByteBuffer 的实现, order 默认为 BigEndian
- * 不保证线程安全, 不要将其添加到自动释放池中, 手动 release 生成的对象. 
+ * 不保证线程安全, 如果在多线程中使用, 不要将其添加到自动释放池中(即调用 autorelease), 手动 release 生成的对象. 
  * @author Zhenyu Yao
  */
 class YHByteArray : public YHObject, public YHIByteBuffer

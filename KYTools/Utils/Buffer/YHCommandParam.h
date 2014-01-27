@@ -13,7 +13,7 @@
 
 /**
  * 为了减少内存的拷贝, 持有 YHByteArray 对象, 对 YHByteArray 的进一步封装, 使 YHByteArray 对象能直接从 loc 位置读取实际使用的数据.
- * 不保证线程安全, 不要将其添加到自动释放池中, 手动 release 生成的对象.
+ * 不保证线程安全, 如果在多线程中使用, 不要将其添加到自动释放池中(即调用 autorelease), 手动 release 生成的对象. 
  * @author Zhenyu Yao
  */
 class YHCommandParam : public YHObject, public YHIByteBuffer

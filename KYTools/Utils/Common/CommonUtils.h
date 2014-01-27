@@ -263,6 +263,68 @@ extern std::string stringByDeletingPathExtension(const std::string & origin);
  */
 extern std::string stringByAppendingPathExtension(const std::string & origin, const std::string & extension);
 
+/**
+ * 获得文件的后缀名
+ * 传入字符串 -> 返回字符串: 
+ *		/tmp/scratch.tiff				->		tiff
+ *		.scratch.tiff					->		tiff
+ *		/tmp/scratch					->		""
+ *		/tmp/							->		""
+ *		.scratch.						->		""
+ *		/tmp/scratch..tiff				->		tiff
+ */
+extern std::string pathExtensionWithString(const std::string & file);
+
 #endif /* defined(__AndroidaBooM__CommonUtils__) */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// end file
 
 

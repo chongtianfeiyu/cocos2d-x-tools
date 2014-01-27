@@ -35,6 +35,7 @@
 #include <KYTools/Utils/Timer/YHTimer.h>
 #include <KYTools/Utils/Manager/YHFontManager.h>
 #include <KYTools/Utils/Manager/YHLanguageManager.h>
+#include <KYTools/Utils/Manager/DataManager/YHDataManager.h>
 #include <KYTools/Utils/Buffer/YHIByteBuffer.h>
 #include <KYTools/Utils/Buffer/YHByteArray.h>
 #include <KYTools/Utils/Buffer/YHCommandParam.h>

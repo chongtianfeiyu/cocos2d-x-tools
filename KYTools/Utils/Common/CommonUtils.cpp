@@ -386,3 +386,64 @@ string stringByAppendingPathExtension(const std::string & origin, const std::str
 	return origin + "." + extension;
 }
 
+string pathExtensionWithString(const std::string & file)
+{
+	size_t pos = file.rfind(".");
+	
+	if (pos == string::npos)
+		return "";
+	
+	if (pos == file.length() - 1)
+		return "";
+	
+	return file.substr(pos + 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// end file
+
+
