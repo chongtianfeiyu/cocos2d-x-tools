@@ -9,7 +9,7 @@
 #ifndef __MonsterHunter__YHDataManager__
 #define __MonsterHunter__YHDataManager__
 
-#include <KYTools/Utils/Common/YHAbstractDataSetting.h>
+#include <KYTools/YHTypes.h>
 
 class YHByteArray;
 class YHDataManagerImp;
@@ -24,7 +24,7 @@ public:
 	
 	/**
 	 * 创建 YHDataManager 对象
-	 * @param type 类型
+	 * @param type 类型, Default, Asyn
 	 */
 	static YHDataManager * create(const std::string & type = "Default");
 	

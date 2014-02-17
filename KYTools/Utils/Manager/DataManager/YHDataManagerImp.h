@@ -14,6 +14,9 @@
 
 class YHByteArray;
 
+/// 优先级
+#define DataManagerPriority     0
+
 /**
  * YHDataManager 的实现基类
  * @author Zhenyu Yao
@@ -40,6 +43,9 @@ public:
 	
 protected:
 	
+    /// 装载文件, 返回装载文件生成的对象
+    virtual cocos2d::CCObject * loadFile(const std::string & fullpath);
+    
 	cocos2d::CCArray * m_waitingFiles;
 };
 

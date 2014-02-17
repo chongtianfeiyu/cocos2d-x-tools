@@ -9,6 +9,7 @@
 #include <KYTools/Utils/Manager/DataManager/YHDataManager.h>
 #include <KYTools/Utils/Manager/DataManager/YHDataManagerImp.h>
 #include <KYTools/Utils/Manager/DataManager/YHSchedulerDataManagerImp.h>
+#include <KYTools/Utils/Manager/DataManager/YHAsynDataManagerImp.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Public Functions
@@ -19,7 +20,10 @@ YHDataManager * YHDataManager::create(const std::string & type)
 	YHDataManagerImp * imp = NULL;
 	if (type.compare("Default") == 0)
 		imp = new YHSchedulerDataManagerImp();
+    else if (type.compare("Asyn") == 0)
+        imp = new YHAsynDataManagerImp();
 	
+    imp->init();
 	imp->autorelease();
 	
 	YHDataManager * manager = new YHDataManager();
