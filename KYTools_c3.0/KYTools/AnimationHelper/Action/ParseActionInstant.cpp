@@ -38,5 +38,6 @@ CCAction* ParserFlipY::parseAction(cocos2d::CCDictionary *dict)
 CCAction* ParserPlace::parseAction(cocos2d::CCDictionary *dict)
 {
 	CCPoint position = PointFromString(dict->valueForKey("Position")->getCString());
+    position = pointWithContentScale(position);
 	return CCPlace::create(position);
 }

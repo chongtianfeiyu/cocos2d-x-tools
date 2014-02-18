@@ -28,7 +28,6 @@ CCAction* ParserAnchorPointBy::parseAction(cocos2d::CCDictionary *dict)
 
 CCAction* ParserScaleTo::parseAction(CCDictionary* dict)
 {
-    
     float scaleX = dict->valueForKey("ScaleX")->floatValue();
     float scaleY = dict->valueForKey("ScaleY")->floatValue();
     float duration = dict->valueForKey("Duration")->floatValue();
@@ -48,6 +47,7 @@ CCAction* ParserScaleBy::parseAction(cocos2d::CCDictionary *dict)
 CCAction* ParserMoveTo::parseAction(cocos2d::CCDictionary *dict)
 {
 	CCPoint point = PointFromString(dict->valueForKey("Position")->getCString());
+    point = pointWithContentScale(point);
 	float duration = dict->valueForKey("Duration")->floatValue();
 	return CCMoveTo::create(duration, point);
 }
@@ -55,6 +55,7 @@ CCAction* ParserMoveTo::parseAction(cocos2d::CCDictionary *dict)
 CCAction* ParserMoveBy::parseAction(cocos2d::CCDictionary *dict)
 {
 	CCPoint point = PointFromString(dict->valueForKey("Position")->getCString());
+    point = pointWithContentScale(point);
 	float duration = dict->valueForKey("Duration")->floatValue();
 	return CCMoveBy::create(duration, point);
 }
@@ -62,8 +63,10 @@ CCAction* ParserMoveBy::parseAction(cocos2d::CCDictionary *dict)
 CCAction* ParserJumpTo::parseAction(cocos2d::CCDictionary *dict)
 {
 	CCPoint point = PointFromString(dict->valueForKey("Position")->getCString());
+    point = pointWithContentScale(point);
 	float duration = dict->valueForKey("Duration")->floatValue();
 	float height = dict->valueForKey("Height")->floatValue();
+    height = floatWithContentScale(height);
 	unsigned int jumps = dict->valueForKey("Jumps")->uintValue();
 	return CCJumpTo::create(duration, point, height, jumps);
 }
@@ -71,8 +74,10 @@ CCAction* ParserJumpTo::parseAction(cocos2d::CCDictionary *dict)
 CCAction* ParserJumpBy::parseAction(cocos2d::CCDictionary *dict)
 {
 	CCPoint point = PointFromString(dict->valueForKey("Position")->getCString());
+    point = pointWithContentScale(point);
 	float duration = dict->valueForKey("Duration")->floatValue();
 	float height = dict->valueForKey("Height")->floatValue();
+    height = floatWithContentScale(height);
 	unsigned int jumps = dict->valueForKey("Jumps")->uintValue();
 	return CCJumpBy::create(duration, point, height, jumps);
 }
@@ -83,8 +88,11 @@ CCAction* ParserBezierBy::parseAction(cocos2d::CCDictionary *dict)
 	ccBezierConfig config;
 	CCDictionary* configDict = (CCDictionary*)dict->objectForKey("BezierConfig");
 	config.endPosition = PointFromString(configDict->valueForKey("EndPosition")->getCString());
+    config.endPosition = pointWithContentScale(config.endPosition);
 	config.controlPoint_1 = PointFromString(configDict->valueForKey("ControlPoint1")->getCString());
+    config.controlPoint_1 = pointWithContentScale(config.controlPoint_1);
 	config.controlPoint_2 = CCPointFromString(configDict->valueForKey("ControlPoint2")->getCString());
+    config.controlPoint_2 = pointWithContentScale(config.controlPoint_2);
 	return CCBezierBy::create(duration, config);
 }
 
@@ -94,8 +102,11 @@ CCAction* ParserBezierTo::parseAction(cocos2d::CCDictionary *dict)
 	ccBezierConfig config;
 	CCDictionary* configDict = (CCDictionary*)dict->objectForKey("BezierConfig");
 	config.endPosition = CCPointFromString(configDict->valueForKey("EndPosition")->getCString());
+    config.endPosition = pointWithContentScale(config.endPosition);
 	config.controlPoint_1 = CCPointFromString(configDict->valueForKey("ControlPoint1")->getCString());
+    config.controlPoint_1 = pointWithContentScale(config.controlPoint_1);
 	config.controlPoint_2 = CCPointFromString(configDict->valueForKey("ControlPoint2")->getCString());
+    config.controlPoint_2 = pointWithContentScale(config.controlPoint_2);
 	return CCBezierTo::create(duration, config);
 }
 

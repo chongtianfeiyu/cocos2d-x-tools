@@ -8,6 +8,7 @@
 
 #include <KYTools/AnimationHelper/Action/AnimationTypes.h>
 #include <KYTools/AnimationHelper/Action/ActionContext.h>
+#include <KYTools/AnimationHelper/Action/ActionParseBase.h>
 #include <KYTools/cocos2d-extension/CCSpecialSprite.h>
 
 std::string convertKeyFromFile(const std::string& file)
@@ -26,6 +27,7 @@ void AnimatorInitData::init(cocos2d::CCDictionary *dataDict)
 	
 	m_anchorPoint = PointFromString(dataDict->valueForKey("AnchorPoint")->getCString());
 	m_position = PointFromString(dataDict->valueForKey("Position")->getCString());
+    m_position = ActionParseBase::pointWithContentScale(m_position);
 	m_scale = PointFromString(dataDict->valueForKey("Scale")->getCString());
 	m_rotation = dataDict->valueForKey("Rotation")->floatValue();
 	m_opacity = dataDict->valueForKey("Opacity")->uintValue();

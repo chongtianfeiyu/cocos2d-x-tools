@@ -15,7 +15,6 @@
  * CCAction 解析的上下文, 负责决定使用什么类型的解析对象
  * @author wangtiwei
  */
-class ActionParseBase;
 class ActionContext : public YHObject
 {
 public:
@@ -30,7 +29,13 @@ public:
 	
 	/// 根据字典得到CCAction 对象
 	cocos2d::CCAction *getAction(cocos2d::CCDictionary* dict);
-	
+    
+    /// 获得当前内容的缩放比率
+    float getContentScale() { return m_contentScale; }
+    
+private:
+    
+	float m_contentScale;
 };
 
 #endif /* defined(__cocos2d_x_Utils__ActionContext__) */
