@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Stars</key>
+	<dict>
+		<key>Pieces</key>
+		<integer>4</integer>
+		<key>PieceKey</key>
+		<string>PieceCoin</string>
+		<key>SpriteDefiner</key>
+		<dict>
+			<key>Anchor</key>
+			<string>{0.5, 0.5}</string>
+			<key>Position</key>
+			<string>{100, 100}</string>
+			<key>ZOrder</key>
+			<integer>0</integer>
+			<key>RandomRotate</key>
+			<true/>
+			<key>BlendFunc</key>
+			<dict>
+				<key>Src</key>
+				<integer>770</integer>
+				<key>Dst</key>
+				<integer>1</integer>
+			</dict>
+		</dict>
+	</dict>
+	<key>Stars-2</key>
+	<dict>
+		<key>Pieces</key>
+		<integer>4</integer>
+		<key>PieceKey</key>
+		<string>PieceCoin</string>
+		<key>SpriteDefiner</key>
+		<dict>
+			<key>Anchor</key>
+			<string>{0.5, 0.5}</string>
+			<key>Position</key>
+			<string>{240, 160}</string>
+			<key>ZOrder</key>
+			<integer>0</integer>
+			<key>RandomRotate</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
