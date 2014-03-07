@@ -12,14 +12,9 @@ using namespace std;
 
 string YHDevice_iOS::deviceIdentifier()
 {
-	CFUUIDRef puuid = CFUUIDCreate(nil);
-	CFStringRef uuidString = CFUUIDCreateString(nil, puuid);
-	NSString * result = (NSString *)CFStringCreateCopy(NULL, uuidString);
-	CFRelease(puuid);
-	CFRelease(uuidString);
-	string identifier = [result cStringUsingEncoding:NSUTF8StringEncoding];
-	[result release];
-	return identifier;
+	NSUUID * uuid = [[UIDevice currentDevice] identifierForVendor];
+    string strIdentifier = [[uuid UUIDString] cStringUsingEncoding:NSUTF8StringEncoding];
+    return strIdentifier;
 }
 
 string YHDevice_iOS::osVersion()
