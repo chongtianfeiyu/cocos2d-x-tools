@@ -20,11 +20,18 @@ class YHAnimationKeyEventsDelegate
 public:
 	
 	/**
-	 * 处理动画的关键事件
-	 * @param sprite 运行动画的显示对象
-	 * @param userInfo 携带的其他数据
+	 * 处理动画的关键事件, 对应使用 init(cocos2d::CCAnimation * animation, bool loop = false) 执行的回调
+	 * @param node 运行动画的显示对象
+	 * @param frame 当前显示的 CCAnimationFrame 对象
 	 */
 	virtual void handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCAnimationFrame * frame) = 0;
+    
+    /**
+     * 处理动画的关键事件, 对应使用 init(cocos2d::CCDictionary * dataDict) 执行的回调
+     * @param node 运行动画的显示对象
+     * @param userInfo 一些携带数据
+     */
+    virtual void handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCDictionary * userInfo) = 0;
 };
 
 class YHAnimationKeyEvents;
@@ -69,6 +76,19 @@ public:
 	 * @return 成功返回 true, 否则返回 false
 	 */
 	virtual bool init(cocos2d::CCAnimation * animation, bool loop = false);
+    
+    /**
+     * 初始化
+     * @param dataDict 数据定义的字典对象
+     * @return 成功返回 true, 否则返回 false
+     * @code dataDict 数据格式
+     * <Sum/>                       <!-- 总时间 -->
+     * <Steps/>                     <!-- 各个时段的定义 -->
+     *      <Loops/>                <!-- 循环次数, 0 代表无限循环, 1 代表执行 1 次, 2 代表执行 2 次, 以此类推, 不能为负 -->
+     *      <Delay/>                <!-- 延时, 每个子步骤的演示是相对的 -->
+     *      <UserInfo/>             <!-- 一些数据定义 -->
+     */
+    virtual bool init(cocos2d::CCDictionary * dataDict);
 	
 	/**
 	 * 创建 YHAnimationKeyEvents 对象
@@ -89,6 +109,24 @@ public:
 		CC_SAFE_DELETE(instance);
 		return NULL;
 	}
+    
+    /**
+     * 创建 YHAnimationKeyEvents 对象
+     * @param dataDict 数据定义的字典对象
+     * @return 成功返回 YHAnimationKeyEvents 对象, 否则返回 NULL
+     */
+    static YHAnimationKeyEvents * create(cocos2d::CCDictionary * dataDict)
+    {
+        YHAnimationKeyEvents * instance = new YHAnimationKeyEvents();
+        if (instance != NULL && instance->init(dataDict))
+        {
+            instance->autorelease();
+            return instance;
+        }
+        
+        CC_SAFE_DELETE(instance);
+        return NULL;
+    }
 	
 	/// 委托
 	CC_SYNTHESIZE(YHAnimationKeyEventsDelegate *, m_delegate, Delegate);
@@ -114,6 +152,9 @@ private:
 	
 	friend class YHAnimationKeyEventsInternalObject;
 };
+
+typedef class YHAnimationKeyEvents YHKeyTimeCallback;
+typedef class YHAnimationKeyEventsDelegate YHKeyTimeCallbackDelegate;
 
 #endif /* defined(__Demo__YHAnimationKeyEvents__) */
 

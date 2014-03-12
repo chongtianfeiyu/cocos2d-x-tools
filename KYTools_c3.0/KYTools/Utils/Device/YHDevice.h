@@ -30,6 +30,9 @@ public:
 	
 	/// 当前运行的平台, 当前 iOS, Android
 	virtual std::string platform() = 0;
+    
+    /// 对于 iOS 设备判断是否是越狱设备, 对于 Android 用户判断是否是 root 过的用户
+    virtual bool isJailBrokeDevice() = 0;
 	
 protected:
 	YHDevice() {}

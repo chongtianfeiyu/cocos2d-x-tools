@@ -81,8 +81,11 @@ bool YHAnimationKeyEvents::init(cocos2d::CCAnimation * animation, bool loop)
 	if (!actions.empty())
 	{
 		// 补齐动画
-		CCDelayTime * delay = CCDelayTime::create(elapse - lastTime);
-        actions.pushBack(delay);
+        if (elapse > lastTime)
+        {
+            CCDelayTime * delay = CCDelayTime::create(elapse - lastTime);
+            actions.pushBack(delay);
+        }
 		
 		CCSequence * sequence = CCSequence::create(actions);
 		if (loop)
@@ -100,11 +103,82 @@ bool YHAnimationKeyEvents::init(cocos2d::CCAnimation * animation, bool loop)
 	return true;
 }
 
+bool YHAnimationKeyEvents::init(cocos2d::CCDictionary * dataDict)
+{
+    assert(dataDict != NULL);
+    
+    m_internalObject = new YHAnimationKeyEventsInternalObject();
+	m_internalObject->setKeyEvents(this);
+    
+    float sumTime = dataDict->valueForKey("Sum")->floatValue();
+    float elapse = 0.0f;
+    CCArray * steps = (CCArray *)dataDict->objectForKey("Steps");
+    CCObject * obj = NULL;
+    Vector<CCFiniteTimeAction *> actions;
+    CCARRAY_FOREACH(steps, obj)
+    {
+        CCDictionary * dict = (CCDictionary *)obj;
+        float delay = dict->valueForKey("Delay")->floatValue();
+        CCDictionary * userInfo = (CCDictionary *)dict->objectForKey("UserInfo");
+        
+        CCDelayTime * delayTime = CCDelayTime::create(delay);
+        CCCallFuncO * callFuncO = CCCallFuncO::create(m_internalObject,
+                                                      callfuncO_selector(YHAnimationKeyEventsInternalObject::onCallFuncOHandle),
+                                                      userInfo);
+        actions.pushBack(delayTime);
+        actions.pushBack(callFuncO);
+        
+        elapse += delay;
+    }
+    
+    if (!actions.empty())
+    {
+        // 总时间必须大于时间段时间之和
+        assert(sumTime >= elapse);
+        
+        // 判断是否需要补齐动画
+        if (sumTime != elapse)
+        {
+            CCDelayTime * delayTime = CCDelayTime::create(sumTime - elapse);
+            actions.pushBack(delayTime);
+        }
+        
+        // 决定循环次数
+        unsigned int loops = dataDict->valueForKey("Loops")->uintValue();
+        if (loops == 0)
+        {
+            m_action = CCRepeatForever::create(CCSequence::create(actions));
+        }
+        else
+        {
+            if (loops > 1)
+            {
+                m_action = CCRepeat::create(CCSequence::create(actions), loops);
+            }
+            else
+            {
+                m_action = CCSequence::create(actions);
+            }
+        }
+        
+        CC_SAFE_RETAIN(m_action);
+    }
+    
+    return true;
+}
+
 void YHAnimationKeyEvents::onCallFuncOHandle(cocos2d::CCObject * object)
 {
 	if (m_delegate != NULL)
 	{
-		m_delegate->handleKeyEvent(m_node, (CCAnimationFrame *)object);
+        if (dynamic_cast<CCDictionary *>(object) == NULL)
+        {
+            m_delegate->handleKeyEvent(m_node, (CCAnimationFrame *)object);
+        }
+        else
+        {
+            m_delegate->handleKeyEvent(m_node, (CCDictionary *)object);
+        }
 	}
 }
 

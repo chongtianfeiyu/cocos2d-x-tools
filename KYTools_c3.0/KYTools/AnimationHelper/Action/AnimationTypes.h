@@ -61,7 +61,8 @@ private:
 	CCDictionary*		m_dataDict;
 	
 protected:
-	// 初始化
+	
+    /// 初始化
 	void init(CCDictionary* dataDict);
 	
 	void runAction(CCNodeRGBA* node, const std::string& type);
@@ -69,9 +70,12 @@ protected:
 public:
 	~AnimatorAnimData();
 	
-	// 创建 AnimatorAnimData 对象
+	/// 创建 AnimatorAnimData 对象
 	static AnimatorAnimData* data(CCDictionary* dataDict);
 	
+    /// 动画一次循环的总时间
+    float32 getSumTime() const { return m_dataDict->valueForKey("SumTime")->floatValue(); }
+    
 	/**
 	 * 指定动画种类创建 CCAction 对象
 	 * @param type 动画的种类
@@ -104,6 +108,7 @@ protected:
 	void init(CCDictionary*	dataDict);
 	
 public:
+    
 	~AnimatorData();
 	
 	//	创建 AnimatorData 对象

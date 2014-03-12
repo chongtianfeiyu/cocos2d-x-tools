@@ -23,6 +23,9 @@ using namespace cocos2d;
 /// cocos2d 坐标与 Box2D坐标 转化的系数
 extern float PTM_RATIO;
 
+/// 显示内容的缩放
+extern float CONTENT_SCALE;
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // 宏
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,27 +60,6 @@ extern float PTM_RATIO;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * 定义动画的信息
- * @author Zhenyu Yao
- */
-typedef struct _InstantEffectInfo
-{
-	_InstantEffectInfo(cocos2d::CCPoint offset, bool randomRotation, std::string effectKey)
-	{
-		m_offset = offset;
-		m_randomRotation = randomRotation;
-		m_effectKey = effectKey;
-		m_loop = true;
-	}
-	
-	cocos2d::CCPoint	m_offset;				// 位置
-	bool				m_randomRotation;		// 是否随机旋转
-	std::string			m_effectKey;			// 播放的动画键
-	bool				m_loop;					// 是否循环播放动画
-	
-}InstantEffectInfo;
-
-/**
  * CCLabelTTF 的基本参数
  * @author Zhenyu Yao
  */
@@ -86,8 +68,8 @@ class CCLabelTTFConfig
 public:
 	CCLabelTTFConfig() 
 	{
-		m_hAlignment = cocos2d::kCCTextAlignmentCenter;
-		m_vAlignment = cocos2d::kCCVerticalTextAlignmentCenter;
+		m_hAlignment = TextHAlignment::CENTER;
+		m_vAlignment = TextVAlignment::CENTER;
 		m_dimensions = cocos2d::CCSizeZero;
 		m_fontSize = 12;
 		m_fontName = "Default";

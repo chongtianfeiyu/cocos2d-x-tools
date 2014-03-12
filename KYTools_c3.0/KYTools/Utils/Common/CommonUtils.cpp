@@ -15,6 +15,7 @@
 using namespace std;
 
 float PTM_RATIO = 32;
+float CONTENT_SCALE = 2.0f;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // 一些常用功能
@@ -206,21 +207,21 @@ void adapterLandscapeResolution()
 		|| (designSize.width == 1136 && designSize.height == 640)		// iPhone5, iPod5
 		|| (designSize.width == 1024 && designSize.height == 768))		// iPad1,2, iPad mini
 	{
-		designSize.width *= 0.5f;
-		designSize.height *= 0.5f;
+		designSize.width /= CONTENT_SCALE;
+		designSize.height /= CONTENT_SCALE;
 	}
 	else if (designSize.width == 2048 && designSize.height == 1536)		// iPad3
 	{
-		designSize.width *= 0.25f;
-		designSize.height *= 0.25f;
+		designSize.width /= CONTENT_SCALE * 2.0f;
+		designSize.height /= CONTENT_SCALE * 2.0f;
 	}
 	else																// 其他分辨率 & iPhone3GS
 	{
-		designSize.width = 480;
-		designSize.height = 320;
+		designSize.width = 960 * CONTENT_SCALE;
+		designSize.height = 640 * CONTENT_SCALE;
 	}
 	
-	pDirector->setContentScaleFactor(2.0f);
+	pDirector->setContentScaleFactor(CONTENT_SCALE);
 	pDirector->getOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedHeight);
 }
 
@@ -233,21 +234,21 @@ void adapterPortraitResolution()
 		|| (designSize.width == 640 && designSize.height == 1136)
 		|| (designSize.width == 768 && designSize.height == 1024))
 	{
-		designSize.width *= 0.5f;
-		designSize.height *= 0.5f;
+		designSize.width /= CONTENT_SCALE;
+		designSize.height /= CONTENT_SCALE;
 	}
 	else if (designSize.width == 1536 && designSize.height == 2048)
 	{
-		designSize.width *= 0.25f;
-		designSize.height *= 0.25f;
+		designSize.width /= CONTENT_SCALE * 2.0f;
+		designSize.height /= CONTENT_SCALE * 2.0f;
 	}
 	else
 	{
-		designSize.width = 320;
-		designSize.height = 480;
+		designSize.width = 640 * CONTENT_SCALE;
+		designSize.height = 960 * CONTENT_SCALE;
 	}
 	
-	pDirector->setContentScaleFactor(2.0f);
+	pDirector->setContentScaleFactor(CONTENT_SCALE);
 	pDirector->getOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedHeight);
 }
 

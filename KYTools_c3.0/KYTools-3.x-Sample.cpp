@@ -77,6 +77,10 @@ bool KYToolsSample_3_X::init()
 
 // KYTools some samples.
 {
+    // 分辨率适配在 AppDelegate.cpp 文件中
+    // adapterLandscapeResolution();
+    // adapterPortraitResolution();
+    
     // 初始化
     ActionContext::getContext()->initialize();
     
@@ -84,14 +88,14 @@ bool KYToolsSample_3_X::init()
     CCSpriteFrameCache::getInstance()->addSpriteFramesWithFile("test/Pic_Lives_0-hd.plist");
     CCSpriteFrameCache::getInstance()->addSpriteFramesWithFile("test/Effect_All-hd.plist");
     
-    // 加载动画配置文件
-    CCDictionary * animationDict = CCDictionary::createWithContentsOfFile(CCFileUtils::getInstance()->fullPathForFilename("test/Set_Animation.plist").c_str());
-    YHAnimationCache::sharedAnimationCache()->addAnimations(animationDict);
-    
     // 加载特效配置文件
     m_effectFactory = YHEffectFactory::create();
     m_effectFactory->retain();
     m_effectFactory->addEffectDefiner(CCDictionary::createWithContentsOfFile(CCFileUtils::getInstance()->fullPathForFilename("test/Set_Effect.plist").c_str()));
+    
+    // 加载动画配置文件
+    CCDictionary * animationDict = CCDictionary::createWithContentsOfFile(CCFileUtils::getInstance()->fullPathForFilename("test/Set_Animation.plist").c_str());
+    m_effectFactory->getAnimationCache()->addAnimations(animationDict);
     
     // 运行动画脚本
     CCSpecialSprite * ss = createModuleSprite("test/Moudle_11_Normal_11_Normal.plist");
@@ -112,14 +116,25 @@ bool KYToolsSample_3_X::init()
     ss->setPosition(CENTER);
     this->addChild(ss);
     
-    // 关键帧
-    CCAnimation * animation = YHAnimationCache::sharedAnimationCache()->animationForKeyFromCache_Ver2("KeyFrameTest");
-    CCSprite * runKeyFrameSP = CCSprite::create();
-    m_animationPair = YHAnimationHelper::createAnimationPairAndRun(animation, runKeyFrameSP, true);
-    m_animationPair->retain();
-    m_animationPair->getKeyEvents()->setDelegate(this);
-    runKeyFrameSP->setPosition(ccp(200, 240));
-    this->addChild(runKeyFrameSP);
+    // 关键帧, 动画内部定义
+    CCAnimation * animation = m_effectFactory->getAnimationCache()->animationForKeyFromCache_Ver2("AnimationKeyFrame");
+    CCKeyTimeCallbackSprite * keyTimeSprite = CCKeyTimeCallbackSprite::create(animation, true);
+    keyTimeSprite->setDelegate(this);
+    keyTimeSprite->setPosition(ccp(200, 240));
+    this->addChild(keyTimeSprite);
+    
+    // 关键帧, 直接定义时间
+    CCDictionary * dataDict = (CCDictionary *)m_effectFactory->getAnimationCache()->getAnimationFileDic()->objectForKey("CustomKeyFrame");
+    keyTimeSprite = CCKeyTimeCallbackSprite::create(animation, dataDict, true);
+    keyTimeSprite->setDelegate(this);
+    keyTimeSprite->setPosition(ccp(300, 240));
+    this->addChild(keyTimeSprite);
+    
+    // Test Json
+    CCDictionary * dict = CCDictionary::create();
+    dict->setObject(CCString::createWithFormat("123456"), "Key1");
+    Json::Value value = jsonFromDictionary(dict);
+    CCLOG("%s", value.toStyledString().c_str());
 }
     
     return true;
@@ -159,7 +174,7 @@ CCSprite * KYToolsSample_3_X::createSegmentSprite(const std::string & animFile, 
     }
     
     CCSprite * sprite = CCSprite::create();
-    CCAnimation * animation = YHAnimationCache::sharedAnimationCache()->animationForKeyFromCache_Ver2(animationName);
+    CCAnimation * animation = m_effectFactory->getAnimationCache()->animationForKeyFromCache_Ver2(animationName);
     YHAnimationHelper::runActionWithSprite(sprite, animation, true, animData->getInitData(), animData->getAnimData());
     return sprite;
 }
@@ -199,6 +214,12 @@ void KYToolsSample_3_X::handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCAnimat
         
         CCLOG("---- %s ----", descr.c_str());
     }
+}
+
+void KYToolsSample_3_X::handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCDictionary * userInfo)
+{
+    const CCString * str = userInfo->valueForKey("Text");
+    CCLOG("---- %s ----", str->getCString());
 }
 
 

@@ -47,13 +47,6 @@ public:
 	 */
 	virtual void		reset() = 0;
 	
-	/**
-	 * 重置动画
-	 * @param info 动画信息
-	 * @param position 初始位置
-	 */
-	virtual void		reset(const InstantEffectInfo & info, const cocos2d::CCPoint & position) = 0;
-	
 	/// 自动从父容器中移除
 	virtual void		autoRemoveFromParent() = 0;
 };

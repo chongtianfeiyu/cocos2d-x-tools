@@ -34,6 +34,31 @@ string YHDevice_iOS::platform()
 	return "iOS";
 }
 
+bool YHDevice_iOS::isJailBrokeDevice()
+{
+    static const char* jailbreak_apps[] =
+    {
+        "/Applications/Cydia.app",
+        "/Applications/blackra1n.app",
+        "/Applications/blacksn0w.app",
+        "/Applications/greenpois0n.app",
+        "/Applications/limera1n.app",
+        "/Applications/redsn0w.app",
+        NULL,
+    };
+    
+    for (int i = 0; jailbreak_apps[i] != NULL; ++i)
+    {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:
+             [NSString stringWithCString:jailbreak_apps[i] encoding:NSUTF8StringEncoding]])
+        {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 
 
 

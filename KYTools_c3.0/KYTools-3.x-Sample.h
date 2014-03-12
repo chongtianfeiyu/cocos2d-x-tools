@@ -2,7 +2,7 @@
 #define __KYTOOLS_SAMPLE_SCENE_H__
 
 #include "cocos2d.h"
-#include "KYTools/KYTools.h"
+#include <KYTools/KYTools.h>
 
 class KYToolsSample_3_X : public cocos2d::Layer, public YHAnimationKeyEventsDelegate
 {
@@ -20,6 +20,7 @@ public:
     CREATE_FUNC(KYToolsSample_3_X);
     
     virtual void handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCAnimationFrame * frame) override;
+    virtual void handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCDictionary * userInfo) override;
     
 private:
     
@@ -27,7 +28,6 @@ private:
     cocos2d::CCSprite * createSegmentSprite(const std::string & animFile, const std::string & animationName);
     
     YHEffectFactory * m_effectFactory;
-    YHAnimationPair * m_animationPair;
 };
 
 #endif // __KYTOOLS_SAMPLE_SCENE_H__

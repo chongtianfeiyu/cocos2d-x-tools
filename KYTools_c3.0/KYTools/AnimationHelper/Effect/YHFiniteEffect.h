@@ -50,7 +50,6 @@ public: /** YHIFiniteEffect **/
 	virtual void		reset(cocos2d::CCArray * actions, float duration);
 	virtual void		reset(float duration);
 	virtual void		reset();
-	virtual void		reset(const InstantEffectInfo & info, const cocos2d::CCPoint & position);
 	virtual void		autoRemoveFromParent();
 	
 protected:

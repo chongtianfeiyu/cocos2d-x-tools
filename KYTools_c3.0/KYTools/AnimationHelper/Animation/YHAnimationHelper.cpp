@@ -139,6 +139,16 @@ m_randomRotate(false)
 	}
 }
 
+void YHSpriteDefiner::assignToSprite(CCSprite * sp) const
+{
+    sp->setAnchorPoint(m_anchorPoint);
+    sp->setPosition(m_position);
+    sp->setZOrder(m_zOrder);
+    if (m_randomRotate)
+        sp->setRotation(360.0f * CCRANDOM_0_1());
+    sp->setBlendFunc(m_blendFunc);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // YHAnimationHelper
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -229,8 +239,17 @@ YHAnimationPair * YHAnimationHelper::createAnimationPairAndRun(CCAnimation * ani
 {
     YHAnimationPair * animationPair = createAnimationPair(animation, loop);
     sprite->setDisplayFrame(animation->getFrames().at(0)->getSpriteFrame());
+    
+    // 动画的 Action
     sprite->runAction(animationPair->getAction());
-    sprite->runAction(animationPair->getKeyEvents()->getAction());
+    
+    // 关键帧的 Action
+    if (animationPair->getKeyEvents()->getAction() != NULL)
+    {
+        animationPair->getKeyEvents()->setNode(sprite);
+        sprite->runAction(animationPair->getKeyEvents()->getAction());
+    }
+    
     return animationPair;
 }
 
@@ -251,14 +270,6 @@ void YHAnimationHelper::runForeverAnimation(CCAnimation * animation, CCSprite * 
 
 	CCAnimationFrame * animationFrame = static_cast<CCAnimationFrame *>(animate->getAnimation()->getFrames().at(0));
 	sprite->setDisplayFrame(animationFrame->getSpriteFrame());
-}
-
-void YHAnimationHelper::spriteWithDictionary(CCSprite * sprite, CCDictionary * dict)
-{
-	YHSpriteDefiner definer(dict);
-	sprite->setAnchorPoint(definer.getAnchorPoint());
-	sprite->setPosition(definer.getPosition());
-	sprite->setZOrder(definer.getZOrder());
 }
 
 void YHAnimationHelper::runActionWithSprite(cocos2d::CCSprite *sprite,

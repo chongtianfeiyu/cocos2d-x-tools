@@ -115,11 +115,6 @@ void YHDefaultFiniteEffect::reset()
 	resetBasicParams();
 }
 
-void YHDefaultFiniteEffect::reset(const InstantEffectInfo & info, const cocos2d::CCPoint & position)
-{
-	resetBasicParams();
-}
-
 void YHDefaultFiniteEffect::autoRemoveFromParent()
 {
 	this->removeAllChildrenWithCleanup(true);

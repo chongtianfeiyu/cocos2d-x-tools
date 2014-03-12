@@ -4,11 +4,9 @@
 
 using namespace cocos2d;
 
-YHAnimationCache::YHAnimationCache(void)
-	:m_animationFileDic(NULL)
+YHAnimationCache::YHAnimationCache(void) :
+m_animationFileDic(NULL)
 {
-	m_animationFileDic = CCDictionary::create();
-	m_animationFileDic->retain();
 }
 
 YHAnimationCache::~YHAnimationCache(void)
@@ -16,10 +14,11 @@ YHAnimationCache::~YHAnimationCache(void)
 	m_animationFileDic->release();
 }
 
-YHAnimationCache * YHAnimationCache::sharedAnimationCache()
+bool YHAnimationCache::init()
 {
-	static YHAnimationCache animationCache;
-	return &animationCache;
+    m_animationFileDic = CCDictionary::create();
+	m_animationFileDic->retain();
+    return true;
 }
 
 void YHAnimationCache::addAnimations(CCDictionary * dict)

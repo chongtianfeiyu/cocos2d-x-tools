@@ -22,9 +22,10 @@ public:
 	YHDevice_iOS() {}
 	virtual ~YHDevice_iOS() {}
 	
-	virtual std::string deviceIdentifier();
-	virtual std::string osVersion();
-	virtual std::string platform();
+	virtual std::string deviceIdentifier() override;
+	virtual std::string osVersion() override;
+	virtual std::string platform() override;
+    virtual bool isJailBrokeDevice() override;
 };
 
 #endif /* defined(__MonsterHunter__YHDevice_iOS__) */

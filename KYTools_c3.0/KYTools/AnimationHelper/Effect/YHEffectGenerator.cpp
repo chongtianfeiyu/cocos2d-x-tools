@@ -48,12 +48,16 @@ YHEffectFactory::YHEffectFactory()
 	
 	m_effectCache = CCSet::create();
 	CC_SAFE_RETAIN(m_effectCache);
+    
+    m_animationCache = YHAnimationCache::create();
+    CC_SAFE_RETAIN(m_animationCache);
 }
 
 YHEffectFactory::~YHEffectFactory()
 {
-	CC_SAFE_RELEASE(m_definerCache);
-	CC_SAFE_RELEASE(m_effectCache);
+	CC_SAFE_RELEASE_NULL(m_definerCache);
+	CC_SAFE_RELEASE_NULL(m_effectCache);
+    CC_SAFE_RELEASE_NULL(m_animationCache);
 }
 
 YHEffectDefiner * YHEffectFactory::effectDefinerForKey(const string & key)
@@ -114,13 +118,7 @@ YHDefaultFiniteEffect * YHEffectFactory::finiteEffectFromCache()
 
 void YHEffectFactory::adjustSprite(CCSprite * sp, const YHEffectDefiner * definer)
 {
-	sp->setAnchorPoint(definer->getSpriteDefiner().getAnchorPoint());
-	sp->setPosition(definer->getSpriteDefiner().getPosition());
-	sp->setZOrder(definer->getSpriteDefiner().getZOrder());
-	if (definer->getSpriteDefiner().getRandomRotate())
-		sp->setRotation(CCRANDOM_0_1() * 360.0f);
-    
-    sp->setBlendFunc(definer->getSpriteDefiner().getBlendFunc());
+    definer->getSpriteDefiner().assignToSprite(sp);
     Vector<CCNode *>::iterator beg = sp->getChildren().begin();
     Vector<CCNode *>::iterator end = sp->getChildren().end();
     for (; beg != end; ++beg)
@@ -137,7 +135,7 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 	if (definer->getType() == kEffectDefineType_Piece1)
 	{
 		YHDefaultFiniteEffect * effect = finiteEffectFromCache();
-		CCAnimate * animate = YHAnimationCache::sharedAnimationCache()->animateForKey(definer->getAnimationName());
+		CCAnimate * animate = m_animationCache->animateForKey(definer->getAnimationName());
 		effect->reset(animate);
 		adjustSprite(effect, definer);
 		return effect;
@@ -146,14 +144,14 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 	{
 		// right
 		YHDefaultFiniteEffect * right = finiteEffectFromCache();
-		CCAnimate * animate = YHAnimationCache::sharedAnimationCache()->animateForKey(definer->getAnimationName());
+		CCAnimate * animate = m_animationCache->animateForKey(definer->getAnimationName());
 		right->reset(animate);
 		
 		// left
 		CCSize contentSize = right->getContentSize();
 		YHDefaultFiniteEffect * left = finiteEffectFromCache();
 		left->setPosition(ccp(contentSize.width * 0.5f, contentSize.height * 0.5f));
-		animate = YHAnimationCache::sharedAnimationCache()->animateForKey(definer->getAnimationName());
+		animate = m_animationCache->animateForKey(definer->getAnimationName());
 		left->reset(animate);
 		left->setRotation(-180);
 		right->addChild(left);
@@ -166,7 +164,7 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 	{
 		// right top
 		YHDefaultFiniteEffect * rightTop = finiteEffectFromCache();
-		CCAnimate * animate = YHAnimationCache::sharedAnimationCache()->animateForKey(definer->getAnimationName());
+		CCAnimate * animate = m_animationCache->animateForKey(definer->getAnimationName());
 		rightTop->reset(animate);
         
 		CCSize contentSize = rightTop->getContentSize();
@@ -174,7 +172,7 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 		
 		// right bottom
 		YHDefaultFiniteEffect * rightBottom = finiteEffectFromCache();
-		animate = YHAnimationCache::sharedAnimationCache()->animateForKey(definer->getAnimationName());
+		animate = m_animationCache->animateForKey(definer->getAnimationName());
 		rightBottom->reset(animate);
 		rightBottom->setPosition(centerPoint);
 		rightBottom->setRotation(-90);
@@ -182,7 +180,7 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 		
 		// left top
 		YHDefaultFiniteEffect * leftTop = finiteEffectFromCache();
-		animate = YHAnimationCache::sharedAnimationCache()->animateForKey(definer->getAnimationName());
+		animate = m_animationCache->animateForKey(definer->getAnimationName());
 		leftTop->reset(animate);
 		leftTop->setPosition(centerPoint);
 		leftTop->setRotation(-180);
@@ -190,7 +188,7 @@ CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * defin
 		
 		// left bottom
 		YHDefaultFiniteEffect * leftBottom = finiteEffectFromCache();
-		animate = YHAnimationCache::sharedAnimationCache()->animateForKey(definer->getAnimationName());
+		animate = m_animationCache->animateForKey(definer->getAnimationName());
 		leftBottom->reset(animate);
 		leftBottom->setPosition(centerPoint);
 		leftBottom->setRotation(-270);

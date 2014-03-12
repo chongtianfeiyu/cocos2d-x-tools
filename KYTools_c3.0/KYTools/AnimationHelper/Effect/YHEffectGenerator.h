@@ -6,6 +6,7 @@
 #include <KYTools/cocos2d-extension/CCSpecialSprite.h>
 #include <KYTools/AnimationHelper/Effect/YHFiniteEffect.h>
 #include <KYTools/AnimationHelper/Animation/YHAnimationHelper.h>
+#include <KYTools/AnimationHelper/Animation/YHAnimationCache.h>
 
 using namespace std;
 using namespace cocos2d;
@@ -32,10 +33,10 @@ public:
 	YHEffectDefiner(CCDictionary * dict);
 	~YHEffectDefiner() {}
 	
-	/// 获得特效定义的类型
+	/// 获得 特效定义的类型
 	YHEffectDefineType		getType() const { return m_type; }
 	
-	/// 获得/设置特效定义的类型
+	/// getter/setter 动画的名字
 	const char *			getAnimationName() const { return m_animationName.c_str(); }
 	void					setAnimationName(const char * name) { m_animationName = name; }
 	
@@ -56,7 +57,7 @@ class YHEffectFactory : public YHObject
 public:
 	
 	YHEffectFactory();
-	~YHEffectFactory();
+	virtual ~YHEffectFactory();
 	
 	/// 初始化
 	virtual bool init()
@@ -64,7 +65,11 @@ public:
 		return true;
 	}
 	
+    /// 创建 YHEffectFactory 对象
 	CREATE_FUNC(YHEffectFactory);
+    
+    /// YHAnimationCache 对象
+    CC_SYNTHESIZE_RETAIN(YHAnimationCache *, m_animationCache, AnimationCache);
 	
 	/// 从缓存中获得 YHEffectDefiner 对象
 	YHEffectDefiner *			effectDefinerForKey(const string & key);

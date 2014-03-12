@@ -21,7 +21,7 @@ class AnimatorAnimData;
 
 /**
  * 动画定义器中的帧特别数据定义器
- * -------- NSDictionary 格式说明 --------
+ * @code -------- NSDictionary 格式说明 --------
  * <Frames/>						<!-- 每帧的详细设置, 可以省略, 省略后, 都以缺省值配置每一帧数据 -->
  *		<Index/>					<!-- 设置帧的索引, 从 0 开始计数, 不能超过 Range 的范围 -->
  *		<DelayUnits/>				<!-- 设置帧的单位延迟, 每一帧的延迟 = Delay * DelayUnits, 默认值 1.0 -->
@@ -66,6 +66,7 @@ public:
 
 	/** 
 	 * 方式 1 解析
+     * @code -------- NSDictionary 格式说明 --------
 	 * <Delay/>							<!-- 每帧的之间的间隔时间 -->
 	 * <Resources/>						<!-- 资源数组 -->
 	 */
@@ -73,7 +74,7 @@ public:
 
 	/** 
 	 * 方式 2 解析
-	 * -------- NSDictionary 格式说明 --------
+	 * @code -------- NSDictionary 格式说明 --------
 	 * <FileName/>						<!-- 动画的文件名 -->
 	 * <Range/>							<!-- 动画帧的范围 [min, max] -->
 	 * <Extension/>						<!-- 文件的后缀名, 不要加 . -->
@@ -141,6 +142,9 @@ public:
 	
 	/// 是否随机旋转
 	CC_SYNTHESIZE(bool, m_randomRotate, RandomRotate);
+    
+    /// 将值赋给指定的 CCSprite 对象
+    void                assignToSprite(CCSprite * sp) const;
 	
 private:
 	CCPoint				m_anchorPoint;
@@ -166,7 +170,7 @@ public:
 		CC_SAFE_RELEASE_NULL(m_keyEvents);
 	}
 	
-	/// Action
+	/// 动画 Action
 	CC_SYNTHESIZE_RETAIN(CCAction *, m_action, Action);
 	
 	/// YHAnimationKeyEvents;
@@ -213,6 +217,7 @@ public:		/** Static Functions **/
 
 	/**
 	 * 创建 YHAnimationPair 对象
+     * @note 不建议直接使用, 建议使用 CCKeyTimeCallbackSprite
 	 * @param animation 动画
      * @param loop 是否循环
 	 * @return YHAnimationPair 对象
@@ -221,6 +226,7 @@ public:		/** Static Functions **/
     
     /**
      * 创建 YHAnimationPair 对象, 并且 sprite 运行动画
+     * @note 不建议直接使用, 建议使用 CCKeyTimeCallbackSprite
      * @param animation 动画
      * @param sprite 运行动画的显示对象
      * @param loop 是否循环
@@ -241,13 +247,6 @@ public:		/** Static Functions **/
 	 * @param sprite 呈现动画的 CCSprite 对象
 	 */
 	static void runForeverAnimation(CCAnimation * animation, CCSprite * sprite);
-
-	/**
-	 * 将 dict 中的数据解析出来赋予到 sprite 对象中
-	 * @param sprite 等待赋予数据的 sprite 对象
-	 * @param dict 被解析的 dict 对象
-	 */
-	static void spriteWithDictionary(CCSprite * sprite, CCDictionary * dict);
 	
 	/**
 	 * CCSprite 播放动画, 调用此函数会 stopAllActions 之前所有的 Action

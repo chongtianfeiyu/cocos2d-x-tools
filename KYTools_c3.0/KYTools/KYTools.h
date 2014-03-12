@@ -58,6 +58,7 @@
 // extension
 #include <KYTools/cocos2d-extension/CCActionExtension.h>
 #include <KYTools/cocos2d-extension/CCSpecialSprite.h>
+#include <KYTools/cocos2d-extension/CCKeyTimeCallbackSprite.h>
 
 // third party
 #include <KYTools/libs/jsoncpp/include/json/json.h>
