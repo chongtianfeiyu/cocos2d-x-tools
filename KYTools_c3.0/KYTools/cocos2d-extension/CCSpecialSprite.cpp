@@ -48,23 +48,12 @@ void CCSpecialSprite::setBlendFunc(const cocos2d::BlendFunc & blendFunc)
     }
 }
 
-void CCSpecialSprite::addChild(CCNode * pNode)
-{
-	CCSprite::addChild(pNode);
-	
-}
-
-void CCSpecialSprite::addChild(CCNode *pNode, int zOrder)
-{
-	CCSprite::addChild(pNode, zOrder);
-}
-
 void CCSpecialSprite::addChild(CCNode *pChild, int zOrder, int tag)
 {
 	CCSprite::addChild(pChild, zOrder, tag);
 
 	setTexture(((CCSprite*)pChild)->getTexture());
-	
+    
 	CCRGBAProtocol * rgba = dynamic_cast<CCRGBAProtocol *>(pChild);
 	if (rgba != NULL)
 	{
@@ -95,8 +84,7 @@ bool CCSpecialSprite::init2(AnimatorModuleData *moduleData)
 	
 	do {
 		CC_BREAK_IF(!CCSprite::init());
-		setAnchorPoint(moduleData->m_anchorPoint);
-		setContentSize(moduleData->m_contentSize);
+        moduleData->assignToNode(this);
 		bRet = true;
 	} while (0);
 	

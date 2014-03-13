@@ -15,12 +15,12 @@
 
 CCPoint ActionParseBase::pointWithContentScale(const CCPoint & point)
 {
-    float contentScale = ActionContext::getContext()->getContentScale();
+    float contentScale = Director::getInstance()->getContentScaleFactor();
     return ccp(point.x / contentScale, point.y / contentScale);
 }
 
 float ActionParseBase::floatWithContentScale(float value)
 {
-    return value / ActionContext::getContext()->getContentScale();
+    return value / Director::getInstance()->getContentScaleFactor();
 }
 

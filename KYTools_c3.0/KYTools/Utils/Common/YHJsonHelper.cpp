@@ -184,7 +184,7 @@ Json::Value jsonFromDictionary(CCDictionary * root)
 Json::Value jsonFromArray(CCArray * root)
 {
 	if (root == NULL)
-		return NULL;
+		return Json::Value::null;
 	
 	Json::Value jsonNode;
 	CCObject * obj = NULL;

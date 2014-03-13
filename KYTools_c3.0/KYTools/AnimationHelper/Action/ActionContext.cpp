@@ -130,6 +130,4 @@ void ActionContext::initialize()
 	registerClass<ParserSplitRows>("ParserSplitRows");
 	registerClass<ParserTurnOffTiles>("ParserTurnOffTiles");
 	registerClass<ParserWavesTiles3D>("ParserWavesTiles3D");
-    
-    m_contentScale = CCDirector::getInstance()->getContentScaleFactor();
 }

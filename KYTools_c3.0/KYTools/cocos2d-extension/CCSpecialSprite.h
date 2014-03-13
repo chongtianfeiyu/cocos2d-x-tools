@@ -39,9 +39,8 @@ public: // Override Functions
     virtual void                setBlendFunc(const BlendFunc & blendFunc) override;
 	
 	/// 添加进容器的时候负责给子节点着色和设置透明度
-	virtual void				addChild(CCNode *pNode);
-	virtual void				addChild(CCNode *pNode, int zOrder);
-	virtual void				addChild(CCNode *pChild, int zOrder, int tag);
+    using CCSprite::addChild;
+	virtual void				addChild(CCNode *pChild, int zOrder, int tag) override;
 	
 };
 

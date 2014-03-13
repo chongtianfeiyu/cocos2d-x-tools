@@ -30,12 +30,6 @@ public:
 	/// 根据字典得到CCAction 对象
 	cocos2d::CCAction *getAction(cocos2d::CCDictionary* dict);
     
-    /// 获得当前内容的缩放比率
-    float getContentScale() { return m_contentScale; }
-    
-private:
-    
-	float m_contentScale;
 };
 
 #endif /* defined(__cocos2d_x_Utils__ActionContext__) */

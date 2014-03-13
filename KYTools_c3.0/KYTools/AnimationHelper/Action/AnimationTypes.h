@@ -145,7 +145,9 @@ public:
 	
 	//	创建 SpecialSprite 对象
 	CCSpecialSprite* createSpecialSprite();
-	
+    
+    /// 赋值给 CCNode 对象
+    void assignToNode(CCNode * node);
 };
 
 /**

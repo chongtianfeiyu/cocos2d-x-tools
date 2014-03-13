@@ -152,6 +152,8 @@ void AnimatorModuleData::init(cocos2d::CCDictionary *moduleDict)
 {
 	m_anchorPoint = PointFromString(moduleDict->valueForKey("AnchorPoint")->getCString());
 	m_contentSize = SizeFromString(moduleDict->valueForKey("Size")->getCString());
+    m_contentSize.width = ActionParseBase::floatWithContentScale(m_contentSize.width);
+    m_contentSize.height = ActionParseBase::floatWithContentScale(m_contentSize.height);
 }
 
 AnimatorModuleData* AnimatorModuleData::data(cocos2d::CCDictionary *moduleDict)
@@ -167,6 +169,11 @@ CCSpecialSprite* AnimatorModuleData::createSpecialSprite()
 	return CCSpecialSprite::create(this);
 }
 
+void AnimatorModuleData::assignToNode(CCNode * node)
+{
+    node->setAnchorPoint(m_anchorPoint);
+    node->setContentSize(m_contentSize);
+}
 
 ///////////////////AnimatorSettignData///////////////////
 void AnimatorSettingData::init(cocos2d::CCDictionary *settingDict)
