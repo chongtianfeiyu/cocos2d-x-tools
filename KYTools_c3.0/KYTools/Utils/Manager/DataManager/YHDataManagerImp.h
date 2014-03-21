@@ -43,7 +43,7 @@ public:
 	
 protected:
 	
-    /// 装载文件, 返回装载文件生成的对象
+    /// 装载文件, 返回装载文件生成的对象, 在使用完返回对象后, 必须手动调用 release
     virtual cocos2d::CCObject * loadFile(const std::string & fullpath);
     
 	cocos2d::CCArray * m_waitingFiles;

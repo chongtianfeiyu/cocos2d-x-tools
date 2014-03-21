@@ -28,7 +28,9 @@
 #include <KYTools/Utils/Common/YHEventDispatcher.h>
 #include <KYTools/Utils/Common/YHJsonHelper.h>
 #include <KYTools/Utils/Common/YHAbstractDataSetting.h>
+#include <KYTools/Utils/Common/YHDate.h>
 #include <KYTools/Utils/Device/YHDevice.h>
+#include <KYTools/Utils/Device/YHGameBasicInfo.h>
 #include <KYTools/Utils/Geometry/YHGeometry.h>
 #include <KYTools/Utils/Debug/GLES-Render.h>
 #include <KYTools/Utils/Sound/SoundController.h>
@@ -59,6 +61,7 @@
 #include <KYTools/cocos2d-extension/CCActionExtension.h>
 #include <KYTools/cocos2d-extension/CCSpecialSprite.h>
 #include <KYTools/cocos2d-extension/CCKeyTimeCallbackSprite.h>
+#include <KYTools/cocos2d-extension/CCEncryptNumber.h>
 
 // third party
 #include <KYTools/libs/jsoncpp/include/json/json.h>

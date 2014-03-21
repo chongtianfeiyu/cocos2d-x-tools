@@ -70,7 +70,7 @@ void YHAsynDataManagerImp::removeAllFiles()
 
 void YHAsynDataManagerImp::start()
 {
-    if (m_thread == NULL)
+    if (m_thread == NULL && m_waitingFiles->count() != 0)
     {
         m_thread = new LoadThread();
         m_thread->m_parent = this;
@@ -175,6 +175,7 @@ void * YHAsynDataManagerImp::LoadThread::Execute()
             m_parent->m_lock.Lock();
             m_parent->getDict()->setObject(obj, file);
             m_parent->m_lock.Unlock();
+            obj->release();
         }
     }
     

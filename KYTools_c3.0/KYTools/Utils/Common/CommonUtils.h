@@ -192,12 +192,20 @@ extern std::string int32ToString(int32 value);
 extern std::string uint32ToString(uint32 value);
 extern std::string uint64ToString(uint64 value);
 extern std::string float32ToString(float32 value);
+extern std::string boolToString(bool value);
 
 /** string 类型转化为数值 **/
 extern int32 int32FromString(const std::string & value);
 extern uint32 uint32FromString(const std::string & value);
 extern uint64 uint64FromString(const std::string & value);
 extern float32 float32FromString(const std::string & value);
+extern bool boolFromString(const std::string & value);
+
+/// ASCII 转化为小写
+extern void asciiToLower(std::string & origin);
+
+/// ASCII 转化为大写
+extern void asciiToUpper(std::string & origin);
 
 /**
  * 使用指定的分割符分组字符串

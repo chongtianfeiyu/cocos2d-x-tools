@@ -111,7 +111,10 @@ void YHSchedulerDataManagerImp::update(float dt)
 	// 装载对应的对象
 	CCObject * obj = loadFile(fullpath);
     if (obj != NULL)
+    {
         getDict()->setObject(obj, file);
+        obj->release();
+    }
 	
 	if (m_waitingFiles->count() == 0)
 		CCDirector::sharedDirector()->getScheduler()->unscheduleUpdateForTarget(this);

@@ -37,16 +37,24 @@ CCObject * YHDataManagerImp::loadFile(const std::string & fullpath)
     CCObject * obj = NULL;
     if (suffix.compare("plist-array") == 0)
     {
-        obj = CCArray::createWithContentsOfFile(fullpath.c_str());
+        ValueVector vv = CCFileUtils::getInstance()->getValueVectorFromFile(fullpath);
+        CCArray * arr = new CCArray();
+        arr->initWithCapacity((ssize_t)vv.size());
+        for(const auto & value : vv) {
+            arr->addObject(__String::create(value.asString()));
+        }
+        
+        obj = arr;
     }
     else if (suffix.compare("plist-dictionary") == 0)
     {
-        obj = CCDictionary::createWithContentsOfFile(fullpath.c_str());
+        obj = CCDictionary::createWithContentsOfFileThreadSafe(fullpath.c_str());
     }
     else if (suffix.compare("png") == 0 || suffix.compare("jpg") == 0 || suffix.compare("jpeg") == 0
              || suffix.compare("tif") == 0 || suffix.compare("tiff") == 0 || suffix.compare("webp") == 0)
     {
         obj = CCTextureCache::sharedTextureCache()->addImage(fullpath.c_str());
+        obj->retain();		// 因为 addImage 里面没有 autorelease.
     }
     else
     {
@@ -63,8 +71,6 @@ CCObject * YHDataManagerImp::loadFile(const std::string & fullpath)
             fread(bytes->getBuffer(), size, 1, pFile);
             
             fclose(pFile);
-            
-            obj = bytes->autorelease();
         }
     }
     

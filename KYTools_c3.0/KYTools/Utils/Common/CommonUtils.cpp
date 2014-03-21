@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <sstream>
 #include <math.h>
+#include <ctype.h>
 
 #include <KYTools/Utils/Common/CommonUtils.h>
 
@@ -283,6 +284,14 @@ string float32ToString(float32 value)
 	return string(str);
 }
 
+string boolToString(bool value)
+{
+    if (value)
+        return string("true");
+    else
+        return string("false");
+}
+
 int32 int32FromString(const std::string & value)
 {
 	istringstream iss(value);
@@ -313,6 +322,29 @@ float32 float32FromString(const std::string & value)
 	float32 number;
 	iss >> number;
 	return number;
+}
+
+bool boolFromString(const std::string & value)
+{
+    std::string tmp = value;
+    asciiToLower(tmp);
+    
+    if (tmp == "false" || tmp == "no" || tmp == "0")
+        return false;
+    
+    return true;
+}
+
+void asciiToLower(std::string & origin)
+{
+    for (size_t i = 0; i < origin.length(); ++i)
+        tolower(origin[i]);
+}
+
+void asciiToUpper(std::string & origin)
+{
+    for (size_t i = 0; i < origin.length(); ++i)
+        toupper(origin[i]);
 }
 
 void slitStringBySeperator(const string & origin, vector<string> & others, const string & seperator)

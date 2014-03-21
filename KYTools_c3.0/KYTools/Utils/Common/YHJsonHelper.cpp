@@ -156,6 +156,14 @@ Json::Value jsonFromDictionary(CCDictionary * root)
 {
 	if (root == NULL)
 		return Json::Value::null;
+    
+    if (root->count() == 0)
+    {
+        Json::Value value;
+        Json::Reader reader;
+        reader.parse("{}", value);
+        return value;
+    }
 	
 	Json::Value jsonNode;
 	CCDictElement * e = NULL;
@@ -186,6 +194,14 @@ Json::Value jsonFromArray(CCArray * root)
 	if (root == NULL)
 		return Json::Value::null;
 	
+    if (root->count() == 0)
+    {
+        Json::Value value;
+        Json::Reader reader;
+        reader.parse("[]", value);
+        return value;
+    }
+    
 	Json::Value jsonNode;
 	CCObject * obj = NULL;
 	CCARRAY_FOREACH(root, obj)
@@ -304,7 +320,137 @@ ValueVector valueVectorFromArray(CCArray * root)
     return vec;
 }
 
+std::vector<std::string> STDVectorFromJson(const Json::Value & root)
+{
+    assert(root.type() == Json::arrayValue);
+    std::vector<std::string> ret;
+    ArrayIndex size = root.size();
+    for (ArrayIndex i = 0; i < size; ++i)
+        ret.push_back(root[i].asString());
+    return ret;
+}
 
+Json::Value jsonFromSTDVector(const std::vector<std::string> & root)
+{
+    Json::Value ret(Json::arrayValue);
+    for (std::vector<std::string>::const_iterator it = root.begin(); it != root.end(); ++it)
+        ret.append(*it);
+    return ret;
+}
+
+cocos2d::Vector<cocos2d::CCObject *> cocos2dVectorFromJson(const Json::Value & root)
+{
+    assert(root.type() == Json::arrayValue);
+    cocos2d::Vector<cocos2d::CCObject *> ret;
+    ArrayIndex size = root.size();
+    for (ArrayIndex i = 0; i < size; ++i)
+    {
+        if (root[i].type() == Json::arrayValue)
+        {
+            ret.pushBack(arrayFromJson(root[i]));
+        }
+        else if (root[i].type() == Json::objectValue)
+        {
+            ret.pushBack(dictionaryFromJson(root[i]));
+        }
+        else
+        {
+            ret.pushBack(CCString::create(root[i].asString()));
+        }
+    }
+    
+    return ret;
+}
+
+Json::Value jsonFromCocos2dVector(const cocos2d::Vector<cocos2d::CCObject *> & root)
+{
+    Json::Value ret(Json::arrayValue);
+    for (auto v : root)
+    {
+        if (dynamic_cast<cocos2d::CCArray *>(v) != nullptr)
+        {
+            ret.append(jsonFromArray((CCArray *)v));
+        }
+        else if (dynamic_cast<cocos2d::CCDictionary *>(v) != nullptr)
+        {
+            ret.append(jsonFromDictionary((CCDictionary *)v));
+        }
+        else
+        {
+            CCString * str = (CCString *)v;
+            ret.append(Json::Value(str->getCString()));
+        }
+    }
+    
+    return ret;
+}
+
+cocos2d::Map<std::string, cocos2d::CCObject *> cocos2dMapFromJson(const Json::Value & root)
+{
+    assert(root.type() == Json::objectValue);
+    cocos2d::Map<std::string, cocos2d::CCObject *> ret;
+    for (Json::Value::iterator it = root.begin(); it != root.end(); ++it)
+    {
+        Json::Value v = *it;
+        if (v.type() == Json::arrayValue)
+        {
+            ret.insert(it.memberName(), arrayFromJson(v));
+        }
+        else if (v.type() == Json::objectValue)
+        {
+            ret.insert(it.memberName(), dictionaryFromJson(v));
+        }
+        else
+        {
+            ret.insert(it.memberName(), CCString::create(v.asString()));
+        }
+    }
+    
+    return ret;
+}
+
+Json::Value jsonFromCocos2dMap(const cocos2d::Map<std::string, cocos2d::CCObject *> & root)
+{
+    Json::Value ret(Json::objectValue);
+    for (auto p : root)
+    {
+        if (dynamic_cast<CCArray *>(p.second) != nullptr)
+        {
+            ret[p.first] = jsonFromArray((CCArray *)p.second);
+        }
+        else if (dynamic_cast<CCDictionary *>(p.second) != nullptr)
+        {
+            ret[p.first] = jsonFromDictionary((CCDictionary *)p.second);
+        }
+        else
+        {
+            CCString * str = (CCString *)p.second;
+            ret[p.first] = Json::Value(str->getCString());
+        }
+    }
+    
+    return ret;
+}
+
+void jsonReplaceQuotes(std::string & origin, char to, char from)
+{
+    size_t pos = origin.find(from);
+    while (pos != std::string::npos)
+    {
+        origin.replace(pos, 1, 1, to);
+        pos = origin.find(from, pos + 1);
+    }
+}
+
+void jsonDoubleToSingleQuotes(std::string & origin)
+{
+    jsonReplaceQuotes(origin, '\'', '"');
+}
+
+void jsonSingleToDoubleQuotes(std::string & origin)
+{
+    jsonReplaceQuotes(origin, '"', '\'');
+}
 
 
 
