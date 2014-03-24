@@ -8,6 +8,76 @@
 
 #include <KYTools/Utils/Manager/DataManager/YHDataManagerImp.h>
 
+static void dictionary_Value(CCDictionary * aDict, const cocos2d::ValueMap & value);
+static void array_Value(CCArray * aArray, const cocos2d::ValueVector & value);
+
+static void array_Value(CCArray * aArray, const cocos2d::ValueVector & value)
+{
+    cocos2d::ValueVector::const_iterator beg = value.begin();
+    cocos2d::ValueVector::const_iterator end = value.end();
+    for (; beg != end; ++beg)
+    {
+        const Value & v = *beg;
+        if (v.getType() == Value::Type::MAP)
+        {
+            CCDictionary * dict = new CCDictionary();
+            dict->init();
+            dictionary_Value(dict, v.asValueMap());
+            aArray->addObject(dict);
+            dict->release();
+        }
+        else if (v.getType() == Value::Type::VECTOR)
+        {
+            CCArray * arr = new CCArray();
+            arr->init();
+            array_Value(arr, v.asValueVector());
+            aArray->addObject(arr);
+            arr->release();
+        }
+        else
+        {
+            CCString * str = new CCString();
+            str->initWithFormat("%s", v.asString().c_str());
+            aArray->addObject(str);
+            str->release();
+        }
+    }
+}
+
+static void dictionary_Value(CCDictionary * aDict, const cocos2d::ValueMap & value)
+{
+    cocos2d::ValueMap::const_iterator beg = value.begin();
+    cocos2d::ValueMap::const_iterator end = value.end();
+    for (; beg != end; ++beg)
+    {
+        const std::string & key = (*beg).first;
+        const cocos2d::Value & v = (*beg).second;
+        if (v.getType() == Value::Type::MAP)
+        {
+            CCDictionary * d = new CCDictionary();
+            d->init();
+            dictionary_Value(d, v.asValueMap());
+            aDict->setObject(d, key);
+            d->release();
+        }
+        else if (v.getType() == Value::Type::VECTOR)
+        {
+            CCArray * a = new CCArray();
+            a->init();
+            array_Value(a, v.asValueVector());
+            aDict->setObject(a, key);
+            a->release();
+        }
+        else
+        {
+            CCString * str = new CCString();
+            str->initWithFormat("%s", v.asString().c_str());
+            aDict->setObject(str, key);
+            str->release();
+        }
+    }
+}
+
 YHDataManagerImp::YHDataManagerImp() : m_waitingFiles(NULL)
 {
 }
@@ -29,6 +99,25 @@ bool YHDataManagerImp::init()
 	return result;
 }
 
+void YHDataManagerImp::purgeImages()
+{
+    std::vector<std::string> allFiles = this->allFiles();
+    for (auto s : allFiles)
+    {
+        // 删除图片资源 & 相关的 CCSpriteFrame 对象
+        if (s.find(".png") != string::npos)
+        {
+            CCTexture2D * tex = this->textureForFile(s);
+            if (tex != nullptr)
+            {
+                SpriteFrameCache::getInstance()->removeSpriteFrameByName("_loadedFileNames");       // clean _loadedFileNames
+                SpriteFrameCache::getInstance()->removeSpriteFramesFromTexture(tex);
+                TextureCache::getInstance()->removeTexture(tex);
+            }
+        }
+    }
+}
+
 CCObject * YHDataManagerImp::loadFile(const std::string & fullpath)
 {
     string suffix = pathExtensionWithString(fullpath);
@@ -40,10 +129,7 @@ CCObject * YHDataManagerImp::loadFile(const std::string & fullpath)
         ValueVector vv = CCFileUtils::getInstance()->getValueVectorFromFile(fullpath);
         CCArray * arr = new CCArray();
         arr->initWithCapacity((ssize_t)vv.size());
-        for(const auto & value : vv) {
-            arr->addObject(__String::create(value.asString()));
-        }
-        
+        array_Value(arr, vv);
         obj = arr;
     }
     else if (suffix.compare("plist-dictionary") == 0)
@@ -53,8 +139,9 @@ CCObject * YHDataManagerImp::loadFile(const std::string & fullpath)
     else if (suffix.compare("png") == 0 || suffix.compare("jpg") == 0 || suffix.compare("jpeg") == 0
              || suffix.compare("tif") == 0 || suffix.compare("tiff") == 0 || suffix.compare("webp") == 0)
     {
-        obj = CCTextureCache::sharedTextureCache()->addImage(fullpath.c_str());
-        obj->retain();		// 因为 addImage 里面没有 autorelease.
+        Image * image = new Image();
+        image->initWithImageFile(fullpath);
+        obj = image;
     }
     else
     {
@@ -77,7 +164,10 @@ CCObject * YHDataManagerImp::loadFile(const std::string & fullpath)
     return obj;
 }
 
-
+void YHDataManagerImp::setFinishedCallback(const std::function<void ()> & callback)
+{
+    m_callback = callback;
+}
 
 
 

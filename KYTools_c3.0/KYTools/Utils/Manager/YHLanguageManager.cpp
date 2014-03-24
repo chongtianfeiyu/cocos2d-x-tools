@@ -1,14 +1,18 @@
 
 #include <KYTools/Utils/Manager/YHLanguageManager.h>
+#include <KYTools/KYTools.h>
 
 using namespace cocos2d;
 
+YHLanguageManager::YHLanguageManager()
+{
+    m_dict = new cocos2d::CCDictionary();
+    m_dict->init();
+}
+
 YHLanguageManager::~YHLanguageManager()
 {
-	if (m_dict != NULL)
-	{
-		m_dict->release(), m_dict = NULL;
-	}
+    CC_SAFE_RELEASE_NULL(m_dict);
 }
 
 YHLanguageManager * YHLanguageManager::sharedManager()
@@ -17,20 +21,18 @@ YHLanguageManager * YHLanguageManager::sharedManager()
 	return &s_instance;
 }
 
-void YHLanguageManager::init(const std::string & filename)
+void YHLanguageManager::addTexts(cocos2d::CCDictionary * dict)
 {
-	m_dict = CCDictionary::createWithContentsOfFile(filename.c_str());
-	m_dict->retain();
+    CCDictElement * e = nullptr;
+    CCDICT_FOREACH(dict, e)
+    {
+        m_dict->setObject(e->getObject(), e->getStrKey());
+    }
 }
 
-CCString * YHLanguageManager::textForKey(const char * key)
+std::string YHLanguageManager::textForKey(const char * key)
 {
-	if (m_dict == NULL)
-	{
-		return NULL;
-	}
-
-	return dynamic_cast<CCString *>(m_dict->objectForKey(key));
+	return m_dict->valueForKey(key)->getCString();
 }
 
 

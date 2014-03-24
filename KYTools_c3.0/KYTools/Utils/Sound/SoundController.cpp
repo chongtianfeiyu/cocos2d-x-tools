@@ -56,14 +56,16 @@ void SoundController::appendMappingFile(CCDictionary * dict)
 	}
 }
 
-uint32 SoundController::playEffectWithKey(const string & key, bool loop)
+uint32 SoundController::playEffectWithKey(const string & key, bool loop,
+                                          float pitch, float pan, float gain)
 {
 	CHECK_INITIALIZED_P(0xffffffff);
 	
 	CCString * filename = dynamic_cast<CCString *>(m_dict->objectForKey(key.c_str()));
 	if (filename != NULL)
 	{
-		return m_engine->playEffect((m_subpath + filename->getCString()).c_str(), loop);
+        std::string file = m_subpath + filename->getCString();
+		return m_engine->playEffect(file.c_str(), loop, pitch, pan, gain);
 	}
 	
 	return 0xffffffff;
@@ -133,22 +135,44 @@ const char * SoundController::fileWithKey(const std::string & key)
 	return string(m_subpath + filename->getCString()).c_str();
 }
 
-void SoundController::preloadBackgroundMusic(const char * pszFilePath)
+std::vector<std::string> SoundController::allFiles()
 {
-	CHECK_INITIALIZED;
-	m_engine->preloadBackgroundMusic((m_subpath + pszFilePath).c_str());
+    std::vector<std::string> ret;
+    CCDictElement * e = nullptr;
+    CCDICT_FOREACH(m_dict, e)
+    {
+        CCString * str = (CCString *)e->getObject();
+        ret.push_back(m_subpath + str->getCString());
+    }
+    
+    return ret;
 }
 
-void SoundController::playBackgroundMusic(const char * pszFilePath, bool bLoop)
+void SoundController::preloadBackgroundMusic(const char * pszFilePath, bool useSubPath)
 {
 	CHECK_INITIALIZED;
-	m_engine->playBackgroundMusic((m_subpath + pszFilePath).c_str(), bLoop);
+    if (useSubPath)
+        m_engine->preloadBackgroundMusic((m_subpath + pszFilePath).c_str());
+    else
+        m_engine->preloadBackgroundMusic(pszFilePath);
 }
 
-void SoundController::playBackgroundMusic(const char * pszFilePath)
+void SoundController::playBackgroundMusic(const char * pszFilePath, bool bLoop, bool useSubPath)
 {
 	CHECK_INITIALIZED;
-	m_engine->playBackgroundMusic((m_subpath + pszFilePath).c_str());
+    if (useSubPath)
+        m_engine->playBackgroundMusic((m_subpath + pszFilePath).c_str(), bLoop);
+    else
+        m_engine->playBackgroundMusic(pszFilePath);
+}
+
+void SoundController::playBackgroundMusic(const char * pszFilePath, bool useSubPath)
+{
+	CHECK_INITIALIZED;
+    if (useSubPath)
+        m_engine->playBackgroundMusic((m_subpath + pszFilePath).c_str());
+    else
+        m_engine->playBackgroundMusic(pszFilePath);
 }
 
 void SoundController::stopBackgroundMusic(bool bReleaseData)
@@ -219,16 +243,24 @@ void SoundController::setEffectsVolume(float volume)
 	m_engine->setEffectsVolume(volume);
 }
 
-uint32 SoundController::playEffect(const char * pszFilePath, bool bLoop)
+uint32 SoundController::playEffect(const char * pszFilePath, bool bLoop,
+                                   float pitch, float pan, float gain,
+                                   bool useSubPath)
 {
 	CHECK_INITIALIZED_P(0xffffffff);
-	return m_engine->playEffect((m_subpath + pszFilePath).c_str(), bLoop);
+    if (useSubPath)
+        return m_engine->playEffect((m_subpath + pszFilePath).c_str(), bLoop, pitch, pan, gain);
+    else
+        return m_engine->playEffect(pszFilePath, bLoop, pitch, pan, gain);
 }
 
-uint32 SoundController::playEffect(const char * pszFilePath)
+uint32 SoundController::playEffect(const char * pszFilePath, bool useSubPath)
 {
 	CHECK_INITIALIZED_P(0xffffffff);
-	return m_engine->playEffect((m_subpath + pszFilePath).c_str());
+    if (useSubPath)
+        return m_engine->playEffect((m_subpath + pszFilePath).c_str());
+    else
+        return m_engine->playEffect(pszFilePath);
 }
 
 void SoundController::pauseEffect(uint32 soundID)
@@ -267,16 +299,22 @@ void SoundController::stopAllEffects()
 	m_engine->stopAllEffects();
 }
 
-void SoundController::preloadEffect(const char * pszFilePath)
+void SoundController::preloadEffect(const char * pszFilePath, bool useSubPath)
 {
 	CHECK_INITIALIZED;
-	m_engine->preloadEffect((m_subpath + pszFilePath).c_str());
+    if (useSubPath)
+        m_engine->preloadEffect((m_subpath + pszFilePath).c_str());
+    else
+        m_engine->preloadEffect(pszFilePath);
 }
 
-void SoundController::unloadEffect(const char * pszFilePath)
+void SoundController::unloadEffect(const char * pszFilePath, bool useSubPath)
 {
 	CHECK_INITIALIZED;
-	m_engine->unloadEffect((m_subpath + pszFilePath).c_str());
+    if (useSubPath)
+        m_engine->unloadEffect((m_subpath + pszFilePath).c_str());
+    else
+        m_engine->unloadEffect(pszFilePath);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -286,6 +324,7 @@ void SoundController::unloadEffect(const char * pszFilePath)
 SoundController::SoundController() : m_engine(NULL), m_fadeType(kFadeType_None), m_effectsVolume(0.0f), m_BGMVolume(0.0f)
 {
 	m_dict = new CCDictionary();
+    m_dict->init();
 }
 
 SoundController::~SoundController()

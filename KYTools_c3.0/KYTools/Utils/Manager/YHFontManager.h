@@ -14,21 +14,20 @@ class YHFontManager
 {
 public:
 	
+    YHFontManager();
+	virtual ~YHFontManager();
+    
 	/// 单例模式, 获得唯一的 YHFontManager 对象
 	static YHFontManager *	defaultFontManager();
 	
-	/// 初始化
-	void					init(const std::string & filename);
+    /// 添加字典
+	void                    addFonts(cocos2d::CCDictionary * dict);
 	
 	/// 获得字体的名字
 	const char *			fontNameForKey(const char * key);
 	
 private:
-	YHFontManager();
-	~YHFontManager();
-	
-private:
-	CCDictionary *			m_dict;
+	CCDictionary *			m_dict = nullptr;
 };
 
 #endif // __YHFontManager_H__

@@ -22,11 +22,13 @@ bool YHUITileBackground::init(TileType tileType, const char * spriteFrameName)
 		// left
 		CCSprite * lBG = CCSprite::createWithSpriteFrameName(spriteFrameName);
 		lBG->setAnchorPoint(ccp(1.0f, 0.5f));
+        lBG->setPosition(Point(1, 0));
 		this->addChild(lBG);
 		
 		// right
 		CCSprite * rBG = CCSprite::createWithSpriteFrameName(spriteFrameName);
 		rBG->setScaleX(-1.0f);
+        rBG->setPosition(Point(-1, 0));
 		rBG->setAnchorPoint(ccp(1.0f, 0.5f));
 		this->addChild(rBG);
 	}
@@ -35,24 +37,28 @@ bool YHUITileBackground::init(TileType tileType, const char * spriteFrameName)
 		// top left
 		CCSprite * tlBG = CCSprite::createWithSpriteFrameName(spriteFrameName);
 		tlBG->setAnchorPoint(ccp(1.0f, 0.0f));
+        tlBG->setPosition(Point(1, -1));
 		this->addChild(tlBG);
 		
 		// top right
 		CCSprite * trBG = CCSprite::createWithSpriteFrameName(spriteFrameName);
 		trBG->setScaleX(-1.0f);
 		trBG->setAnchorPoint(ccp(1.0f, 0.0f));
+        trBG->setPosition(Point(-1, -1));
 		this->addChild(trBG);
 		
 		// bottom left
 		CCSprite * blBG = CCSprite::createWithSpriteFrameName(spriteFrameName);
 		blBG->setScaleY(-1.0f);
 		blBG->setAnchorPoint(ccp(1.0f, 0.0f));
+        blBG->setPosition(Point(1, 1));
 		this->addChild(blBG);
 		
 		// bottom right
 		CCSprite * brBG = CCSprite::createWithSpriteFrameName(spriteFrameName);
 		brBG->setScale(-1.0f);
 		brBG->setAnchorPoint(ccp(1.0f, 0.0f));
+        brBG->setPosition(Point(-1, 1));
 		this->addChild(brBG);
 	}
 	

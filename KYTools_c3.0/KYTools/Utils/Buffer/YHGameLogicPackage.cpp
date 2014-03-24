@@ -41,6 +41,7 @@ m_moduleID(0), m_functionID(0), m_bytes(NULL), m_params(NULL)
 	m_bytes->writeInt(m_functionID);
 	
 	m_params = new CCArray();
+    m_params->init();
 	m_paramLenLoc = m_bytes->getWriterIndex();
 	m_bytes->writeUnsignedChar(m_params->count());
 }
@@ -51,7 +52,8 @@ YHGameLogicPackage::YHGameLogicPackage(YHByteArray * bytes)
 	m_bytes->retain();
 	
 	m_params = new CCArray();
-	
+	m_params->init();
+    
 	// module ID
 	m_moduleID = m_bytes->readUnsignedShort();
 	

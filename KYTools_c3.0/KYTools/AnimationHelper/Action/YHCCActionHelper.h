@@ -34,9 +34,67 @@ public:
 	 * @param animation 运行的动画
 	 * @param pSprite 运行动画的 CCSprite 对象
 	 */
-	static void		runIntervalForeverAnimation(float interval, cocos2d::CCAnimation * animation, cocos2d::CCSprite * pSprite);		
+	static void		runIntervalForeverAnimation(float interval, cocos2d::CCAnimation * animation, cocos2d::CCSprite * pSprite);
+    
+    /**
+     * 创建循环移动的动画
+     * @param delta 移动的间隔距离
+     * @param duration 1次循环的持续时间
+     * @param pNode 运行动画的节点
+     */
+    static void     runNormalForeverMove(const cocos2d::Point & delta, float duration, cocos2d::CCNode * pNode);
 };
 
 #endif /* defined(__AndroidaBooM__YHCCActionHelper__) */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// end file
 
 

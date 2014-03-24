@@ -108,7 +108,8 @@ YHSocketSendManager::YHSocketSendManager(YHSocketConnectManager * connectManager
 m_queue(NULL), m_thread(NULL), m_connectManager(NULL)
 {
 	m_queue = new CCArray();
-	
+	m_queue->initWithCapacity(255);
+    
 	m_connectManager = connectManager;
 	
 	m_thread = new YHSocketSendThread(this);

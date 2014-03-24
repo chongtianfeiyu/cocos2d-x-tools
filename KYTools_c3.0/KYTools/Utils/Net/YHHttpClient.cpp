@@ -19,7 +19,7 @@ YHHttpClient::YHHttpClient() :
 m_queue(NULL), m_httpClient(NULL)
 {
 	m_queue = new CCArray();
-	
+	m_queue->initWithCapacity(255);
 	m_httpClient = CCHttpClient::getInstance();
 }
 

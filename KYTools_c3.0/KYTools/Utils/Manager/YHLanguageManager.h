@@ -11,19 +11,21 @@
 class YHLanguageManager
 {
 public:
-	static YHLanguageManager * sharedManager();
 	
-	/// 初始化
-	void					init(const std::string & filename);
+    YHLanguageManager();
+	virtual ~YHLanguageManager();
+    
+    /// YHLanguageManager 对象
+    static YHLanguageManager * sharedManager();
+    
+    /// 添加文本
+    void addTexts(cocos2d::CCDictionary * dict);
 	
 	/// 查询 key 对应的字符串
-	cocos2d::CCString *		textForKey(const char * key);
+    std::string	textForKey(const char * key);
 	
 private:
-	YHLanguageManager() : m_dict(NULL) {}
-	~YHLanguageManager();
-	
-	cocos2d::CCDictionary *			m_dict;
+	cocos2d::CCDictionary * m_dict = nullptr;
 };
 
 #endif // __YHLanguageManager_H__

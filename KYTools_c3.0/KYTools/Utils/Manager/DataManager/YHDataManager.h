@@ -52,6 +52,11 @@ public:
 	 * 移除所有的文件. 无论文件已经装载还是没有装载, 都将移除. 如果已经装载, 那么其关联的文件一并移除.
 	 */
 	virtual void removeAllFiles();
+    
+    /**
+     * 清理图片相关数据, 从 CCTextureCache, CCSpriteFrameCache 中删除, 但是不删除自身保留的
+     */
+    virtual void purgeImages();
 	
 	/**
 	 * 开始装载. 如果已经在装载, 那么调用该函数将不会起到任何作用
@@ -92,6 +97,12 @@ public:
 	 * @param file 之前加入的装载文件
 	 */
 	virtual cocos2d::CCArray * arrayForFile(const std::string & file);
+    
+    /// 所有的文件
+    virtual std::vector<std::string> allFiles();
+    
+    /// 装载完成的回调函数
+    virtual void setFinishedCallback(const std::function<void ()> & callback);
 	
 private:
 	

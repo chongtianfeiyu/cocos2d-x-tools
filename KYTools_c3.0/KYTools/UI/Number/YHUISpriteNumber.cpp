@@ -65,6 +65,7 @@ YHUISpriteNumber::YHUISpriteNumber()
 	m_icon = NULL;
 	m_caches = new CCSet();
 	m_numbers = new CCArray();
+    m_numbers->initWithCapacity(32);
 	m_offset = CCPointZero;
 	m_fontSize = CCSizeZero;
 	m_interval = 0.0f;

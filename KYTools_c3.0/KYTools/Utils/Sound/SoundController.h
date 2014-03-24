@@ -44,7 +44,8 @@ public: /** Functions **/
 	 * @param loop 是否循环播放, 默认不循环播放
 	 * @return 返回 SimpleAudioEngine 类的 playEffect 方法返回的值
 	 */
-	uint32								playEffectWithKey(const std::string & key, bool loop = false);
+	uint32								playEffectWithKey(const std::string & key, bool loop = false,
+                                                          float pitch = 1.0f, float pan = 0.0f, float gain = 1.0f);
 	
 	/**
 	 * 通过 key 从映射表中搜索到实际的文件, 然后播放音频
@@ -70,14 +71,17 @@ public: /** Functions **/
 
 	/// 从键查找到对应的文件名
 	const char *						fileWithKey(const std::string & key);
+    
+    /// 所有的实际文件名
+    std::vector<std::string>            allFiles();
 	
 public: /** SimpleAudioEngine 的功能相同 **/
 	
-	void								preloadBackgroundMusic(const char * pszFilePath);
+	void								preloadBackgroundMusic(const char * pszFilePath, bool useSubPath = true);
 	
-	void								playBackgroundMusic(const char * pszFilePath, bool bLoop);
+	void								playBackgroundMusic(const char * pszFilePath, bool bLoop, bool useSubPath = true);
 	
-	void								playBackgroundMusic(const char * pszFilePath);
+	void								playBackgroundMusic(const char * pszFilePath, bool useSubPath = true);
 	
 	void								stopBackgroundMusic(bool bReleaseData);
 	
@@ -101,9 +105,11 @@ public: /** SimpleAudioEngine 的功能相同 **/
 	
 	void								setEffectsVolume(float volume);
 	
-	uint32								playEffect(const char * pszFilePath, bool bLoop);
+	uint32								playEffect(const char * pszFilePath, bool bLoop,
+                                                   float pitch = 1.0f, float pan = 0.0f, float gain = 1.0f,
+                                                   bool useSubPath = true);
 	
-	uint32								playEffect(const char * pszFilePath);
+	uint32								playEffect(const char * pszFilePath, bool useSubPath = true);
 	
 	void								pauseEffect(uint32 soundID);
 	
@@ -117,9 +123,9 @@ public: /** SimpleAudioEngine 的功能相同 **/
 	
 	void								stopAllEffects();
 	
-	void								preloadEffect(const char * pszFilePath);
+	void								preloadEffect(const char * pszFilePath, bool useSubPath = true);
 	
-	void								unloadEffect(const char * pszFilePath);
+	void								unloadEffect(const char * pszFilePath, bool useSubPath = true);
 	
 private: /** Functions **/
 	SoundController();

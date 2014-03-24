@@ -141,11 +141,35 @@ CCArray * YHAsynDataManagerImp::arrayForFile(const std::string & file)
     return arr;
 }
 
+std::vector<std::string> YHAsynDataManagerImp::allFiles()
+{
+    m_lock.Lock();
+    std::vector<std::string> ret = m_finishedFiles;
+    m_lock.Unlock();
+    
+    return ret;
+}
+
 void YHAsynDataManagerImp::update(float dt)
 {
     if (m_waitingFiles->count() == 0 && !m_thread->ThreadRunning())
     {
         CC_SAFE_DELETE(m_thread);
+        
+        // Image -> CCTexture2D
+        for (auto f : m_finishedFiles)
+        {
+            Image * img = dynamic_cast<Image *>(getDict()->objectForKey(f));
+            if (img != nullptr)
+            {
+                std::string fullpath = CCFileUtils::getInstance()->fullPathForFilename(f);
+                CCTexture2D * tex = CCTextureCache::getInstance()->addImage(img, fullpath);
+                getDict()->setObject(tex, f);
+            }
+        }
+        
+        if (m_callback != nullptr)
+            m_callback();
         CCDirector::sharedDirector()->getScheduler()->unscheduleUpdateForTarget(this);
     }
 }
@@ -161,7 +185,10 @@ void * YHAsynDataManagerImp::LoadThread::Execute()
         {
             file = ((CCString *)m_parent->m_waitingFiles->objectAtIndex(0))->getCString();
             fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(file.c_str());
-            m_parent->m_waitingFiles->removeObjectAtIndex(0);
+            
+            // 如果没有该文件, 直接移除
+            if (file.compare(fullpath) == 0)
+                m_parent->m_waitingFiles->removeObjectAtIndex(0);
         }
         m_parent->m_lock.Unlock();
         
@@ -174,6 +201,8 @@ void * YHAsynDataManagerImp::LoadThread::Execute()
         {
             m_parent->m_lock.Lock();
             m_parent->getDict()->setObject(obj, file);
+            m_parent->m_finishedFiles.push_back(file);
+            m_parent->m_waitingFiles->removeObjectAtIndex(0);
             m_parent->m_lock.Unlock();
             obj->release();
         }

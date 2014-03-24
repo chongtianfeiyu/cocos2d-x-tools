@@ -86,10 +86,17 @@ CCArray * YHSchedulerDataManagerImp::arrayForFile(const std::string & file)
 	return (CCArray *)getDict()->objectForKey(file);
 }
 
+std::vector<std::string> YHSchedulerDataManagerImp::allFiles()
+{
+    return m_finishedFiles;
+}
+
 void YHSchedulerDataManagerImp::update(float dt)
 {
 	if (m_waitingFiles->count() == 0)
 	{
+        if (m_callback != nullptr)
+            m_callback();
 		CCDirector::sharedDirector()->getScheduler()->unscheduleUpdateForTarget(this);
 		return;
 	}
@@ -104,7 +111,11 @@ void YHSchedulerDataManagerImp::update(float dt)
 	if (fullpath.compare(file) == 0)
 	{
 		if (m_waitingFiles->count() == 0)
+        {
+            if (m_callback != nullptr)
+                m_callback();
 			CCDirector::sharedDirector()->getScheduler()->unscheduleUpdateForTarget(this);
+        }
 		return;
 	}
 	
@@ -112,12 +123,26 @@ void YHSchedulerDataManagerImp::update(float dt)
 	CCObject * obj = loadFile(fullpath);
     if (obj != NULL)
     {
-        getDict()->setObject(obj, file);
+        if (dynamic_cast<Image *>(obj) != nullptr)
+        {
+            CCTexture2D * tex = CCTextureCache::getInstance()->addImage((Image *)obj, file);
+            getDict()->setObject(tex, file);
+        }
+        else
+        {
+            getDict()->setObject(obj, file);
+        }
+        
         obj->release();
+        m_finishedFiles.push_back(file);
     }
 	
 	if (m_waitingFiles->count() == 0)
+    {
+        if (m_callback != nullptr)
+            m_callback();
 		CCDirector::sharedDirector()->getScheduler()->unscheduleUpdateForTarget(this);
+    }
 }
 
 

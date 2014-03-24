@@ -64,6 +64,11 @@ void YHDataManager::removeAllFiles()
 	m_imp->removeAllFiles();
 }
 
+void YHDataManager::purgeImages()
+{
+    m_imp->purgeImages();
+}
+
 void YHDataManager::start()
 {
 	m_imp->start();
@@ -99,8 +104,15 @@ CCArray * YHDataManager::arrayForFile(const std::string & file)
 	return m_imp->arrayForFile(file);
 }
 
+std::vector<std::string> YHDataManager::allFiles()
+{
+    return m_imp->allFiles();
+}
 
-
+void YHDataManager::setFinishedCallback(const std::function<void ()> & callback)
+{
+    m_imp->setFinishedCallback(callback);
+}
 
 
 

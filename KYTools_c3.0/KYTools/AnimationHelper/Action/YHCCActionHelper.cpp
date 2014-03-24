@@ -32,4 +32,61 @@ void YHCCActionHelper::runIntervalForeverAnimation(float interval, CCAnimation *
 	pSprite->runAction(forever);
 }
 
+void YHCCActionHelper::runNormalForeverMove(const cocos2d::Point & delta, float duration, cocos2d::CCNode * pNode)
+{
+    CCMoveBy * moveBy1 = CCMoveBy::create(duration * 0.5f, delta);
+    CCMoveBy * moveBy2 = CCMoveBy::create(duration * 0.5f, Point(-delta.x, -delta.y));
+    CCSequence * sequence = CCSequence::create(moveBy1, moveBy2, nullptr);
+    pNode->runAction(CCRepeatForever::create(sequence));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// end file
+
 

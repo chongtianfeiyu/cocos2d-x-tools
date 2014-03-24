@@ -33,6 +33,7 @@ public:
 	virtual void addFile(const std::string & file) = 0;
 	virtual void removeFile(const std::string & file) = 0;
 	virtual void removeAllFiles() = 0;
+    virtual void purgeImages();
 	virtual void start() = 0;
 	virtual void stop() = 0;
 	virtual bool completed() = 0;
@@ -40,13 +41,17 @@ public:
 	virtual cocos2d::CCTexture2D * textureForFile(const std::string & file) = 0;
 	virtual cocos2d::CCDictionary * dictionaryForFile(const std::string & file) = 0;
 	virtual cocos2d::CCArray * arrayForFile(const std::string & file) = 0;
+    virtual std::vector<std::string> allFiles() = 0;
+    virtual void setFinishedCallback(const std::function<void ()> & callback);
 	
 protected:
 	
     /// 装载文件, 返回装载文件生成的对象, 在使用完返回对象后, 必须手动调用 release
     virtual cocos2d::CCObject * loadFile(const std::string & fullpath);
     
-	cocos2d::CCArray * m_waitingFiles;
+	cocos2d::CCArray * m_waitingFiles = nullptr;
+    std::vector<std::string> m_finishedFiles;
+    std::function<void ()> m_callback = nullptr;
 };
 
 #endif /* defined(__MonsterHunter__YHDataManagerImp__) */
