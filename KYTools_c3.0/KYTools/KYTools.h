@@ -45,6 +45,7 @@
 #include <KYTools/Utils/Net/YHHttpClient.h>
 #include <KYTools/Utils/Net/YHSocketClient.h>
 #include <KYTools/Utils/Encry/YHEncryHelper.h>
+#include <KYTools/Utils/Avatar/YHAvatar.h>
 
 // UI
 #include <KYTools/UI/YHUITileBackground.h>
@@ -62,6 +63,7 @@
 #include <KYTools/cocos2d-extension/CCSpecialSprite.h>
 #include <KYTools/cocos2d-extension/CCKeyTimeCallbackSprite.h>
 #include <KYTools/cocos2d-extension/CCEncryptNumber.h>
+#include <KYTools/cocos2d-extension/CCGeometry-Extension.h>
 
 // third party
 #include <KYTools/libs/jsoncpp/include/json/json.h>

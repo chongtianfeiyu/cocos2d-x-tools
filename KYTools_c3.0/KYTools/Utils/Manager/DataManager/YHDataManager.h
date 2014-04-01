@@ -104,6 +104,16 @@ public:
     /// 装载完成的回调函数
     virtual void setFinishedCallback(const std::function<void ()> & callback);
 	
+    virtual void update(float dt) override;
+    
+public:
+    
+    /**
+     * @note 从当前的文件中寻找图片文件, 然后以图片文件名(去掉文件后缀)添加 .plist.
+     * 接着调用 CCSpriteFrameCache::addSpriteFramesWithFile, 添加 CCSpriteFrames 对象
+     */
+    static void helpLoadSpriteFrames(YHDataManager * manager);
+    
 private:
 	
 	YHDataManagerImp * m_imp;

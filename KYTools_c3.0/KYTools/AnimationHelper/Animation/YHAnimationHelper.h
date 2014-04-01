@@ -219,7 +219,7 @@ public:		/** Static Functions **/
 	 * 创建 YHAnimationPair 对象
      * @note 不建议直接使用, 建议使用 CCKeyTimeCallbackSprite
 	 * @param animation 动画
-     * @param loop 是否循环
+     * @param loop 序列帧是否循环
 	 * @return YHAnimationPair 对象
 	 */
 	static YHAnimationPair * createAnimationPair(CCAnimation * animation, bool loop);
@@ -229,7 +229,7 @@ public:		/** Static Functions **/
      * @note 不建议直接使用, 建议使用 CCKeyTimeCallbackSprite
      * @param animation 动画
      * @param sprite 运行动画的显示对象
-     * @param loop 是否循环
+     * @param loop 序列帧是否循环
      * @return YHAnimationPair 对象
      */
     static YHAnimationPair * createAnimationPairAndRun(CCAnimation * animation, CCSprite * sprite, bool loop);

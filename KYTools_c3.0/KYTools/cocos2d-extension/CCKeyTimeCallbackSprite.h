@@ -32,6 +32,21 @@ public:
     /// 初始化
     virtual bool init(cocos2d::CCAnimation * animation, cocos2d::CCDictionary * dataDict, bool loop);
     
+    /**
+     * 播放序列帧, 关键帧定义可能存在于 animation 中
+     * @param animation 序列帧动画
+     * @param loop 序列帧是否循环播放
+     */
+    virtual void playWithSequenceFrames(cocos2d::CCAnimation * animation, bool loop);
+    
+    /**
+     * 播放序列帧, 关键帧定义存在于 dataDict 中, 如果 animation 中有关键帧定义, 将忽略掉
+     * @param animation 序列帧动画
+     * @param dataDict 关键帧数据定义
+     * @param loop 序列帧是否循环播放
+     */
+    virtual void playWithDataDict(cocos2d::CCAnimation * animation, cocos2d::CCDictionary * dataDict, bool loop);
+    
     /// 创建 CCKeyTimeCallbackSprite 对象
     static CCKeyTimeCallbackSprite * create(cocos2d::CCAnimation * animation, bool loop)
     {
@@ -62,7 +77,7 @@ public:
     
 private:
     
-    YHKeyTimeCallback * m_callback;
+    YHKeyTimeCallback * m_callback;     // 关键帧的回调
 };
 
 #endif /* defined(__HelloWorld_3_0__CCKeyTimeCallbackSprite__) */

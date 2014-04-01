@@ -225,20 +225,20 @@ extern std::string trimCharacterFromLast(const std::string & origin, char chTrim
 
 
 /**
- * 从字符串前面开始截取，如果遇到指定的字符，将停止截取
+ * 根据指定字符, 截取子字符串. 子字符串的范围是 [0, Pos(chSign)), 如果没有找到 chSign, 那么将返回 origin 字符串.
  * @param origin 待裁剪的字符串
  * @param chSign 标记字符
  * @return 截取的字符串
  */
-extern std::string trimStringWithCharacterFromHead(const std::string& origin, char chSign);
+extern std::string subStringWithCharacterFromHead(const std::string& origin, char chSign);
 
 /**
- * 从字符串后面开始截取，如果遇到指定的字符，将停止截取
+ * 根据指定字符, 截取子字符串. 子字符串的范围是 [Pos(chSign) + 1, origin.length()), 如果没有找到 chSign, 那么将返回 origin 字符串.
  * @param origin 待裁剪的字符串
  * @param chSign 标记字符
  * @return 截取的字符串
  */
-extern std::string trimStringWithCharacterFromLast(const std::string& origin, char chSign);
+extern std::string subStringWithCharacterFromLast(const std::string& origin, char chSign);
 
 /**
  * 删除文件的后缀名, 例如: text.png, 返回结果是 text

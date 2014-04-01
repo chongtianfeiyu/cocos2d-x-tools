@@ -57,7 +57,13 @@ public:
 	virtual float32					getNumberFontWidth();
 	virtual void					layout();
 
-	cocos2d::CCArray*				getNumbers(){return m_numbers;}
+	cocos2d::CCArray *				getNumbers() { return m_numbers; }
+    
+    virtual void                    setNumberOffset(const cocos2d::CCPoint & numberOffset)
+    {
+        m_numberOffset = numberOffset;
+        layout();
+    }
 
 public: /** 重写基类的方法 **/
 
@@ -80,6 +86,7 @@ protected:
 	cocos2d::CCSize					m_fontSize;
 	float32							m_interval;
 	float32							m_iconInterval;				// Icon 与接下来第一个字符间的距离, 默认等于 0
+    cocos2d::CCPoint                m_numberOffset;				// 数字与 Icon 的偏移量
 	AlignType						m_alignType;
 };
 

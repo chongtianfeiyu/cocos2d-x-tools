@@ -6,7 +6,7 @@
 //
 //
 
-#include "CCKeyTimeCallbackSprite.h"
+#include <KYTools/cocos2d-extension/CCKeyTimeCallbackSprite.h>
 #include <KYTools/AnimationHelper/Animation/YHAnimationHelper.h>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,10 +27,8 @@ bool CCKeyTimeCallbackSprite::init(CCAnimation * animation, bool loop)
 {
     bool result = CCSprite::init();
     
-    // 运行动画和关键帧
-    YHAnimationPair * aPair = YHAnimationHelper::createAnimationPairAndRun(animation, this, loop);
-    m_callback = aPair->getKeyEvents();
-    m_callback->retain();
+    if (result && animation != nullptr)
+        playWithSequenceFrames(animation, loop);
     
     return result;
 }
@@ -39,6 +37,27 @@ bool CCKeyTimeCallbackSprite::init(CCAnimation * animation, CCDictionary * dataD
 {
     bool result = CCSprite::init();
     
+    if (result && animation != nullptr && dataDict != nullptr)
+        playWithDataDict(animation, dataDict, loop);
+    
+    return result;
+}
+
+void CCKeyTimeCallbackSprite::playWithSequenceFrames(cocos2d::CCAnimation * animation, bool loop)
+{
+    this->stopAllActions();
+    
+    // 运行动画和关键帧
+    YHAnimationPair * aPair = YHAnimationHelper::createAnimationPairAndRun(animation, this, loop);
+    CC_SAFE_RELEASE_NULL(m_callback);
+    m_callback = aPair->getKeyEvents();
+    m_callback->retain();
+}
+
+void CCKeyTimeCallbackSprite::playWithDataDict(cocos2d::CCAnimation * animation, cocos2d::CCDictionary * dataDict, bool loop)
+{
+    this->stopAllActions();
+    
     // 动画
     if (loop)
         YHAnimationHelper::runForeverAnimation(animation, this);
@@ -46,12 +65,11 @@ bool CCKeyTimeCallbackSprite::init(CCAnimation * animation, CCDictionary * dataD
         YHAnimationHelper::runAnimation(animation, this);
     
     // 关键帧
+    CC_SAFE_RELEASE_NULL(m_callback);
     m_callback = YHKeyTimeCallback::create(dataDict);
     CC_SAFE_RETAIN(m_callback);
     this->runAction(m_callback->getAction());
     m_callback->setNode(this);
-    
-    return result;
 }
 
 

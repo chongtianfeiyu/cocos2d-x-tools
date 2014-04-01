@@ -114,9 +114,26 @@ void YHDataManager::setFinishedCallback(const std::function<void ()> & callback)
     m_imp->setFinishedCallback(callback);
 }
 
+void YHDataManager::helpLoadSpriteFrames(YHDataManager * manager)
+{
+    // 装载 CCSpriteFrame 资源
+    CCSpriteFrameCache * cache = CCSpriteFrameCache::getInstance();
+    for (std::string png : manager->allFiles())
+    {
+        size_t pos = png.find(".png");
+        if (pos != string::npos)
+        {
+            std::string plist = png.substr(0, pos);
+            plist.append(".plist");
+            cache->addSpriteFramesWithFile(plist);
+        }
+    }
+}
 
-
-
+void YHDataManager::update(float dt)
+{
+    m_imp->update(dt);
+}
 
 
 

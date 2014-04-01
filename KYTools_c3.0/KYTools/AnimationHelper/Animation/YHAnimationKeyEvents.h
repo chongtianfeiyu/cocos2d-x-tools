@@ -85,7 +85,7 @@ public:
      * <Sum/>                       <!-- 总时间 -->
      * <Steps/>                     <!-- 各个时段的定义 -->
      *      <Loops/>                <!-- 循环次数, 0 代表无限循环, 1 代表执行 1 次, 2 代表执行 2 次, 以此类推, 不能为负 -->
-     *      <Delay/>                <!-- 延时, 每个子步骤的演示是相对的 -->
+     *      <Delay/>                <!-- 延时, 每个子步骤的延时是相对的 -->
      *      <UserInfo/>             <!-- 一些数据定义 -->
      */
     virtual bool init(cocos2d::CCDictionary * dataDict);

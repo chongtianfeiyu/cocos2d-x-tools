@@ -62,15 +62,15 @@ void CCSpecialSprite::addChild(CCNode *pChild, int zOrder, int tag)
 	}
 }
 
-bool CCSpecialSprite::init1(cocos2d::CCDictionary *moduleDict)
+bool CCSpecialSprite::init(cocos2d::CCDictionary * moduleDict)
 {
 	assert(moduleDict);
 	
 	bool bRet = false;
 	
 	do {
-		AnimatorModuleData* moduleData = AnimatorModuleData::data(moduleDict);
-		CC_BREAK_IF(!init2(moduleData));
+		AnimatorModuleData * moduleData = AnimatorModuleData::data(moduleDict);
+		CC_BREAK_IF(!init(moduleData));
 		
 		bRet = true;
 	} while (0);
@@ -78,7 +78,7 @@ bool CCSpecialSprite::init1(cocos2d::CCDictionary *moduleDict)
 	return bRet;
 }
 
-bool CCSpecialSprite::init2(AnimatorModuleData *moduleData)
+bool CCSpecialSprite::init(AnimatorModuleData * moduleData)
 {
 	bool bRet = false;
 	
@@ -91,10 +91,10 @@ bool CCSpecialSprite::init2(AnimatorModuleData *moduleData)
 	return bRet;
 }
 
-CCSpecialSprite* CCSpecialSprite::create(cocos2d::CCDictionary *moduleDict)
+CCSpecialSprite* CCSpecialSprite::create(cocos2d::CCDictionary * moduleDict)
 {
 	CCSpecialSprite* sp = new CCSpecialSprite();
-	if (sp && sp->init1(moduleDict))
+	if (sp && sp->init(moduleDict))
 	{
 		sp->autorelease();
 		return sp;
@@ -103,10 +103,10 @@ CCSpecialSprite* CCSpecialSprite::create(cocos2d::CCDictionary *moduleDict)
 	return NULL;
 }
 
-CCSpecialSprite* CCSpecialSprite::create(AnimatorModuleData *moduleData)
+CCSpecialSprite* CCSpecialSprite::create(AnimatorModuleData * moduleData)
 {
 	CCSpecialSprite* sp = new CCSpecialSprite();
-	if (sp && sp->init2(moduleData))
+	if (sp && sp->init(moduleData))
 	{
 		sp->autorelease();
 		return sp;

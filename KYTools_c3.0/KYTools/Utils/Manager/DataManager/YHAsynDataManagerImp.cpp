@@ -108,7 +108,7 @@ bool YHAsynDataManagerImp::completed()
 YHByteArray * YHAsynDataManagerImp::dataForFile(const std::string & file)
 {
     m_lock.Lock();
-    YHByteArray * bytes = (YHByteArray *)getDict()->objectForKey(file);
+    YHByteArray * bytes = dynamic_cast<YHByteArray *>(getDict()->objectForKey(file));
     m_lock.Unlock();
     
     return bytes;
@@ -117,7 +117,7 @@ YHByteArray * YHAsynDataManagerImp::dataForFile(const std::string & file)
 CCTexture2D * YHAsynDataManagerImp::textureForFile(const std::string & file)
 {
     m_lock.Lock();
-    CCTexture2D * tex = (CCTexture2D *)getDict()->objectForKey(file);
+    CCTexture2D * tex = dynamic_cast<CCTexture2D *>(getDict()->objectForKey(file));
     m_lock.Unlock();
  
     return tex;
@@ -126,7 +126,7 @@ CCTexture2D * YHAsynDataManagerImp::textureForFile(const std::string & file)
 CCDictionary * YHAsynDataManagerImp::dictionaryForFile(const std::string & file)
 {
     m_lock.Lock();
-    CCDictionary * dict = (CCDictionary *)getDict()->objectForKey(file);
+    CCDictionary * dict = dynamic_cast<CCDictionary *>(getDict()->objectForKey(file));
     m_lock.Unlock();
     
     return dict;
@@ -135,7 +135,7 @@ CCDictionary * YHAsynDataManagerImp::dictionaryForFile(const std::string & file)
 CCArray * YHAsynDataManagerImp::arrayForFile(const std::string & file)
 {
     m_lock.Lock();
-    CCArray * arr = (CCArray *)getDict()->objectForKey(file);
+    CCArray * arr = dynamic_cast<CCArray *>(getDict()->objectForKey(file));
     m_lock.Unlock();
     
     return arr;

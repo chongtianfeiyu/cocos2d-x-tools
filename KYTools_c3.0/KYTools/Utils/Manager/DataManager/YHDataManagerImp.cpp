@@ -156,6 +156,7 @@ CCObject * YHDataManagerImp::loadFile(const std::string & fullpath)
             YHByteArray * bytes = new YHByteArray();
             bytes->init(size);
             fread(bytes->getBuffer(), size, 1, pFile);
+            obj = bytes;
             
             fclose(pFile);
         }

@@ -16,13 +16,12 @@ class CCSpecialSprite : public CCSprite
 {
 public:
 	
-	CCSPRITE_CREATE_FUNCTIONS(CCSpecialSprite);
+    using CCSprite::init;
+	bool init(CCDictionary * moduleDict);
+	bool init(AnimatorModuleData * moduleData);
 	
-	bool init1(CCDictionary* moduleDict);
-	bool init2(AnimatorModuleData* moduleData);
-	
-	static CCSpecialSprite* create(CCDictionary* moduleDict);
-	static CCSpecialSprite* create(AnimatorModuleData* moduleData);
+	static CCSpecialSprite * create(CCDictionary * moduleDict);
+	static CCSpecialSprite * create(AnimatorModuleData * moduleData);
 	
 public: // Override Functions
 	

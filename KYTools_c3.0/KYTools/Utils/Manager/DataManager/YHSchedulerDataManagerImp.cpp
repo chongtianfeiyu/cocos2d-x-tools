@@ -68,22 +68,22 @@ bool YHSchedulerDataManagerImp::completed()
 
 YHByteArray * YHSchedulerDataManagerImp::dataForFile(const std::string & file)
 {
-	return (YHByteArray *)getDict()->objectForKey(file);
+	return dynamic_cast<YHByteArray *>(getDict()->objectForKey(file));
 }
 
 CCTexture2D * YHSchedulerDataManagerImp::textureForFile(const std::string & file)
 {
-	return (CCTexture2D *)getDict()->objectForKey(file);
+	return dynamic_cast<CCTexture2D *>(getDict()->objectForKey(file));
 }
 
 CCDictionary * YHSchedulerDataManagerImp::dictionaryForFile(const std::string & file)
 {
-	return (CCDictionary *)getDict()->objectForKey(file);
+	return dynamic_cast<CCDictionary *>(getDict()->objectForKey(file));
 }
 
 CCArray * YHSchedulerDataManagerImp::arrayForFile(const std::string & file)
 {
-	return (CCArray *)getDict()->objectForKey(file);
+	return dynamic_cast<CCArray *>(getDict()->objectForKey(file));
 }
 
 std::vector<std::string> YHSchedulerDataManagerImp::allFiles()
@@ -125,7 +125,7 @@ void YHSchedulerDataManagerImp::update(float dt)
     {
         if (dynamic_cast<Image *>(obj) != nullptr)
         {
-            CCTexture2D * tex = CCTextureCache::getInstance()->addImage((Image *)obj, file);
+            CCTexture2D * tex = CCTextureCache::getInstance()->addImage((Image *)obj, fullpath);
             getDict()->setObject(tex, file);
         }
         else

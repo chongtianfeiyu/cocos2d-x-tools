@@ -206,8 +206,11 @@ void adapterLandscapeResolution(float contentScale)
 		|| (designSize.width == 1136 && designSize.height == 640)		// iPhone5, iPod5
 		|| (designSize.width == 1024 && designSize.height == 768))		// iPad1,2, iPad mini
 	{
-		designSize.width /= contentScale;
-		designSize.height /= contentScale;
+//		designSize.width /= contentScale;
+//		designSize.height /= contentScale;
+        
+        designSize.width = 960 / contentScale;
+		designSize.height = 640 / contentScale;
 	}
 	else if (designSize.width == 2048 && designSize.height == 1536)		// iPad3
 	{
@@ -221,7 +224,8 @@ void adapterLandscapeResolution(float contentScale)
 	}
 	
 	pDirector->setContentScaleFactor(contentScale);
-	pDirector->getOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedHeight);
+//	pDirector->getOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionFixedHeight);
+    pDirector->getOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::SHOW_ALL);
 }
 
 void adapterPortraitResolution(float contentScale)
@@ -293,6 +297,9 @@ string boolToString(bool value)
 
 int32 int32FromString(const std::string & value)
 {
+    if (value.empty())
+        return 0;
+    
 	istringstream iss(value);
 	int32 number;
 	iss >> number;
@@ -301,6 +308,9 @@ int32 int32FromString(const std::string & value)
 
 uint32 uint32FromString(const std::string & value)
 {
+    if (value.empty())
+        return 0;
+    
 	istringstream iss(value);
 	uint32 number;
 	iss >> number;
@@ -309,6 +319,9 @@ uint32 uint32FromString(const std::string & value)
 
 uint64 uint64FromString(const std::string & value)
 {
+    if (value.empty())
+        return 0;
+    
 	istringstream iss(value);
 	uint64 number;
 	iss >> number;
@@ -317,6 +330,9 @@ uint64 uint64FromString(const std::string & value)
 
 float32 float32FromString(const std::string & value)
 {
+    if (value.empty())
+        return 0.0f;
+    
 	istringstream iss(value);
 	float32 number;
 	iss >> number;
@@ -394,16 +410,24 @@ string trimCharacterFromLast(const std::string & origin, char chTrim)
 	return s_reuslt;
 }
 
-string trimStringWithCharacterFromHead(const std::string& origin, char chSign)
+string subStringWithCharacterFromHead(const std::string& origin, char chSign)
 {
 	size_t pos = origin.rfind(chSign);
+    
+    if (pos == string::npos)
+        return origin;
+    
 	return origin.substr(0,pos);
 }
 
-string trimStringWithCharacterFromLast(const std::string& origin, char chSign)
+string subStringWithCharacterFromLast(const std::string& origin, char chSign)
 {
 	size_t pos = origin.rfind(chSign);
-	return origin.substr(pos+1);
+    
+    if (pos == string::npos)
+        return origin;
+    
+	return origin.substr(pos + 1);
 }
 
 string stringByDeletingPathExtension(const std::string & origin)

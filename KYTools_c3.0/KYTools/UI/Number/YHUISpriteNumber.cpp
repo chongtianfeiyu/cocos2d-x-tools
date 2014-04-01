@@ -70,6 +70,7 @@ YHUISpriteNumber::YHUISpriteNumber()
 	m_fontSize = CCSizeZero;
 	m_interval = 0.0f;
 	m_iconInterval = 0.0f;
+    m_numberOffset = CCPointZero;
 	m_alignType = kAlignType_Left;
 }
 
@@ -101,21 +102,13 @@ bool YHUISpriteNumber::init(CCTexture2D * tex, const CCPoint & offset, const CCS
 
 bool YHUISpriteNumber::init(CCSpriteFrame * spriteFrame, const CCSize & fontSize, float interval)
 {
-	bool result = CCSprite::init();
-	
-	init(spriteFrame->getTexture(), spriteFrame->getRect().origin, fontSize, interval);
-	
-	return result;
+	return init(spriteFrame->getTexture(), spriteFrame->getRect().origin, fontSize, interval);
 }
 
 bool YHUISpriteNumber::init(const char * spriteFrameName, const CCSize & fontSize, float interval)
 {
-	bool result = CCSprite::init();
-	
 	CCSpriteFrame * spriteFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(spriteFrameName);
-	init(spriteFrame, fontSize, interval);
-	
-	return result;
+	return init(spriteFrame, fontSize, interval);
 }
 
 void YHUISpriteNumber::setNumber(uint32 number)
@@ -186,11 +179,19 @@ void YHUISpriteNumber::setIconInterval(float32 iconInterval)
 
 float32 YHUISpriteNumber::getNumberFontWidth()
 {
-	float32 width = m_icon != NULL ? m_icon->getContentSize().width * 0.5f : 0.0f;								// 计算出 icon 图标的左半边宽度
-	width += m_icon != NULL ? m_iconInterval : 0.0f;															// 计算出 icon 图片左半边宽度 + icon与第一个数字的间距
-	width += m_numbers->count() != 0 ? (m_numbers->count() - 1) * m_interval : 0.0f;							// 计算出 icon 图片左半边宽度 + icon与第一个数字的间距 + 数字之间间隔之和
-	width += m_icon != NULL ? m_fontSize.width * 0.5f : (m_numbers->count() != 0 ? m_fontSize.width : 0.0f);	// 计算出剩余的数字宽度量
-	return width;
+    float32 width = 0.0f;
+    if (m_numberOffset == CCPoint::ZERO)
+    {
+        width = m_icon != NULL ? m_icon->getContentSize().width * 0.5f : 0.0f;                                      // 计算出 icon 图标的左半边宽度
+        width += m_icon != NULL ? m_iconInterval : 0.0f;															// 计算出 icon 图片左半边宽度 + icon与第一个数字的间距
+        width += m_numbers->count() != 0 ? (m_numbers->count() - 1) * m_interval : 0.0f;							// 计算出 icon 图片左半边宽度 + icon与第一个数字的间距 + 数字之间间隔之和
+        width += m_icon != NULL ? m_fontSize.width * 0.5f : (m_numbers->count() != 0 ? m_fontSize.width : 0.0f);	// 计算出剩余的数字宽度量
+        return width;
+    }
+    
+    width += m_numberOffset.x;  // 计算数字的偏移量
+    
+    return width;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -274,12 +275,14 @@ void YHUISpriteNumber::layout()
 		beginX += m_iconInterval;
 	}
 	
+    beginX += m_numberOffset.x;
+    
 	// 确定每个数字的位置
 	CCObject * pObj = NULL;
 	CCARRAY_FOREACH(m_numbers, pObj)
 	{
 		CCSprite * sp = dynamic_cast<CCSprite *>(pObj);
-		sp->setPosition(ccp(beginX, 0.0f));
+		sp->setPosition(ccp(beginX, m_numberOffset.y));
 		beginX += m_interval;
 	}
 }
