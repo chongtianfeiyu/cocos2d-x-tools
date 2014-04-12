@@ -65,7 +65,7 @@ protected:
     /// 初始化
 	void init(CCDictionary* dataDict);
 	
-	void runAction(CCNodeRGBA* node, const std::string& type);
+	void runAction(CCNodeRGBA* node, const std::string& type, int32 tag = 0);
 	
 public:
 	~AnimatorAnimData();
@@ -84,7 +84,7 @@ public:
 	CCAction* action(const std::string& type);
 	
 	// 让指定的节点运行动画
-	void runActions(CCNodeRGBA* node);
+	void runActions(CCNodeRGBA* node, const std::vector<int32> & tags = std::vector<int32>(5, 0));
 };
 
 #define ANIMATION_DataType_InitData		"InitData"

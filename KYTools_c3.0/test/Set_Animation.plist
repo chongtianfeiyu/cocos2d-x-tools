@@ -133,7 +133,7 @@
 		<key>Delay</key>
 		<real>0.033</real>
 		<key>Loop</key>
-		<integer>1</integer>
+		<integer>20</integer>
 		<key>RestoreOriginFrame</key>
 		<false/>
 		<key>Frames</key>
@@ -164,6 +164,43 @@
 					</dict>
 					<key>Key4</key>
 					<integer>5</integer>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+	<key>CustomKeyFrame</key>
+	<dict>
+		<key>Sum</key>
+		<integer>1</integer>
+		<key>Loops</key>
+		<integer>10</integer>
+		<key>Steps</key>
+		<array>
+			<dict>
+				<key>Delay</key>
+				<real>0.3</real>
+				<key>UserInfo</key>
+				<dict>
+					<key>Key1</key>
+					<string>This is key1.</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Delay</key>
+				<real>0.3</real>
+				<key>UserInfo</key>
+				<dict>
+					<key>Key2</key>
+					<string>This is key2.</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Delay</key>
+				<real>0.3</real>
+				<key>UserInfo</key>
+				<dict>
+					<key>Key3</key>
+					<string>This is key3.</string>
 				</dict>
 			</dict>
 		</array>

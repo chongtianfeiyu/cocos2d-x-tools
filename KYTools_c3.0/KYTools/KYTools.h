@@ -21,6 +21,7 @@
 #include <KYTools/AnimationHelper/Effect/YHFiniteEffect.h>
 #include <KYTools/AnimationHelper/Effect/YHFiniteEffectCache.h>
 #include <KYTools/AnimationHelper/Effect/YHEffectGenerator.h>
+#include <KYTools/AnimationHelper/Avatar/AvatarComponent.h>
 
 // Utils
 #include <KYTools/Utils/Common/CommonUtils.h>
@@ -45,7 +46,6 @@
 #include <KYTools/Utils/Net/YHHttpClient.h>
 #include <KYTools/Utils/Net/YHSocketClient.h>
 #include <KYTools/Utils/Encry/YHEncryHelper.h>
-#include <KYTools/Utils/Avatar/YHAvatar.h>
 
 // UI
 #include <KYTools/UI/YHUITileBackground.h>

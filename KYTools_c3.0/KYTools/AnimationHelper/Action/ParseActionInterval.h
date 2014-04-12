@@ -246,5 +246,4 @@ public:
 	CCAction* parseAction(CCDictionary* dict);
 };
 
-
 #endif /* defined(__cocos2d_x_Utils__ParserActionInterval__) */

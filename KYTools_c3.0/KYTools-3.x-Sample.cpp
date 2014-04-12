@@ -33,6 +33,9 @@ bool KYToolsSample_3_X::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
 
+    CCLayerColor * white = CCLayerColor::create(Color4B(0xff, 0xff, 0xff, 0xff));
+    this->addChild(white);
+    
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
     //    you may modify it.
@@ -97,7 +100,7 @@ bool KYToolsSample_3_X::init()
     CCDictionary * animationDict = CCDictionary::createWithContentsOfFile(CCFileUtils::getInstance()->fullPathForFilename("test/Set_Animation.plist").c_str());
     m_effectFactory->getAnimationCache()->addAnimations(animationDict);
     
-    // 运行动画脚本
+    // 加载并运行骨骼动画脚本
     CCSpecialSprite * ss = createModuleSprite("test/Moudle_11_Normal_11_Normal.plist");
     CCSprite * armL = createSegmentSprite("test/Anim_11_Normal_11_Normal_Arm_L.plist", "Pic_Live_Ogre_Lv1_Arm_L");
     CCSprite * armR = createSegmentSprite("test/Anim_11_Normal_11_Normal_Arm_R.plist", "Pic_Live_Ogre_Lv1_Arm_R");
@@ -116,19 +119,21 @@ bool KYToolsSample_3_X::init()
     ss->setPosition(CENTER);
     this->addChild(ss);
     
-    // 关键帧, 动画内部定义
-    CCAnimation * animation = m_effectFactory->getAnimationCache()->animationForKeyFromCache_Ver2("AnimationKeyFrame");
-    CCKeyTimeCallbackSprite * keyTimeSprite = CCKeyTimeCallbackSprite::create(animation, true);
-    keyTimeSprite->setDelegate(this);
-    keyTimeSprite->setPosition(ccp(200, 240));
-    this->addChild(keyTimeSprite);
+    // 关键帧 - 使用动画内部定义
+    CCAnimation * animation = m_effectFactory->getAnimationCache()->animationForKeyFromCache_Ver2("KeyFrameTest");
+    YHKeyTimeCallback * ktCallback = YHKeyTimeCallback::create(animation);
+    AvatarComponent * component = AvatarComponent::create(animation, ktCallback, nullptr);
+//    component->setDelegate(this);
+//    component->setPosition(ccp(200, 240));
+//    this->addChild(component);
     
-    // 关键帧, 直接定义时间
+    // 关键帧 - 使用时间定义
     CCDictionary * dataDict = (CCDictionary *)m_effectFactory->getAnimationCache()->getAnimationFileDic()->objectForKey("CustomKeyFrame");
-    keyTimeSprite = CCKeyTimeCallbackSprite::create(animation, dataDict, true);
-    keyTimeSprite->setDelegate(this);
-    keyTimeSprite->setPosition(ccp(300, 240));
-    this->addChild(keyTimeSprite);
+    ktCallback = YHKeyTimeCallback::create(dataDict);
+    component = AvatarComponent::create(nullptr, ktCallback, nullptr);
+    component->setDelegate(this);
+    component->setPosition(ccp(300, 240));
+    this->addChild(component);
     
     // Test Json
     CCDictionary * dict = CCDictionary::create();
@@ -173,10 +178,11 @@ CCSprite * KYToolsSample_3_X::createSegmentSprite(const std::string & animFile, 
         AnimatorDataCache::sharedCache()->addData(animData, animFile);
     }
     
-    CCSprite * sprite = CCSprite::create();
     CCAnimation * animation = m_effectFactory->getAnimationCache()->animationForKeyFromCache_Ver2(animationName);
-    YHAnimationHelper::runActionWithSprite(sprite, animation, true, animData->getInitData(), animData->getAnimData());
-    return sprite;
+    
+    CCSprite * sp = AvatarComponent::create(animation, nullptr, animData);
+    
+    return sp;
 }
 
 void KYToolsSample_3_X::handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCAnimationFrame * frame)
@@ -218,8 +224,11 @@ void KYToolsSample_3_X::handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCAnimat
 
 void KYToolsSample_3_X::handleKeyEvent(cocos2d::CCNode * node, cocos2d::CCDictionary * userInfo)
 {
-    const CCString * str = userInfo->valueForKey("Text");
-    CCLOG("---- %s ----", str->getCString());
+    CCDictElement * e = nullptr;
+    CCDICT_FOREACH(userInfo, e)
+    {
+        CCLOG("key: %s, value:%s", e->getStrKey(), ((CCString *)e->getObject())->getCString());
+    }
 }
 
 

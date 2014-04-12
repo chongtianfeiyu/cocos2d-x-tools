@@ -2,12 +2,10 @@
 #ifndef YHUITimeNumber_h__
 #define YHUITimeNumber_h__
 
-#include <KYTools/YHTypes.h>
-
-class YHUISpriteNumber;
+#include <KYTools/UI/Number/YHUISpriteNumber.h>
 
 /**
- * 时间格式的数字显示
+ * 时间格式的数字显示, 显示的格式为 hh:mm:ss
  * @author Zhenyu Yao
  */
 class YHUITimeNumber : public cocos2d::CCSprite
@@ -19,85 +17,76 @@ public:
 	float contentWidth();
 	
 	/// 以秒数设置显示时间
-	void setTimeWithSecond(uint32 second);
+	void setTimeWithSecond(uint32 second, bool zerofill = false);
 	
 	/// 以毫秒数显示时间
-	void setTimeWithMilliSecond(uint32 milliSecond);
+	void setTimeWithMilliSecond(uint32 milliSecond, bool zerofill = false);
+    
+    /// 设置 Icon
+    void setIcon(cocos2d::CCSprite * icon);
+    
+    /// 设置 Icon 与数据的间距
+    void setIconInterval(float32 interval);
+    
+    /// 布局格式
+    void setAlignType(YHISpriteNumber::AlignType alignType);
 	
 	/**
 	 * 初始化
-	 * @param hourSeparatorName 小时的分隔符
+	 * @param iconHour 小时的分隔符
 	 * @param hourInterval 与小时分隔符之间的间隔
-	 * @param minSeparatorName 分钟的分隔符
+	 * @param iconMin 分钟的分隔符
 	 * @param minInterval 与分钟分隔符之间的间隔
-	 * @param secSeparatorName 秒的分隔符
-	 * @param secInterval 与秒分隔符之间的间隔
 	 * @param fontName 数字的显示文件
 	 * @param fontSize 数字的大小
 	 * @param fontInterval 数字之间的间距
 	 * @author Zhenyu Yao
 	 */
-	bool init(const std::string& hourSeparatorName, float hourInterval,
-			  const std::string& minSeparatorName, float minInterval,
-			  const std::string& secSeparatorName, float secInterval,
-			  const std::string& fontName, const cocos2d::CCSize& fontSize,
-			  float fontInterval
-			  );
+	bool init(cocos2d::CCSprite * iconHour, float hourInterval,
+			  cocos2d::CCSprite * iconMin, float minInterval,
+			  const std::string & fontName, const cocos2d::CCSize & fontSize,
+			  float fontInterval);
 	
 	/**
 	 * 生成 TimeNumber 对象
-	 * @param hourSeparatorName 小时的分隔符
+	 * @param iconHour 小时的分隔符
 	 * @param hourInterval 与小时分隔符之间的间隔
-	 * @param minSeparatorName 分钟的分隔符
+	 * @param iconMin 分钟的分隔符
 	 * @param minInterval 与分钟分隔符之间的间隔
-	 * @param secSeparatorName 秒的分隔符
-	 * @param secInterval 与秒分隔符之间的间隔
 	 * @param fontName 数字的显示文件
 	 * @param fontSize 数字的大小
 	 * @param fontInterval 数字之间的间距
 	 * @return TimeNumber 对象
 	 * @author Zhenyu Yao
 	 */
-	static YHUITimeNumber* timeNumber(const std::string& hourSeparatorName, float hourInterval,
-									  const std::string& minSeparatorName, float minInterval,
-									  const std::string& secSeparatorName, float secInterval,
-									  const std::string& fontName, const cocos2d::CCSize& fontSize,
-									  float fontInterval
-									  );
+	static YHUITimeNumber* create(cocos2d::CCSprite * iconHour, float hourInterval,
+                                  cocos2d::CCSprite * iconMin, float minInterval,
+                                  const std::string & fontName, const cocos2d::CCSize & fontSize,
+                                  float fontInterval);
 	
 private:
-	/**
-	 * 调整小时数字和小时分隔符的位置
-	 * @author Zhenyu Yao
-	 */
-	void adjustHourPosition();
-	
-	/**
-	 * 调整分钟数字和分钟分隔符的位置
-	 * @author Zhenyu Yao
-	 */
-	void adjustMinPosition();
-	
-	/**
-	 * 调整秒数字和秒分隔符的位置
-	 * @author Zhenyu Yao
-	 */
-	void adjustSecPosition();
+    
+    /// 重新排列布局
+    void layout();
 	
 private:
-	cocos2d::CCSprite* m_iconHour;
-	cocos2d::CCSprite* m_iconMin;
-	cocos2d::CCSprite* m_iconSec;
+    
+    cocos2d::CCSize m_fontSize;
+    YHISpriteNumber::AlignType m_alignType = YHISpriteNumber::kAlignType_Center;
+    
+    cocos2d::CCSprite * m_icon = nullptr;
+    float32 m_iconInterval = 0.0f;
+    
+	cocos2d::CCSprite * m_iconHour;
+	cocos2d::CCSprite * m_iconMin;
 	
 	float m_hourSeparatorInterval;
 	float m_minSeparatorInterval;
-	float m_secSeparatorInterval;
 	
-	YHUISpriteNumber* m_hourNumber;
-	YHUISpriteNumber* m_minNumber;
-	YHUISpriteNumber* m_secNumber;
-	
-	float m_contentWidth;
+	YHUISpriteNumber * m_hourNumber;
+	YHUISpriteNumber * m_minNumber;
+	YHUISpriteNumber * m_secNumber;
 };
+
 #endif // YHUITimeNumber_h__
 

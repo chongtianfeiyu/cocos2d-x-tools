@@ -180,16 +180,31 @@ void YHUISpriteNumber::setIconInterval(float32 iconInterval)
 float32 YHUISpriteNumber::getNumberFontWidth()
 {
     float32 width = 0.0f;
-    if (m_numberOffset == CCPoint::ZERO)
+    
+    // Icon 宽度
+    if (m_icon != nullptr)
     {
-        width = m_icon != NULL ? m_icon->getContentSize().width * 0.5f : 0.0f;                                      // 计算出 icon 图标的左半边宽度
-        width += m_icon != NULL ? m_iconInterval : 0.0f;															// 计算出 icon 图片左半边宽度 + icon与第一个数字的间距
-        width += m_numbers->count() != 0 ? (m_numbers->count() - 1) * m_interval : 0.0f;							// 计算出 icon 图片左半边宽度 + icon与第一个数字的间距 + 数字之间间隔之和
-        width += m_icon != NULL ? m_fontSize.width * 0.5f : (m_numbers->count() != 0 ? m_fontSize.width : 0.0f);	// 计算出剩余的数字宽度量
-        return width;
+        width += m_icon->getContentSize().width * m_icon->getAnchorPoint().x * m_icon->getScaleX();
+        width += m_iconInterval;
     }
     
-    width += m_numberOffset.x;  // 计算数字的偏移量
+    // 间距计算
+    if (m_numbers->count() != 0)
+    {
+        width += (m_numbers->count() - 1) * m_interval;
+    }
+    
+    // 余量增补
+    if (m_icon != nullptr)
+        width += m_fontSize.width * 0.5f;
+    else
+        width += m_fontSize.width;
+    
+    // 计算数字的偏移量
+    if (m_numberOffset != CCPoint::ZERO)
+    {
+        width += m_numberOffset.x;
+    }
     
     return width;
 }
@@ -290,7 +305,17 @@ void YHUISpriteNumber::layout()
 float32 YHUISpriteNumber::calculateBeginX()
 {
 	float32 width = getNumberFontWidth();
-	float32 beginX = (m_icon != NULL ? m_icon->getContentSize().width * 0.5f : m_fontSize.width * 0.5f);
+    
+    float beginX = 0.0f;
+    if (m_icon != nullptr)
+    {
+        beginX = m_icon->getContentSize().width * m_icon->getAnchorPoint().x * m_icon->getScaleX();
+    }
+    else
+    {
+        beginX = m_fontSize.width * 0.5f;
+    }
+    
 	switch (m_alignType)
 	{
 		case kAlignType_Left:

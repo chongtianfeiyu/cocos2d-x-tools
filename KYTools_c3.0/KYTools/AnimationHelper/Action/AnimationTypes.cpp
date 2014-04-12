@@ -87,20 +87,21 @@ CCAction* AnimatorAnimData::action(const std::string &type)
     return NULL;
 }
 
-void AnimatorAnimData::runActions(cocos2d::CCNodeRGBA *node)
+void AnimatorAnimData::runActions(cocos2d::CCNodeRGBA *node, const std::vector<int32> & tags)
 {
-	runAction(node, ANIMATION_TYPE_ANCHORPOINT);
-	runAction(node, ANIMATION_TYPE_POSITION);
-	runAction(node, ANIMATION_TYPE_SCALE);
-	runAction(node, ANIMATION_TYPE_ROTATION);
-	runAction(node, ANIMATION_TYPE_OPACITY);
+	runAction(node, ANIMATION_TYPE_ANCHORPOINT, tags[0]);
+	runAction(node, ANIMATION_TYPE_POSITION, tags[1]);
+	runAction(node, ANIMATION_TYPE_SCALE, tags[2]);
+	runAction(node, ANIMATION_TYPE_ROTATION, tags[3]);
+	runAction(node, ANIMATION_TYPE_OPACITY, tags[4]);
 }
 
-void AnimatorAnimData::runAction(cocos2d::CCNodeRGBA *node, const std::string &type)
+void AnimatorAnimData::runAction(cocos2d::CCNodeRGBA *node, const std::string &type, int32 tag)
 {
 	CCAction* action = this->action(type);
 	if (action)
 	{
+        action->setTag(tag);
 		node->runAction(action);
 	}
 }

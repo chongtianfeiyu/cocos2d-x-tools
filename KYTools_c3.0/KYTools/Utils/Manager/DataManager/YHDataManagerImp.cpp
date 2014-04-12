@@ -37,7 +37,10 @@ static void array_Value(CCArray * aArray, const cocos2d::ValueVector & value)
         else
         {
             CCString * str = new CCString();
-            str->initWithFormat("%s", v.asString().c_str());
+            if (v.getType() == Value::Type::DOUBLE)
+                str->initWithFormat("%f", v.asDouble());
+            else
+                str->initWithFormat("%s", v.asString().c_str());
             aArray->addObject(str);
             str->release();
         }
@@ -71,7 +74,10 @@ static void dictionary_Value(CCDictionary * aDict, const cocos2d::ValueMap & val
         else
         {
             CCString * str = new CCString();
-            str->initWithFormat("%s", v.asString().c_str());
+            if (v.getType() == Value::Type::DOUBLE)
+                str->initWithFormat("%f", v.asDouble());
+            else
+                str->initWithFormat("%s", v.asString().c_str());
             aDict->setObject(str, key);
             str->release();
         }

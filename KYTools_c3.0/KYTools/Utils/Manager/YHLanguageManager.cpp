@@ -32,7 +32,15 @@ void YHLanguageManager::addTexts(cocos2d::CCDictionary * dict)
 
 std::string YHLanguageManager::textForKey(const char * key)
 {
-	return m_dict->valueForKey(key)->getCString();
+    CCObject * str = m_dict->objectForKey(key);
+    if (str != nullptr)
+    {
+        return ((CCString *)str)->getCString();
+    }
+    else
+    {
+        return key;
+    }
 }
 
 

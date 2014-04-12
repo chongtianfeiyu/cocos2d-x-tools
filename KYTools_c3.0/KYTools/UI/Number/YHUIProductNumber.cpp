@@ -101,7 +101,17 @@ float32 YHUIProductNumber::getNumberFontWidth()
 void YHUIProductNumber::layout()
 {
 	float width = getNumberFontWidth();
-	float beginX = (m_icon != NULL ? m_icon->getContentSize().width * 0.5f : m_iconProduct->getContentSize().width * 0.5f);
+    
+    float beginX = 0.0f;
+    if (m_icon != nullptr)
+    {
+        beginX = m_icon->getContentSize().width * m_icon->getAnchorPoint().x * m_icon->getScaleX();
+    }
+    else
+    {
+        beginX = m_iconProduct->getContentSize().width * m_iconProduct->getAnchorPoint().x * m_iconProduct->getScaleX();
+    }
+    
 	switch (m_alignType)
 	{
 		case kAlignType_Left:
