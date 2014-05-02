@@ -26,7 +26,7 @@ public:
 public: // Override Functions
 	
 	/// 不绘制任何图形, 为的只是当容器能够在 CCSpriteBatchNode 中使用
-	virtual void				draw();
+	virtual void				draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated);
 	
 	/// 设置子节点的颜色
 	virtual void				setColor(const ccColor3B & color3) override;

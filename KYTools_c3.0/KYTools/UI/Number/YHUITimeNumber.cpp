@@ -86,7 +86,8 @@ bool YHUITimeNumber::init(cocos2d::CCSprite * iconHour, float hourInterval,
 	do
 	{
 		CC_BREAK_IF(!CCSprite::init());
-		
+		this->setTexture(iconHour->getTexture());
+        
 		m_iconHour = iconHour;
 		m_iconMin = iconMin;
 		addChild(m_iconHour, kTimeNumberLayer_Separator);

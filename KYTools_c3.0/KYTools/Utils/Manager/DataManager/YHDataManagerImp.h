@@ -43,7 +43,8 @@ public:
 	virtual cocos2d::CCArray * arrayForFile(const std::string & file) = 0;
     virtual std::vector<std::string> allFiles() = 0;
     virtual void setFinishedCallback(const std::function<void ()> & callback);
-	
+	virtual void update(float dt) = 0;
+    
 protected:
 	
     /// 装载文件, 返回装载文件生成的对象, 在使用完返回对象后, 必须手动调用 release

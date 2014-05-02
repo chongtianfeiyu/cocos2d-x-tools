@@ -32,6 +32,39 @@ void YHCCActionHelper::runIntervalForeverAnimation(float interval, CCAnimation *
 	pSprite->runAction(forever);
 }
 
+void YHCCActionHelper::runIntervalForeverAnimation2(float interval, cocos2d::CCAnimation * animation,
+                                                    cocos2d::CCSprite * pSprite,
+                                                    const std::function<void ()> & begin_callback,
+                                                    const std::function<void ()> & end_callback)
+{
+    Vector<FiniteTimeAction *> actions;
+    Animate * animate = Animate::create(animation);
+    Hide * hide = Hide::create();
+    DelayTime * delay = DelayTime::create(interval);
+    Show * show = Show::create();
+    
+    if (begin_callback != nullptr)
+    {
+        CallFunc * callfunc = CallFunc::create(begin_callback);
+        actions.pushBack(callfunc);
+    }
+    actions.pushBack(animate);
+    actions.pushBack(hide);
+    actions.pushBack(delay);
+    actions.pushBack(show);
+    if (end_callback != nullptr)
+    {
+        CallFunc * callfunc = CallFunc::create(end_callback);
+        actions.pushBack(callfunc);
+    }
+    
+    Sequence * sequence = Sequence::create(actions);
+    RepeatForever * repeatForever = RepeatForever::create(sequence);
+    AnimationFrame * frame = animate->getAnimation()->getFrames().at(0);
+    pSprite->setDisplayFrame(frame->getSpriteFrame());
+    pSprite->runAction(repeatForever);
+}
+
 void YHCCActionHelper::runNormalForeverMove(const cocos2d::Point & delta, float duration, cocos2d::CCNode * pNode)
 {
     CCMoveBy * moveBy1 = CCMoveBy::create(duration * 0.5f, delta);

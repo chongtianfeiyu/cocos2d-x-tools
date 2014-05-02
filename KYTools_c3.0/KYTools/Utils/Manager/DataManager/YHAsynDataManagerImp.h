@@ -41,8 +41,7 @@ public:
 	virtual cocos2d::CCDictionary * dictionaryForFile(const std::string & file);
 	virtual cocos2d::CCArray * arrayForFile(const std::string & file);
     virtual std::vector<std::string> allFiles();
-	
-	virtual void update(float dt);
+	virtual void update(float dt) override;
     
 private:
     

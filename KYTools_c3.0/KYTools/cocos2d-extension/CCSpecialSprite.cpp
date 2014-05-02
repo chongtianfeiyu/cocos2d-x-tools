@@ -2,7 +2,7 @@
 #include <KYTools/cocos2d-extension/CCSpecialSprite.h>
 #include <KYTools/AnimationHelper/Action/AnimationTypes.h>
 
-void CCSpecialSprite::draw()
+void CCSpecialSprite::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)
 {
 }
 

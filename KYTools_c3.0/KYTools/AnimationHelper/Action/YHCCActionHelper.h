@@ -37,6 +37,18 @@ public:
 	static void		runIntervalForeverAnimation(float interval, cocos2d::CCAnimation * animation, cocos2d::CCSprite * pSprite);
     
     /**
+	 * 间隔一段时间运行一次动画, 和 runIntervalForeverAnimation 相比, 间隔的时候增加隐藏/显示
+	 * @param interval 间隔时间
+	 * @param animation 运行的动画
+	 * @param pSprite 运行动画的 CCSprite 对象
+     * @param begin_callback 每次启动动画的回调
+     * @param end_callback 每次结束动画的回调
+	 */
+    static void     runIntervalForeverAnimation2(float interval, cocos2d::CCAnimation * animation, cocos2d::CCSprite * pSprite,
+                                                 const std::function<void ()> & begin_callback = nullptr,
+                                                 const std::function<void ()> & end_callback = nullptr);
+    
+    /**
      * 创建循环移动的动画
      * @param delta 移动的间隔距离
      * @param duration 1次循环的持续时间

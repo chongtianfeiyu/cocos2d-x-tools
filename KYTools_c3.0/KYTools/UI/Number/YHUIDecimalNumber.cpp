@@ -172,7 +172,7 @@ float32 YHUIDecimalNumber::getNumberFontWidth()
 	float32 width = intWidth;
 	if (hasDecimals())
 	{
-		width += decWidth + 2.0f * m_interval - 2.0f * m_fontSize.width;
+        width += m_interval * 2.0f + decWidth;
 	}
 	return width;
 }
@@ -197,7 +197,7 @@ void YHUIDecimalNumber::layout()
 	
 	// integers
 	m_integers->setPosition(ccp(beginX, 0.0f));
-	beginX += m_integers->getNumberFontWidth() - m_fontSize.width * 0.5f + m_interval;
+	beginX += m_integers->getNumberFontWidth();
 	
 	// dot, 判断是否含有小数点
 	if (!hasDecimals())
@@ -209,12 +209,13 @@ void YHUIDecimalNumber::layout()
 		m_iconDot->setVisible(true);
 		
 		// dot
+        beginX += m_interval;
 		m_iconDot->setPosition(ccp(beginX, 0.0f));
-		beginX += m_interval - m_fontSize.width * 0.5f;
+		beginX += m_interval;
+        
+        // decimals
+        m_decimals->setPosition(ccp(beginX, 0.0f));
 	}
-	
-	// decimals
-	m_decimals->setPosition(ccp(beginX, 0.0f));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -295,7 +296,7 @@ string YHUIDecimalNumber::getDecimalString(const std::string & strNumbers)
 
 bool YHUIDecimalNumber::hasDecimals() const
 {
-	return m_decimals->getNumberFontWidth() != 0.0f;
+	return m_decimals->getNumbers()->count() != 0.0f && m_places != 0;
 }
 
 

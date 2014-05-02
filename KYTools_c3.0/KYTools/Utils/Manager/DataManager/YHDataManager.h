@@ -104,7 +104,7 @@ public:
     /// 装载完成的回调函数
     virtual void setFinishedCallback(const std::function<void ()> & callback);
 	
-    virtual void update(float dt) override;
+    virtual void update(float dt);
     
 public:
     

@@ -106,8 +106,7 @@ void YHUIPercentNumber::setPercentInterval(float32 interval)
 float32 YHUIPercentNumber::getNumberFontWidth()
 {
 	float width = YHUIDecimalNumber::getNumberFontWidth();
-	width -= m_fontSize.width * 0.5f;
-	width += m_percentInterval + m_iconPercent->getContentSize().width * 0.5f;
+	width += m_percentInterval + m_iconPercent->getContentSize().width * (1.0f - m_iconPercent->getAnchorPoint().x);
 	return width;
 }
 
@@ -119,12 +118,12 @@ void YHUIPercentNumber::layout()
 	if (!hasDecimals())
 	{
 		beginX = m_integers->getPositionX();
-		beginX += m_integers->getNumberFontWidth() + m_percentInterval - m_fontSize.width * 0.5f;
+		beginX += m_integers->getNumberFontWidth() + m_percentInterval;
 	}
 	else
 	{
 		beginX = m_decimals->getPositionX();
-		beginX += m_decimals->getNumberFontWidth() + m_percentInterval - m_fontSize.width * 0.5f;
+		beginX += m_decimals->getNumberFontWidth() + m_percentInterval;
 	}
 	
 	m_iconPercent->setPosition(ccp(beginX, 0.0f));
