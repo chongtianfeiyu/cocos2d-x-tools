@@ -15,12 +15,15 @@
 // Public Functions
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const std::string YHDataManager::DEFAULT = "Default";
+const std::string YHDataManager::ASYN = "Asyn";
+
 YHDataManager * YHDataManager::create(const std::string & type)
 {
 	YHDataManagerImp * imp = NULL;
-	if (type.compare("Default") == 0)
+	if (type.compare(DEFAULT) == 0)
 		imp = new YHSchedulerDataManagerImp();
-    else if (type.compare("Asyn") == 0)
+    else if (type.compare(ASYN) == 0)
         imp = new YHAsynDataManagerImp();
 	
     imp->init();

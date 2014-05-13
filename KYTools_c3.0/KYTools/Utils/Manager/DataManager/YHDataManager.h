@@ -22,13 +22,16 @@ class YHDataManager : public YHObject
 {
 public:
 	
+    static const std::string DEFAULT;
+    static const std::string ASYN;
+    
 	/**
 	 * 创建 YHDataManager 对象
 	 * @param type 类型, Default, Asyn
      * 介绍: Default: 使用 CCScheduler 装载资源, 每次 update 装载一个资源文件
      *      Asyn: 使用多线程装载资源
 	 */
-	static YHDataManager * create(const std::string & type = "Default");
+	static YHDataManager * create(const std::string & type = DEFAULT);
 	
 	YHDataManager();
 	virtual ~YHDataManager();
