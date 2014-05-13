@@ -1,4 +1,5 @@
-KYTools
+cocos2d-x-tools
 =======
 
-关于 cocos2dx-2.x 的一些工具类
+在 cocos2d-x 中常用功能的整合, 目前只支持 3.0 以上版本.
+例子都在 demos 中.
