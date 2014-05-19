@@ -20,6 +20,7 @@ public:
 	bool init(CCDictionary * moduleDict);
 	bool init(AnimatorModuleData * moduleData);
 	
+    CREATE_FUNC(CCSpecialSprite);
 	static CCSpecialSprite * create(CCDictionary * moduleDict);
 	static CCSpecialSprite * create(AnimatorModuleData * moduleData);
 	

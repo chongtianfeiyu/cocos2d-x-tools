@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PieceCoin</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Piece_Effect_Getcoins_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 14}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>1</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+	</dict>
+	<key>Pic_Live_Ogre_Lv1_Arm_L</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Live_Ogre_Lv1_Arm_L_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 0}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>1</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+	</dict>
+	<key>Pic_Live_Ogre_Lv1_Arm_R</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Live_Ogre_Lv1_Arm_R_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 0}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>1</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+	</dict>
+	<key>Pic_Live_Ogre_Lv1_Body</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Live_Ogre_Lv1_Body_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 0}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>1</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+	</dict>
+	<key>Pic_Live_Ogre_Lv1_Head</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Live_Ogre_Lv1_Head_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 0}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>1</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+	</dict>
+	<key>Pic_Live_Ogre_Lv1_Leg_L</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Live_Ogre_Lv1_Leg_L_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 0}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>1</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+	</dict>
+	<key>Pic_Live_Ogre_Lv1_Leg_R</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Live_Ogre_Lv1_Leg_R_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 0}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>1</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+	</dict>
+	<key>Pic_Live_Runner_Hammer</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Live_Runner_Hammer_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 0}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>1</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+	</dict>
+	<key>KeyFrameTest</key>
+	<dict>
+		<key>FileName</key>
+		<string>Pic_Piece_Effect_Getcoins_</string>
+		<key>Extension</key>
+		<string>png</string>
+		<key>Range</key>
+		<string>{0, 14}</string>
+		<key>Delay</key>
+		<real>0.033</real>
+		<key>Loop</key>
+		<integer>20</integer>
+		<key>RestoreOriginFrame</key>
+		<false/>
+		<key>Frames</key>
+		<array>
+			<dict>
+				<key>Index</key>
+				<integer>3</integer>
+				<key>DelayUnits</key>
+				<integer>10</integer>
+			</dict>
+			<dict>
+				<key>Index</key>
+				<integer>5</integer>
+				<key>DelayUnits</key>
+				<integer>10</integer>
+				<key>UserInfo</key>
+				<dict>
+					<key>Key1</key>
+					<string>This is String Object</string>
+					<key>Key2</key>
+					<array>
+						<string>This is Array Object</string>
+					</array>
+					<key>Key3</key>
+					<dict>
+						<key>Child1</key>
+						<string>This is Dictionary Object</string>
+					</dict>
+					<key>Key4</key>
+					<integer>5</integer>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+	<key>CustomKeyFrame</key>
+	<dict>
+		<key>Sum</key>
+		<integer>1</integer>
+		<key>Loops</key>
+		<integer>10</integer>
+		<key>Steps</key>
+		<array>
+			<dict>
+				<key>Delay</key>
+				<real>0.3</real>
+				<key>UserInfo</key>
+				<dict>
+					<key>Key1</key>
+					<string>This is key1.</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Delay</key>
+				<real>0.3</real>
+				<key>UserInfo</key>
+				<dict>
+					<key>Key2</key>
+					<string>This is key2.</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Delay</key>
+				<real>0.3</real>
+				<key>UserInfo</key>
+				<dict>
+					<key>Key3</key>
+					<string>This is key3.</string>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+</dict>
+</plist>

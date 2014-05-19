@@ -1,7 +1,8 @@
 #ifndef YHUIVirguleNumber_h__
 #define YHUIVirguleNumber_h__
 
-#include <YHTypes.h>
+#include <cocos2d-extension/CCSpecialSprite.h>
+#include <UI/Number/YHISpriteNumber.h>
 
 class YHUISpriteNumber;
 
@@ -9,23 +10,67 @@ class YHUISpriteNumber;
  * 中间有斜线分割数字的数字贴图
  * @author Zhenyu Yao
  */
-class YHUIVirguleNumber : public cocos2d::CCSprite
+class YHUIVirguleNumber : public CCSpecialSprite
 {
 public:
-	YHUIVirguleNumber(void);
+    
 	virtual ~YHUIVirguleNumber(void);
 	
-	void setVirguleInterval(float val);
-	float getVirguleInterval(){return m_virguleInterval;}
+    /// 总宽度
+	float32 getNumberFontWidth();
 	
-	float contentWidth();
-	
-	bool init(const std::string & fontName, cocos2d::CCSize fontSize, float fontInterval, const std::string & virguleName);
-	
-	static YHUIVirguleNumber * create(const std::string & fontName, cocos2d::CCSize fontSize, float fontInterval, const std::string & virguleName)
+    /// 设置分子显示
+    virtual void setLNumber(uint32 number);
+    
+    /// 设置分子显示
+    virtual void setLNumber(const std::string & number);
+    
+    /// 设置分母显示
+    virtual void setRNumber(uint32 number);
+    
+    /// 设置分母显示
+    virtual void setRNumber(const std::string & number);
+    
+    /// 设置 LR 数字显示
+    virtual void setLRNumber(uint32 lNumber, uint32 rNumber);
+    
+    /// 设置 LR 数字显示
+    virtual void setLRNumber(const std::string & lNumber, const std::string & rNumber);
+    
+    /// 设置 / 符号与分子分母的距离
+    virtual void setVirguleInterval(float32 interval);
+    
+    /// 设置对齐布局方式
+    virtual void setAlignType(YHISpriteNumber::AlignType alignType);
+    
+    /// 设置 Icon
+    virtual void setIcon(cocos2d::Sprite * icon);
+    
+    /// 设置 virgule
+    virtual void setVirgule(cocos2d::Sprite * virgule);
+    
+    /// 返回 分子数字 显示对象
+    virtual cocos2d::Sprite * getLNumberSprite() const;
+    
+    /// 返回 分母数字 显示对象
+    virtual cocos2d::Sprite * getRNumberSprite() const;
+    
+    /**
+     * 初始化
+     * @param fontName 数字字体名字
+     * @param fontSize 字体的大小
+     * @param fontInterval 字体的间距
+     * @param virgule 斜线显示对象
+     */
+	virtual bool init(const std::string & fontName, const cocos2d::CCSize fontSize,
+                      float32 fontInterval, cocos2d::Sprite * virgule);
+    
+    /// 创建 YHUIVirguleNumber 对象
+    static YHUIVirguleNumber * create(const std::string & fontName, const cocos2d::Size & fontSize,
+                                      float32 fontInterval, cocos2d::Sprite * virgule)
 	{
 		YHUIVirguleNumber * instance = new YHUIVirguleNumber();
-		if (instance != NULL && instance->init(fontName, fontSize, fontInterval, virguleName))
+		if (instance != NULL && instance->init(fontName, fontSize, fontInterval, virgule))
 		{
 			instance->autorelease();
 			return instance;
@@ -34,55 +79,68 @@ public:
 		return NULL;
 	}
 	
-	/**
-	 * 设置分割号左边的数字
-	 * @param leftNumber 左边的数字
-	 * @author Zhenyu Yao
-	 */
-	void setLeftNumber(int leftNumber);
-	
-	/**
-	 * 设置分割号右边的数字
-	 * @param rightNumber 右边的数字
-	 * @author Zhenyu Yao
-	 */
-	void setRightNumber(int rightNumber);
-	
-	/**
-	 * 设置左边数字的颜色
-	 * @param color 填充颜色
-	 * @author Zhenyu Yao
-	 */
-	void setLeftNumberColor(cocos2d::ccColor3B color);
-	
-	/**
-	 * 设置右边数字的颜色
-	 * @param color 填充颜色
-	 * @author Zhenyu Yao
-	 */
-	void setRightNumberColor(cocos2d::ccColor3B color);
-	
-	
 private:
 	
-	/**
-	 * 重新排列
-	 * @author Zhenyu Yao
-	 */
+	/// 重新排列
 	void realign();
 	
 private:
-	YHUISpriteNumber * m_leftNumber;
-	YHUISpriteNumber * m_rightNumber;
-	cocos2d::CCSprite * m_virgule;
-	
-	/// 数字的长度, 以点为单位
-	float m_contentWidth;
-	
-	/// 分号与数字间的间隔
-	float m_virguleInterval;
-	
-	cocos2d::CCSize m_fontSize;
+    
+    float32 m_virguleInterval = 0.0f;
+    YHISpriteNumber::AlignType m_alignType = YHISpriteNumber::kAlignType_Left;
+    cocos2d::Sprite * m_icon = nullptr;
+	cocos2d::Sprite * m_virgule = nullptr;
+    YHUISpriteNumber * m_lNumber = nullptr;
+    YHUISpriteNumber * m_rNumber = nullptr;
 };
 #endif // YHUIVirguleNumber_h__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// end file
+
 

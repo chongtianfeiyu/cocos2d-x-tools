@@ -108,6 +108,11 @@ bool YHDate::sameYear(YHDate * date) const
     return m_tm->tm_year = date->m_tm->tm_year;
 }
 
+bool YHDate::isToday() const
+{
+    return sameDay(YHDate::create());
+}
+
 void YHDate::addTimeInterval(float32 timeInterval)
 {
     m_time += (time_t)timeInterval;

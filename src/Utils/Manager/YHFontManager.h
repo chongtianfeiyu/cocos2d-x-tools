@@ -24,7 +24,10 @@ public:
 	void                    addFonts(cocos2d::CCDictionary * dict);
 	
 	/// 获得字体的名字
-	const char *			fontNameForKey(const char * key);
+    std::string             fontNameForKey(const char * key);
+    
+    /// 获得字体的名字
+    std::string             fontNameForKey(const std::string & key);
 	
 private:
 	CCDictionary *			m_dict = nullptr;

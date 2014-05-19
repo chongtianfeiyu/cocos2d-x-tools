@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "Test_VirguleNumber.h"
 
 USING_NS_CC;
 
@@ -25,12 +26,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
+    
+    director->setContentScaleFactor(2.0f);
+    director->getOpenGLView()->setDesignResolutionSize(480, 320, ResolutionPolicy::FIXED_WIDTH);
 
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
-
-    // run
-    director->runWithScene(scene);
+    director->runWithScene(Test_VirguleNumber::createScene());
 
     return true;
 }

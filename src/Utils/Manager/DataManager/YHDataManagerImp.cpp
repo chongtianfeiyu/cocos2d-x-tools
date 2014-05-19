@@ -132,6 +132,7 @@ void YHDataManagerImp::purgeImages()
 CCObject * YHDataManagerImp::loadFile(const std::string & fullpath)
 {
     string suffix = pathExtensionWithString(fullpath);
+    asciiToLower(suffix);
     
     // 装载对应的对象
     CCObject * obj = NULL;

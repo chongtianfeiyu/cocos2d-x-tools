@@ -65,6 +65,25 @@
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
+		CE23C94219274A69000B6AFF /* KYTools-3.x-Sample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE23C93019274A69000B6AFF /* KYTools-3.x-Sample.cpp */; };
+		CE23C94319274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_L.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93319274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_L.plist */; };
+		CE23C94419274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_R.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93419274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_R.plist */; };
+		CE23C94519274A69000B6AFF /* Anim_11_Normal_11_Normal_Body.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93519274A69000B6AFF /* Anim_11_Normal_11_Normal_Body.plist */; };
+		CE23C94619274A69000B6AFF /* Anim_11_Normal_11_Normal_Hammer.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93619274A69000B6AFF /* Anim_11_Normal_11_Normal_Hammer.plist */; };
+		CE23C94719274A69000B6AFF /* Anim_11_Normal_11_Normal_Head.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93719274A69000B6AFF /* Anim_11_Normal_11_Normal_Head.plist */; };
+		CE23C94819274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_L.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93819274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_L.plist */; };
+		CE23C94919274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_R.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93919274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_R.plist */; };
+		CE23C94A19274A69000B6AFF /* Effect_All-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93A19274A69000B6AFF /* Effect_All-hd.plist */; };
+		CE23C94B19274A69000B6AFF /* Effect_All-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93B19274A69000B6AFF /* Effect_All-hd.png */; };
+		CE23C94C19274A69000B6AFF /* Moudle_11_Normal_11_Normal.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93C19274A69000B6AFF /* Moudle_11_Normal_11_Normal.plist */; };
+		CE23C94D19274A69000B6AFF /* Pic_Lives_0-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93D19274A69000B6AFF /* Pic_Lives_0-hd.plist */; };
+		CE23C94E19274A69000B6AFF /* Pic_Lives_0-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93E19274A69000B6AFF /* Pic_Lives_0-hd.png */; };
+		CE23C94F19274A69000B6AFF /* Set_Animation.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C93F19274A69000B6AFF /* Set_Animation.plist */; };
+		CE23C95019274A69000B6AFF /* Set_Effect.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C94019274A69000B6AFF /* Set_Effect.plist */; };
+		CE23C95119274A69000B6AFF /* Set_Live.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE23C94119274A69000B6AFF /* Set_Live.plist */; };
+		CE23C95619274AE8000B6AFF /* Test_VirguleNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE23C95419274AE8000B6AFF /* Test_VirguleNumber.cpp */; };
+		CE48A2861929AAE3007B07F5 /* UI_Collection-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = CE48A2841929AAE3007B07F5 /* UI_Collection-hd.png */; };
+		CE48A2871929AAE3007B07F5 /* UI_Collection-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE48A2851929AAE3007B07F5 /* UI_Collection-hd.plist */; };
 		CE7EB66B1921BB64009C1519 /* ActionContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7EB5AB1921BB64009C1519 /* ActionContext.cpp */; };
 		CE7EB66C1921BB64009C1519 /* ActionParseBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7EB5AD1921BB64009C1519 /* ActionParseBase.cpp */; };
 		CE7EB66D1921BB64009C1519 /* AnimationTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7EB5AF1921BB64009C1519 /* AnimationTypes.cpp */; };
@@ -343,6 +362,27 @@
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CE23C93019274A69000B6AFF /* KYTools-3.x-Sample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "KYTools-3.x-Sample.cpp"; sourceTree = "<group>"; };
+		CE23C93119274A69000B6AFF /* KYTools-3.x-Sample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KYTools-3.x-Sample.h"; sourceTree = "<group>"; };
+		CE23C93319274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_L.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Anim_11_Normal_11_Normal_Arm_L.plist; sourceTree = "<group>"; };
+		CE23C93419274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_R.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Anim_11_Normal_11_Normal_Arm_R.plist; sourceTree = "<group>"; };
+		CE23C93519274A69000B6AFF /* Anim_11_Normal_11_Normal_Body.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Anim_11_Normal_11_Normal_Body.plist; sourceTree = "<group>"; };
+		CE23C93619274A69000B6AFF /* Anim_11_Normal_11_Normal_Hammer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Anim_11_Normal_11_Normal_Hammer.plist; sourceTree = "<group>"; };
+		CE23C93719274A69000B6AFF /* Anim_11_Normal_11_Normal_Head.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Anim_11_Normal_11_Normal_Head.plist; sourceTree = "<group>"; };
+		CE23C93819274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_L.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Anim_11_Normal_11_Normal_Leg_L.plist; sourceTree = "<group>"; };
+		CE23C93919274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_R.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Anim_11_Normal_11_Normal_Leg_R.plist; sourceTree = "<group>"; };
+		CE23C93A19274A69000B6AFF /* Effect_All-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Effect_All-hd.plist"; sourceTree = "<group>"; };
+		CE23C93B19274A69000B6AFF /* Effect_All-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Effect_All-hd.png"; sourceTree = "<group>"; };
+		CE23C93C19274A69000B6AFF /* Moudle_11_Normal_11_Normal.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Moudle_11_Normal_11_Normal.plist; sourceTree = "<group>"; };
+		CE23C93D19274A69000B6AFF /* Pic_Lives_0-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Pic_Lives_0-hd.plist"; sourceTree = "<group>"; };
+		CE23C93E19274A69000B6AFF /* Pic_Lives_0-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pic_Lives_0-hd.png"; sourceTree = "<group>"; };
+		CE23C93F19274A69000B6AFF /* Set_Animation.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Set_Animation.plist; sourceTree = "<group>"; };
+		CE23C94019274A69000B6AFF /* Set_Effect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Set_Effect.plist; sourceTree = "<group>"; };
+		CE23C94119274A69000B6AFF /* Set_Live.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Set_Live.plist; sourceTree = "<group>"; };
+		CE23C95419274AE8000B6AFF /* Test_VirguleNumber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Test_VirguleNumber.cpp; sourceTree = "<group>"; };
+		CE23C95519274AE8000B6AFF /* Test_VirguleNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test_VirguleNumber.h; sourceTree = "<group>"; };
+		CE48A2841929AAE3007B07F5 /* UI_Collection-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_Collection-hd.png"; sourceTree = "<group>"; };
+		CE48A2851929AAE3007B07F5 /* UI_Collection-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UI_Collection-hd.plist"; sourceTree = "<group>"; };
 		CE7EB5AB1921BB64009C1519 /* ActionContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionContext.cpp; sourceTree = "<group>"; };
 		CE7EB5AC1921BB64009C1519 /* ActionContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionContext.h; sourceTree = "<group>"; };
 		CE7EB5AD1921BB64009C1519 /* ActionParseBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionParseBase.cpp; sourceTree = "<group>"; };
@@ -625,6 +665,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				78C7DDAA14EBA5050085D0C2 /* Resources */,
 				CE7EB5A81921BB64009C1519 /* src */,
+				CE23C92E19274A69000B6AFF /* demos */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -699,12 +740,56 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CE48A2841929AAE3007B07F5 /* UI_Collection-hd.png */,
+				CE48A2851929AAE3007B07F5 /* UI_Collection-hd.plist */,
 				1AFAF8B916D35E4900DB1158 /* CloseNormal.png */,
 				1AFAF8BA16D35E4900DB1158 /* CloseSelected.png */,
 				1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */,
 			);
 			name = Resources;
 			path = ../Resources;
+			sourceTree = "<group>";
+		};
+		CE23C92E19274A69000B6AFF /* demos */ = {
+			isa = PBXGroup;
+			children = (
+				CE23C92F19274A69000B6AFF /* demo1 */,
+				CE23C95419274AE8000B6AFF /* Test_VirguleNumber.cpp */,
+				CE23C95519274AE8000B6AFF /* Test_VirguleNumber.h */,
+			);
+			path = demos;
+			sourceTree = "<group>";
+		};
+		CE23C92F19274A69000B6AFF /* demo1 */ = {
+			isa = PBXGroup;
+			children = (
+				CE23C93019274A69000B6AFF /* KYTools-3.x-Sample.cpp */,
+				CE23C93119274A69000B6AFF /* KYTools-3.x-Sample.h */,
+				CE23C93219274A69000B6AFF /* res */,
+			);
+			path = demo1;
+			sourceTree = "<group>";
+		};
+		CE23C93219274A69000B6AFF /* res */ = {
+			isa = PBXGroup;
+			children = (
+				CE23C93319274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_L.plist */,
+				CE23C93419274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_R.plist */,
+				CE23C93519274A69000B6AFF /* Anim_11_Normal_11_Normal_Body.plist */,
+				CE23C93619274A69000B6AFF /* Anim_11_Normal_11_Normal_Hammer.plist */,
+				CE23C93719274A69000B6AFF /* Anim_11_Normal_11_Normal_Head.plist */,
+				CE23C93819274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_L.plist */,
+				CE23C93919274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_R.plist */,
+				CE23C93A19274A69000B6AFF /* Effect_All-hd.plist */,
+				CE23C93B19274A69000B6AFF /* Effect_All-hd.png */,
+				CE23C93C19274A69000B6AFF /* Moudle_11_Normal_11_Normal.plist */,
+				CE23C93D19274A69000B6AFF /* Pic_Lives_0-hd.plist */,
+				CE23C93E19274A69000B6AFF /* Pic_Lives_0-hd.png */,
+				CE23C93F19274A69000B6AFF /* Set_Animation.plist */,
+				CE23C94019274A69000B6AFF /* Set_Effect.plist */,
+				CE23C94119274A69000B6AFF /* Set_Live.plist */,
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 		CE7EB5A81921BB64009C1519 /* src */ = {
@@ -1294,26 +1379,43 @@
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
+				CE23C94B19274A69000B6AFF /* Effect_All-hd.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
+				CE23C94F19274A69000B6AFF /* Set_Animation.plist in Resources */,
 				CE7EB6881921BB64009C1519 /* version.h.in in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
+				CE48A2861929AAE3007B07F5 /* UI_Collection-hd.png in Resources */,
+				CE23C94919274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_R.plist in Resources */,
+				CE23C95019274A69000B6AFF /* Set_Effect.plist in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				CE7EB6821921BB64009C1519 /* json_internalmap.inl in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
+				CE23C94A19274A69000B6AFF /* Effect_All-hd.plist in Resources */,
 				CE7EB6851921BB64009C1519 /* json_valueiterator.inl in Resources */,
+				CE23C94719274A69000B6AFF /* Anim_11_Normal_11_Normal_Head.plist in Resources */,
+				CE23C94519274A69000B6AFF /* Anim_11_Normal_11_Normal_Body.plist in Resources */,
+				CE23C94C19274A69000B6AFF /* Moudle_11_Normal_11_Normal.plist in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
+				CE23C94419274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_R.plist in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
+				CE23C95119274A69000B6AFF /* Set_Live.plist in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				CE7EB6871921BB64009C1519 /* sconscript in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				CE7EB6811921BB64009C1519 /* json_internalarray.inl in Resources */,
+				CE48A2871929AAE3007B07F5 /* UI_Collection-hd.plist in Resources */,
+				CE23C94619274A69000B6AFF /* Anim_11_Normal_11_Normal_Hammer.plist in Resources */,
+				CE23C94319274A69000B6AFF /* Anim_11_Normal_11_Normal_Arm_L.plist in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
+				CE23C94E19274A69000B6AFF /* Pic_Lives_0-hd.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
+				CE23C94819274A69000B6AFF /* Anim_11_Normal_11_Normal_Leg_L.plist in Resources */,
+				CE23C94D19274A69000B6AFF /* Pic_Lives_0-hd.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1362,6 +1464,7 @@
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				CE7EB6741921BB64009C1519 /* YHCCActionHelper.cpp in Sources */,
 				CE7EB67D1921BB64009C1519 /* CCEncryptNumber.cpp in Sources */,
+				CE23C95619274AE8000B6AFF /* Test_VirguleNumber.cpp in Sources */,
 				CE7EB69B1921BB64009C1519 /* YHByteArray.cpp in Sources */,
 				CE7EB66B1921BB64009C1519 /* ActionContext.cpp in Sources */,
 				CE7EB6731921BB64009C1519 /* ParseActionTiledGrid3D.cpp in Sources */,
@@ -1373,6 +1476,7 @@
 				CE7EB68F1921BB64009C1519 /* socketbase.cpp in Sources */,
 				CE7EB69A1921BB64009C1519 /* YHUIUnitComboBackground.cpp in Sources */,
 				CE7EB6A91921BB64009C1519 /* YHParabolaEquation.cpp in Sources */,
+				CE23C94219274A69000B6AFF /* KYTools-3.x-Sample.cpp in Sources */,
 				CE7EB6A61921BB64009C1519 /* YHGameBasicInfo-iOS.mm in Sources */,
 				CE7EB69E1921BB64009C1519 /* CommonUtils.cpp in Sources */,
 				CE7EB6961921BB64009C1519 /* YHUISpriteNumber.cpp in Sources */,

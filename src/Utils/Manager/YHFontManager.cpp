@@ -19,9 +19,14 @@ void YHFontManager::addFonts(cocos2d::CCDictionary * dict)
     }
 }
 
-const char * YHFontManager::fontNameForKey(const char * key)
+std::string YHFontManager::fontNameForKey(const char * key)
 {
-	return (dynamic_cast<CCString *>(m_dict->objectForKey(key)))->getCString();
+	return fontNameForKey(std::string(key));
+}
+
+std::string YHFontManager::fontNameForKey(const std::string & key)
+{
+    return (dynamic_cast<CCString *>(m_dict->objectForKey(key)))->getCString();
 }
 
 YHFontManager::YHFontManager()

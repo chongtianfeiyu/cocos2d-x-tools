@@ -3,88 +3,221 @@
 #include <UI/Number/YHUISpriteNumber.h>
 
 USING_NS_CC;
-YHUIVirguleNumber::YHUIVirguleNumber(void)
-	:m_virguleInterval(0.0f)
-	,m_contentWidth(0.0f)
-	,m_virgule(NULL)
-	,m_leftNumber(NULL)
-	,m_rightNumber(NULL)
+
+YHUIVirguleNumber::~YHUIVirguleNumber()
 {
+    this->cleanup();
 }
 
-
-YHUIVirguleNumber::~YHUIVirguleNumber(void)
+bool YHUIVirguleNumber::init(const std::string & fontName, const cocos2d::CCSize fontSize,
+                             float32 fontInterval, cocos2d::Sprite * virgule)
 {
+    bool result = CCSpecialSprite::init();
+    
+    if (result)
+    {
+        m_lNumber = YHUISpriteNumber::create(fontName.c_str(), fontSize, fontInterval);
+        m_rNumber = YHUISpriteNumber::create(fontName.c_str(), fontSize, fontInterval);
+        this->addChild(m_lNumber);
+        this->addChild(m_rNumber);
+        
+        assert(virgule != nullptr);
+        m_virgule = virgule;
+        this->addChild(m_virgule);
+    }
+    
+    return result;
 }
 
-
-float YHUIVirguleNumber::contentWidth()
+void YHUIVirguleNumber::setLNumber(uint32 number)
 {
-	return m_leftNumber->getNumberFontWidth() + m_virguleInterval * 2.0f + m_virgule->getContentSize().width + m_rightNumber->getNumberFontWidth();
+    m_lNumber->setNumber(number);
+    realign();
 }
 
-void YHUIVirguleNumber::setVirguleInterval(float val)
+void YHUIVirguleNumber::setLNumber(const std::string & number)
 {
-	m_virguleInterval = val;
-	realign();
+    m_lNumber->setNumber(number);
+    realign();
 }
 
-void YHUIVirguleNumber::setLeftNumber(int leftNumber)
+void YHUIVirguleNumber::setRNumber(uint32 number)
 {
-	m_leftNumber->setNumber(leftNumber);
-	realign();
+    m_rNumber->setNumber(number);
+    realign();
 }
 
-void YHUIVirguleNumber::setRightNumber(int rightNumber)
+void YHUIVirguleNumber::setRNumber(const std::string & number)
 {
-	m_rightNumber->setNumber(rightNumber);
-	realign();
+    m_rNumber->setNumber(number);
+    realign();
 }
 
-void YHUIVirguleNumber::setLeftNumberColor(cocos2d::ccColor3B color)
+void YHUIVirguleNumber::setLRNumber(uint32 lNumber, uint32 rNumber)
 {
-	m_leftNumber->setColor(color);
+    m_lNumber->setNumber(lNumber);
+    m_rNumber->setNumber(rNumber);
+    realign();
 }
 
-void YHUIVirguleNumber::setRightNumberColor(cocos2d::ccColor3B color)
+void YHUIVirguleNumber::setLRNumber(const std::string & lNumber, const std::string & rNumber)
 {
-	m_rightNumber->setColor(color);
+    m_lNumber->setNumber(lNumber);
+    m_rNumber->setNumber(rNumber);
+    realign();
 }
 
-
-bool YHUIVirguleNumber::init(const std::string & fontName, cocos2d::CCSize fontSize, float fontInterval, const std::string & virguleName)
+void YHUIVirguleNumber::setVirguleInterval(float32 interval)
 {
-	bool bRet = false;
-	do 
-	{
-		CC_BREAK_IF(!CCSprite::init());
+    m_virguleInterval = interval;
+    realign();
+}
 
-		m_fontSize = fontSize;
-		
-		m_leftNumber = YHUISpriteNumber::create(fontName.c_str(), fontSize, fontInterval);
-		addChild(m_leftNumber);
+void YHUIVirguleNumber::setAlignType(YHISpriteNumber::AlignType alignType)
+{
+    m_alignType = alignType;
+    realign();
+}
 
-		m_virgule = CCSprite::createWithSpriteFrameName(virguleName.c_str());
-		m_virgule->setAnchorPoint(CCPointZero);
-		addChild(m_virgule);
+void YHUIVirguleNumber::setIcon(cocos2d::Sprite * icon)
+{
+    if (m_icon != nullptr)
+    {
+        m_icon->removeFromParentAndCleanup(true);
+        m_icon = nullptr;
+    }
+    
+    m_icon = icon;
+    
+    if (m_icon != nullptr)
+    {
+        this->addChild(icon);
+    }
+    
+    realign();
+}
 
-		m_rightNumber = YHUISpriteNumber::create(fontName.c_str(), fontSize, fontInterval);
-		addChild(m_rightNumber);
+void YHUIVirguleNumber::setVirgule(cocos2d::Sprite * virgule)
+{
+    assert(virgule != nullptr);
+    
+    if (m_virgule != nullptr)
+    {
+        m_virgule->removeFromParentAndCleanup(true);
+        m_virgule = nullptr;
+    }
+    
+    m_virgule = virgule;
+    this->addChild(m_virgule);
+    
+    realign();
+}
 
-		m_virguleInterval = fontInterval * 0.5f;
+Sprite * YHUIVirguleNumber::getLNumberSprite() const
+{
+    return m_lNumber;
+}
 
-		bRet = true;
-	} while (0);
+Sprite * YHUIVirguleNumber::getRNumberSprite() const
+{
+    return m_rNumber;
+}
 
-	return bRet;
+float32 YHUIVirguleNumber::getNumberFontWidth()
+{
+    /**
+     * lNumber / rNumber -> lNumber + virguleInterval + virguleInterval + rNumber
+     */
+    
+    float32 width = m_lNumber->getNumberFontWidth();
+    width += m_virguleInterval * 2.0f;
+    width += m_rNumber->getNumberFontWidth();
+    return width;
 }
 
 void YHUIVirguleNumber::realign()
 {
-	m_leftNumber->setPosition(ccp(0, m_fontSize.height * 0.5));
-	m_virgule->setPosition(CCPointMake(m_leftNumber->getNumberFontWidth() + m_virguleInterval, 0.0f));
-	m_rightNumber->setPosition(CCPointMake(m_virgule->getPositionX() + m_virgule->getContentSize().width + m_virguleInterval,
-										   m_fontSize.height * 0.5));
+    float32 begin = 0.0f;
+    float32 width = getNumberFontWidth();
+    if (m_icon != nullptr)
+    {
+        begin = m_icon->getContentSize().width * m_icon->getAnchorPoint().x;
+    }
+    
+    switch (m_alignType)
+    {
+        case YHISpriteNumber::kAlignType_Left:
+            break;
+            
+        case YHISpriteNumber::kAlignType_Center:
+            begin -= width * 0.5f;
+            break;
+            
+        case YHISpriteNumber::kAlignType_Right:
+            begin -= width;
+            break;
+    }
+    
+    m_lNumber->setPosition(begin, 0.0f);
+    begin += m_lNumber->getNumberFontWidth() + m_virguleInterval;
+    m_virgule->setPosition(begin, 0.0f);
+    begin += m_virguleInterval;
+    m_rNumber->setPosition(begin, 0.0f);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// end file
 
 

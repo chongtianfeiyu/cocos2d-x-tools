@@ -23,6 +23,9 @@ public:
 	
 	/// 查询 key 对应的字符串
     std::string	textForKey(const char * key);
+    
+    /// 查询 key 对应的字符串
+    std::string textForKey(const std::string & key);
 	
 private:
 	cocos2d::CCDictionary * m_dict = nullptr;

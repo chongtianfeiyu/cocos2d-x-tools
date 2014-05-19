@@ -98,6 +98,9 @@ public:
     /// years since 1900
     int32 year() const { return m_tm->tm_year; }
     
+    /// years year() + 1900
+    int32 year2() const { return m_tm->tm_year + 1900; }
+    
     /// days since Sunday [0, 6]
     int32 wday() const { return m_tm->tm_wday; }
     
@@ -125,6 +128,9 @@ public:
     
     /// 判断同年
     bool sameYear(YHDate * date) const;
+    
+    /// 判断是否今天
+    bool isToday() const;
     
     /**
      * 与当前时间变化若干秒
