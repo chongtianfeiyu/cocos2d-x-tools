@@ -26,34 +26,27 @@ YHUITimeNumber::~YHUITimeNumber(void)
 float YHUITimeNumber::contentWidth()
 {
     float32 width = 0.0f;
-    float32 halfFontSize = m_fontSize.width * 0.5f;
     
-    // 计算 Icon -> Hour
     if (m_icon != nullptr)
     {
         width += m_icon->getContentSize().width * m_icon->getAnchorPoint().x;
         width += m_iconInterval;
     }
     
-    // 计算 Hour
-    width += m_hourNumber->getNumberFontWidth() - halfFontSize;
+    if (m_hourNumber->isVisible())
+    {
+        width += m_hourNumber->getNumberFontWidth();
+        width += m_hourSeparatorInterval;
+        width += m_hourSeparatorInterval;
+    }
     
-    // 计算 Hour -> IconHour
-    width += m_hourSeparatorInterval - halfFontSize;
+    if (m_minNumber->isVisible())
+    {
+        width += m_minNumber->getNumberFontWidth();
+        width += m_minSeparatorInterval;
+        width += m_minSeparatorInterval;
+    }
     
-    // 计算 IconHour -> Min
-    width += m_hourSeparatorInterval - halfFontSize;
-    
-    // 计算 Min
-    width += m_minNumber->getNumberFontWidth();
-    
-    // 计算 Min -> IconMin
-    width += m_minSeparatorInterval - halfFontSize;
-    
-    // 计算 IconMin -> Sec
-    width += m_minSeparatorInterval - halfFontSize;
-    
-    // 计算 Sec
     width += m_secNumber->getNumberFontWidth();
     
     return width;
@@ -176,9 +169,44 @@ void YHUITimeNumber::setIconInterval(float32 interval)
     layout();
 }
 
+void YHUITimeNumber::setIconAndInterval(cocos2d::CCSprite * icon, float32 interval)
+{
+    if (m_icon != nullptr)
+    {
+        m_icon->removeFromParentAndCleanup(true);
+    }
+    
+    m_icon = icon;
+    
+    if (m_icon != nullptr)
+    {
+        this->addChild(m_icon, kTimeNumberLayer_Separator);
+    }
+    
+    m_iconInterval = interval;
+    
+    layout();
+}
+
 void YHUITimeNumber::setAlignType(YHISpriteNumber::AlignType alignType)
 {
     m_alignType = alignType;
+    layout();
+}
+
+void YHUITimeNumber::setHourVisible(bool visible)
+{
+    m_hourNumber->setVisible(visible);
+    m_iconHour->setVisible(visible);
+    layout();
+}
+
+void YHUITimeNumber::setMinVisible(bool visible)
+{
+    m_hourNumber->setVisible(visible);
+    m_iconHour->setVisible(visible);
+    m_minNumber->setVisible(visible);
+    m_iconMin->setVisible(visible);
     layout();
 }
 
@@ -189,14 +217,11 @@ void YHUITimeNumber::setAlignType(YHISpriteNumber::AlignType alignType)
 void YHUITimeNumber::layout()
 {
     float32 beginX = 0.0f;
+    float32 width = contentWidth();
     
     if (m_icon != nullptr)
     {
         beginX += m_icon->getContentSize().width * m_icon->getAnchorPoint().x;
-    }
-    else
-    {
-        beginX += m_fontSize.width * 0.5f;
     }
     
     switch (m_alignType)
@@ -204,10 +229,10 @@ void YHUITimeNumber::layout()
         case YHISpriteNumber::kAlignType_Left:
             break;
         case YHISpriteNumber::kAlignType_Center:
-            beginX -= contentWidth() * 0.5f;
+            beginX -= width * 0.5f;
             break;
         case YHISpriteNumber::kAlignType_Right:
-            beginX -= contentWidth();
+            beginX -= width;
             break;
     }
     
@@ -221,20 +246,24 @@ void YHUITimeNumber::layout()
     }
     
     // Hour
-    m_hourNumber->setPosition(cursor);
-    cursor.x += m_hourNumber->getNumberFontWidth() - m_fontSize.width * 0.5f + m_hourSeparatorInterval;
-    
-    // Icon Hour
-    m_iconHour->setPosition(cursor);
-    cursor.x += m_hourSeparatorInterval - m_fontSize.width * 0.5f;
+    if (m_hourNumber->isVisible())
+    {
+        m_hourNumber->setPosition(cursor);
+        cursor.x += m_hourNumber->getNumberFontWidth() + m_hourSeparatorInterval;
+        
+        m_iconHour->setPosition(cursor);
+        cursor.x += m_hourSeparatorInterval;
+    }
     
     // Min
-    m_minNumber->setPosition(cursor);
-    cursor.x += m_minNumber->getNumberFontWidth() - m_fontSize.width * 0.5f + m_minSeparatorInterval;
-    
-    // Icon min
-    m_iconMin->setPosition(cursor);
-    cursor.x += m_minSeparatorInterval - m_fontSize.width * 0.5f;
+    if (m_minNumber->isVisible())
+    {
+        m_minNumber->setPosition(cursor);
+        cursor.x += m_minNumber->getNumberFontWidth() + m_minSeparatorInterval;
+        
+        m_iconMin->setPosition(cursor);
+        cursor.x += m_minSeparatorInterval;
+    }
     
     // Sec
     m_secNumber->setPosition(cursor);

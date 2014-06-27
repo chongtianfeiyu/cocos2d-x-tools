@@ -330,6 +330,18 @@ std::vector<std::string> STDVectorFromJson(const Json::Value & root)
     return ret;
 }
 
+std::vector<std::string> STDVectorFromArray(CCArray * root)
+{
+    std::vector<std::string> ret;
+    Object * obj = nullptr;
+    CCARRAY_FOREACH(root, obj)
+    {
+        ret.push_back(((CCString *)obj)->getCString());
+    }
+    
+    return ret;
+}
+
 Json::Value jsonFromSTDVector(const std::vector<std::string> & root)
 {
     Json::Value ret(Json::arrayValue);

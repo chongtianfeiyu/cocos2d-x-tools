@@ -28,9 +28,18 @@ public:
     /// 设置 Icon 与数据的间距
     void setIconInterval(float32 interval);
     
+    /// 设置 Icon 和 IconInterval
+    void setIconAndInterval(cocos2d::CCSprite * icon, float32 interval);
+    
     /// 布局格式
     void setAlignType(YHISpriteNumber::AlignType alignType);
 	
+    /// 设置 时 的可见
+    void setHourVisible(bool visible);
+    
+    /// 设置 分 的可见
+    void setMinVisible(bool visible);
+    
 	/**
 	 * 初始化
 	 * @param iconHour 小时的分隔符

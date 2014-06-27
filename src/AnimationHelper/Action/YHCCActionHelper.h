@@ -55,6 +55,13 @@ public:
      * @param pNode 运行动画的节点
      */
     static void     runNormalForeverMove(const cocos2d::Point & delta, float duration, cocos2d::CCNode * pNode);
+    
+    /**
+     * 循环的淡入淡出动画
+     * @param node 显示节点
+     * @param duration 1次循环的持续时间
+     */
+    static void     runForeverFadeInOut(cocos2d::Node * node, float duration);
 };
 
 #endif /* defined(__AndroidaBooM__YHCCActionHelper__) */

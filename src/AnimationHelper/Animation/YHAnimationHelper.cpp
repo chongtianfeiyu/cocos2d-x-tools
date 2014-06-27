@@ -264,12 +264,15 @@ void YHAnimationHelper::runAnimation(CCAnimation * animation, CCSprite * sprite)
 
 void YHAnimationHelper::runForeverAnimation(CCAnimation * animation, CCSprite * sprite)
 {
-	CCAnimate * animate = CCAnimate::create(animation);
-	CCRepeatForever * forever = CCRepeatForever::create(animate);
-	sprite->runAction(forever);
-
-	CCAnimationFrame * animationFrame = static_cast<CCAnimationFrame *>(animate->getAnimation()->getFrames().at(0));
+    CCAnimationFrame * animationFrame = animation->getFrames().at(0);
 	sprite->setDisplayFrame(animationFrame->getSpriteFrame());
+    
+    if (animation->getFrames().size() > 1)
+    {
+        CCAnimate * animate = CCAnimate::create(animation);
+        CCRepeatForever * forever = CCRepeatForever::create(animate);
+        sprite->runAction(forever);
+    }
 }
 
 void YHAnimationHelper::runActionWithSprite(cocos2d::CCSprite *sprite,

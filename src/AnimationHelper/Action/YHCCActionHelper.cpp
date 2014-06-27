@@ -73,7 +73,14 @@ void YHCCActionHelper::runNormalForeverMove(const cocos2d::Point & delta, float 
     pNode->runAction(CCRepeatForever::create(sequence));
 }
 
-
+void YHCCActionHelper::runForeverFadeInOut(cocos2d::Node * node, float duration)
+{
+    node->setOpacity(255);
+    FadeIn * fadeIn = FadeIn::create(duration * 0.5f);
+    FadeOut * fadeOut = FadeOut::create(duration * 0.5f);
+    Sequence * sequence = Sequence::create(fadeOut, fadeIn, nullptr);
+    node->runAction(RepeatForever::create(sequence));
+}
 
 
 

@@ -114,8 +114,7 @@ void pauseAll(cocos2d::CCNode* node)
         pauseAll(child);
     }
     
-	CCDirector::sharedDirector()->getActionManager()->pauseTarget(node);
-	CCDirector::sharedDirector()->getScheduler()->pauseTarget(node);
+    node->pause();
 }
 
 void resumeAll(cocos2d::CCNode* node)
@@ -128,8 +127,7 @@ void resumeAll(cocos2d::CCNode* node)
         resumeAll(child);
     }
 	
-	CCDirector::sharedDirector()->getActionManager()->resumeTarget(node);
-	CCDirector::sharedDirector()->getScheduler()->resumeTarget(node);
+    node->resume();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -353,13 +351,13 @@ bool boolFromString(const std::string & value)
 void asciiToLower(std::string & origin)
 {
     for (size_t i = 0; i < origin.length(); ++i)
-        tolower(origin[i]);
+        origin[i] = tolower(origin[i]);
 }
 
 void asciiToUpper(std::string & origin)
 {
     for (size_t i = 0; i < origin.length(); ++i)
-        toupper(origin[i]);
+        origin[i] = toupper(origin[i]);
 }
 
 void slitStringBySeperator(const string & origin, vector<string> & others, const string & seperator)

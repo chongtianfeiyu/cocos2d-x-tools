@@ -97,6 +97,32 @@ void YHUIVirguleNumber::setIcon(cocos2d::Sprite * icon)
     realign();
 }
 
+void YHUIVirguleNumber::setIconInterval(float32 iconInterval)
+{
+    m_iconInterval = iconInterval;
+    realign();
+}
+
+void YHUIVirguleNumber::setIconAndInterval(cocos2d::Sprite * icon, float32 iconInterval)
+{
+    if (m_icon != nullptr)
+    {
+        m_icon->removeFromParentAndCleanup(true);
+        m_icon = nullptr;
+    }
+    
+    m_icon = icon;
+    
+    if (m_icon != nullptr)
+    {
+        this->addChild(icon);
+    }
+    
+    m_iconInterval = iconInterval;
+    
+    realign();
+}
+
 void YHUIVirguleNumber::setVirgule(cocos2d::Sprite * virgule)
 {
     assert(virgule != nullptr);
@@ -126,12 +152,19 @@ Sprite * YHUIVirguleNumber::getRNumberSprite() const
 float32 YHUIVirguleNumber::getNumberFontWidth()
 {
     /**
-     * lNumber / rNumber -> lNumber + virguleInterval + virguleInterval + rNumber
+     * icon lNumber / rNumber -> icon + iconInterval + lNumber + virguleInterval + virguleInterval + rNumber
      */
     
     float32 width = m_lNumber->getNumberFontWidth();
     width += m_virguleInterval * 2.0f;
     width += m_rNumber->getNumberFontWidth();
+    
+    if (m_icon != nullptr)
+    {
+        width += m_icon->getContentSize().width * m_icon->getAnchorPoint().x;
+        width += m_iconInterval;
+    }
+    
     return width;
 }
 
@@ -139,9 +172,10 @@ void YHUIVirguleNumber::realign()
 {
     float32 begin = 0.0f;
     float32 width = getNumberFontWidth();
+    
     if (m_icon != nullptr)
     {
-        begin = m_icon->getContentSize().width * m_icon->getAnchorPoint().x;
+        begin += m_icon->getContentSize().width * m_icon->getAnchorPoint().x;
     }
     
     switch (m_alignType)
@@ -156,6 +190,12 @@ void YHUIVirguleNumber::realign()
         case YHISpriteNumber::kAlignType_Right:
             begin -= width;
             break;
+    }
+    
+    if (m_icon != nullptr)
+    {
+        m_icon->setPosition(begin, 0.0f);
+        begin += m_iconInterval;
     }
     
     m_lNumber->setPosition(begin, 0.0f);

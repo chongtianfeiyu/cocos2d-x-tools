@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "Test_VirguleNumber.h"
+#include "Demo_YHUITimenumber.h"
 
 USING_NS_CC;
 
@@ -30,7 +31,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setContentScaleFactor(2.0f);
     director->getOpenGLView()->setDesignResolutionSize(480, 320, ResolutionPolicy::FIXED_WIDTH);
 
-    director->runWithScene(Test_VirguleNumber::createScene());
+//    director->runWithScene(Test_VirguleNumber::createScene());
+    director->runWithScene(Demo_YHUITimeNumber::createScene());
 
     return true;
 }

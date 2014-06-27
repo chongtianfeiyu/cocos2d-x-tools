@@ -13,6 +13,9 @@
 // Public Functions
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+const int32 AvatarComponent::s_animationTag = 100;
+const int32 AvatarComponent::s_ktCallbackTag = 101;
+
 AvatarComponent::AvatarComponent() : m_delegate(nullptr)
 {
     for (int32 i = 200; i < 205; ++i)
@@ -43,7 +46,7 @@ bool AvatarComponent::init(CCAnimation * animation, YHKeyTimeCallback * ktCallba
 
 void AvatarComponent::setAnimation(CCAnimation * animation)
 {
-    this->stopActionByTag(m_animationTag);
+    this->stopActionByTag(s_animationTag);
     CC_SAFE_RELEASE_NULL(m_animation);
     
     if (animation != nullptr)
@@ -54,14 +57,14 @@ void AvatarComponent::setAnimation(CCAnimation * animation)
         this->setSpriteFrame(animation->getFrames().at(0)->getSpriteFrame());
         
         CCAnimate * animate = CCAnimate::create(animation);
-        animate->setTag(m_animationTag);
+        animate->setTag(s_animationTag);
         this->runAction(animate);
     }
 }
 
 void AvatarComponent::setKeyTimeCallback(YHKeyTimeCallback * callback)
 {
-    this->stopActionByTag(m_ktCallbackTag);
+    this->stopActionByTag(s_ktCallbackTag);
     CC_SAFE_RELEASE_NULL(m_ktCallback);
     
     if (callback != nullptr)
@@ -71,7 +74,7 @@ void AvatarComponent::setKeyTimeCallback(YHKeyTimeCallback * callback)
         
         m_ktCallback->setNode(this);
         m_ktCallback->setDelegate(this);
-        m_ktCallback->getAction()->setTag(m_ktCallbackTag);
+        m_ktCallback->getAction()->setTag(s_ktCallbackTag);
         this->runAction(m_ktCallback->getAction());
     }
 }

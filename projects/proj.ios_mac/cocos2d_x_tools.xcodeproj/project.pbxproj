@@ -84,6 +84,7 @@
 		CE23C95619274AE8000B6AFF /* Test_VirguleNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE23C95419274AE8000B6AFF /* Test_VirguleNumber.cpp */; };
 		CE48A2861929AAE3007B07F5 /* UI_Collection-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = CE48A2841929AAE3007B07F5 /* UI_Collection-hd.png */; };
 		CE48A2871929AAE3007B07F5 /* UI_Collection-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE48A2851929AAE3007B07F5 /* UI_Collection-hd.plist */; };
+		CE48A2941929D126007B07F5 /* Demo_YHUITimenumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE48A2921929D126007B07F5 /* Demo_YHUITimenumber.cpp */; };
 		CE7EB66B1921BB64009C1519 /* ActionContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7EB5AB1921BB64009C1519 /* ActionContext.cpp */; };
 		CE7EB66C1921BB64009C1519 /* ActionParseBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7EB5AD1921BB64009C1519 /* ActionParseBase.cpp */; };
 		CE7EB66D1921BB64009C1519 /* AnimationTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE7EB5AF1921BB64009C1519 /* AnimationTypes.cpp */; };
@@ -383,6 +384,8 @@
 		CE23C95519274AE8000B6AFF /* Test_VirguleNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test_VirguleNumber.h; sourceTree = "<group>"; };
 		CE48A2841929AAE3007B07F5 /* UI_Collection-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_Collection-hd.png"; sourceTree = "<group>"; };
 		CE48A2851929AAE3007B07F5 /* UI_Collection-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UI_Collection-hd.plist"; sourceTree = "<group>"; };
+		CE48A2921929D126007B07F5 /* Demo_YHUITimenumber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Demo_YHUITimenumber.cpp; sourceTree = "<group>"; };
+		CE48A2931929D126007B07F5 /* Demo_YHUITimenumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo_YHUITimenumber.h; sourceTree = "<group>"; };
 		CE7EB5AB1921BB64009C1519 /* ActionContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionContext.cpp; sourceTree = "<group>"; };
 		CE7EB5AC1921BB64009C1519 /* ActionContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionContext.h; sourceTree = "<group>"; };
 		CE7EB5AD1921BB64009C1519 /* ActionParseBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ActionParseBase.cpp; sourceTree = "<group>"; };
@@ -756,6 +759,8 @@
 				CE23C92F19274A69000B6AFF /* demo1 */,
 				CE23C95419274AE8000B6AFF /* Test_VirguleNumber.cpp */,
 				CE23C95519274AE8000B6AFF /* Test_VirguleNumber.h */,
+				CE48A2921929D126007B07F5 /* Demo_YHUITimenumber.cpp */,
+				CE48A2931929D126007B07F5 /* Demo_YHUITimenumber.h */,
 			);
 			path = demos;
 			sourceTree = "<group>";
@@ -1495,6 +1500,7 @@
 				CE7EB6A41921BB64009C1519 /* YHDevice-iOS.mm in Sources */,
 				CE7EB69F1921BB64009C1519 /* YHAllocator.cpp in Sources */,
 				CE7EB68C1921BB64009C1519 /* threadbase.cpp in Sources */,
+				CE48A2941929D126007B07F5 /* Demo_YHUITimenumber.cpp in Sources */,
 				CE7EB6761921BB64009C1519 /* YHAnimationHelper.cpp in Sources */,
 				CE7EB6B51921BB64009C1519 /* YHSocketRecvManager.cpp in Sources */,
 				CE7EB68E1921BB64009C1519 /* ipaddress.cpp in Sources */,

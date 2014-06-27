@@ -33,6 +33,9 @@ extern cocos2d::ValueVector valueVectorFromArray(cocos2d::CCArray * root);
 /// json -> std::vector
 extern std::vector<std::string> STDVectorFromJson(const Json::Value & root);
 
+/// cocos2d::CCArray -> std::vector
+extern std::vector<std::string> STDVectorFromArray(cocos2d::CCArray * root);
+
 /// std::vector -> json
 extern Json::Value jsonFromSTDVector(const std::vector<std::string> & root);
 

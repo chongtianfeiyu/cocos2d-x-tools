@@ -46,6 +46,12 @@ public:
     /// 设置 Icon
     virtual void setIcon(cocos2d::Sprite * icon);
     
+    /// 设置 Icon 与 分子 的间距
+    virtual void setIconInterval(float32 iconInterval);
+    
+    /// 设置 Icon 与其间距
+    virtual void setIconAndInterval(cocos2d::Sprite * icon, float32 iconInterval);
+    
     /// 设置 virgule
     virtual void setVirgule(cocos2d::Sprite * virgule);
     
@@ -89,6 +95,7 @@ private:
     float32 m_virguleInterval = 0.0f;
     YHISpriteNumber::AlignType m_alignType = YHISpriteNumber::kAlignType_Left;
     cocos2d::Sprite * m_icon = nullptr;
+    float32 m_iconInterval = 0.0f;
 	cocos2d::Sprite * m_virgule = nullptr;
     YHUISpriteNumber * m_lNumber = nullptr;
     YHUISpriteNumber * m_rNumber = nullptr;

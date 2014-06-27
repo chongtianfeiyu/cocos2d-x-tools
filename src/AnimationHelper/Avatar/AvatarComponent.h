@@ -67,8 +67,9 @@ public:
     
 protected:
     
-    int32 m_animationTag = 100;
-    int32 m_ktCallbackTag = 101;
+    static const int32 s_animationTag;
+    static const int32 s_ktCallbackTag;
+    
     std::vector<int32> m_animatorDataTags;
     CCAnimation * m_animation = nullptr;
     YHKeyTimeCallback * m_ktCallback = nullptr;
