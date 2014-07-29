@@ -212,8 +212,11 @@ void adapterLandscapeResolution(float contentScale)
 	}
 	else if (designSize.width == 2048 && designSize.height == 1536)		// iPad3
 	{
-		designSize.width /= contentScale * 2.0f;
-		designSize.height /= contentScale * 2.0f;
+//		designSize.width /= contentScale * 2.0f;
+//		designSize.height /= contentScale * 2.0f;
+        
+        designSize.width = 960 / contentScale;
+		designSize.height = 640 / contentScale;
 	}
 	else																// 其他分辨率 & iPhone3GS
 	{

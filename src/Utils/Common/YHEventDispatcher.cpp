@@ -27,6 +27,25 @@ YHEvent::YHEvent(const string & type) : m_target(NULL), m_userData(NULL)
 	m_type = type;
 }
 
+YHEvent::YHEvent(const YHEvent & origin)
+{
+    this->m_type = origin.m_type;
+    this->m_target = origin.m_target;
+    this->m_userData = origin.m_userData;
+    this->m_ref = origin.m_ref;
+    CC_SAFE_RETAIN(this->m_ref);
+}
+
+YHEvent & YHEvent::operator=(const YHEvent & origin)
+{
+    this->m_type = origin.m_type;
+    this->m_target = origin.m_target;
+    this->m_userData = origin.m_userData;
+    this->m_ref = origin.m_ref;
+    CC_SAFE_RETAIN(this->m_ref);
+    return *this;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // YHEventDispatcher
 ////////////////////////////////////////////////////////////////////////////////////////////////////

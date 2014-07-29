@@ -48,18 +48,68 @@ void CCSpecialSprite::setBlendFunc(const cocos2d::BlendFunc & blendFunc)
     }
 }
 
+void CCSpecialSprite::addChild(cocos2d::Node * child)
+{
+    Sprite::addChild(child);
+    forChildDoSth(child);
+}
+
+void CCSpecialSprite::addChild(cocos2d::Node * child, int localZOrder)
+{
+    Sprite::addChild(child, localZOrder);
+    forChildDoSth(child);
+}
+
 void CCSpecialSprite::addChild(CCNode *pChild, int zOrder, int tag)
 {
-	CCSprite::addChild(pChild, zOrder, tag);
+	Sprite::addChild(pChild, zOrder, tag);
+	forChildDoSth(pChild);
+}
 
-	setTexture(((CCSprite*)pChild)->getTexture());
-    
-	CCRGBAProtocol * rgba = dynamic_cast<CCRGBAProtocol *>(pChild);
-	if (rgba != NULL)
-	{
-		rgba->setColor(this->getColor());
-		rgba->setOpacity(this->getOpacity());
-	}
+void CCSpecialSprite::addChild(cocos2d::Node * child, int localZOrder, const std::string & name)
+{
+    Sprite::addChild(child, localZOrder, name);
+    forChildDoSth(child);
+}
+
+bool CCSpecialSprite::init()
+{
+    return Sprite::init();
+}
+
+bool CCSpecialSprite::initWithTexture(Texture2D * texture)
+{
+    return Sprite::initWithTexture(texture);
+}
+
+bool CCSpecialSprite::initWithTexture(Texture2D * texture, const Rect & rect)
+{
+    return Sprite::initWithTexture(texture, rect);
+}
+
+bool CCSpecialSprite::initWithTexture(Texture2D * texture, const Rect & rect, bool rotated)
+{
+    return Sprite::initWithTexture(texture, rect, rotated);
+}
+
+bool CCSpecialSprite::initWithSpriteFrame(SpriteFrame * pSpriteFrame)
+{
+    return Sprite::initWithSpriteFrame(pSpriteFrame);
+}
+
+bool CCSpecialSprite::initWithSpriteFrameName(const std::string & spriteFrameName)
+{
+    return Sprite::initWithSpriteFrameName(spriteFrameName);
+}
+
+bool CCSpecialSprite::initWithFile(const std::string & filename)
+{
+    return Sprite::initWithFile(filename);
+}
+
+bool CCSpecialSprite::initWithFile(const std::string & filename, const Rect & rect)
+{
+    return Sprite::initWithFile(filename, rect);
 }
 
 bool CCSpecialSprite::init(cocos2d::CCDictionary * moduleDict)
@@ -113,4 +163,16 @@ CCSpecialSprite* CCSpecialSprite::create(AnimatorModuleData * moduleData)
 	}
 	CC_SAFE_DELETE(sp);
 	return NULL;
+}
+
+void CCSpecialSprite::forChildDoSth(cocos2d::Node * node)
+{
+    setTexture(((CCSprite *)node)->getTexture());
+    
+	CCRGBAProtocol * rgba = dynamic_cast<CCRGBAProtocol *>(node);
+	if (rgba != NULL)
+	{
+		rgba->setColor(this->getColor());
+		rgba->setOpacity(this->getOpacity());
+	}
 }

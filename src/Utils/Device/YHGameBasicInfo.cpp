@@ -7,7 +7,12 @@
 //
 
 #include <Utils/Device/YHGameBasicInfo.h>
-#include <Utils/Device/YHGameBasicInfo-iOS.h>
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    #include <Utils/Device/YHGameBasicInfo-Android.h>
+#else
+    #include <Utils/Device/YHGameBasicInfo-iOS.h>
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Public Functions
@@ -18,7 +23,11 @@ YHGameBasicInfo * YHGameBasicInfo::sharedInstance()
     static YHGameBasicInfo * s_instance = nullptr;
     if (s_instance == nullptr)
     {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        s_instance = new YHGameBasicInfo_Android();
+#else
         s_instance = new YHGameBasicInfo_iOS();
+#endif
         s_instance->init();
     }
     

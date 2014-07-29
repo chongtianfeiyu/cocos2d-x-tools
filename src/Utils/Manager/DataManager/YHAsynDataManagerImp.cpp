@@ -9,6 +9,11 @@
 #include <Utils/Manager/DataManager/YHAsynDataManagerImp.h>
 #include <Utils/Buffer/YHByteArray.h>
 
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//#include "platform/android/jni/JniHelper.h"
+//#include <jni.h>
+//#endif
+
 USING_NS_CC;
 
 void YHAsynDataManagerImp::addFile(const std::string & file)
@@ -179,6 +184,21 @@ void YHAsynDataManagerImp::update(float dt)
 
 void * YHAsynDataManagerImp::LoadThread::Execute()
 {
+    
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//    JavaVM *vm;
+//    JNIEnv *env;
+//    vm = JniHelper::getJavaVM();
+//    
+//    JavaVMAttachArgs thread_args;
+//    
+//    thread_args.name = "YHAsynDataManagerImp";
+//    thread_args.version = JNI_VERSION_1_4;
+//    thread_args.group = NULL;
+//    
+//    vm->AttachCurrentThread(&env, &thread_args);
+//#endif
+    
     while (m_parent->m_waitingFiles->count() != 0 && m_flag)
     {
         // 得到文件路径, 并且将等待文件移除
@@ -210,6 +230,10 @@ void * YHAsynDataManagerImp::LoadThread::Execute()
             obj->release();
         }
     }
+    
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//    vm->DetachCurrentThread();
+//#endif
     
     return NULL;
 }

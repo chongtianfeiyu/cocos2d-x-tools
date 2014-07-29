@@ -7,8 +7,7 @@
 //
 
 #include "YHDate.h"
-
-using namespace std;
+#include <string>
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Public Functions
@@ -31,7 +30,7 @@ bool YHDate::init()
     return true;
 }
 
-bool YHDate::init(const string & format)
+bool YHDate::init(const std::string & format)
 {
     if (format.length() == 0)
         return init();
@@ -42,37 +41,37 @@ bool YHDate::init(const string & format)
     m_tm = new struct tm();
     
     // 年
-    string strYear = format.substr(beg, len);
-    m_tm->tm_year = stoi(strYear) - 1900;
+    std::string strYear = format.substr(beg, len);
+    m_tm->tm_year = atoi(strYear.c_str()) - 1900;
     
     // 月
     beg = len + 1;
     len = format.find('-', beg);
-    string strMonth = format.substr(beg, len - beg);
-    m_tm->tm_mon = stoi(strMonth) - 1;
+    std::string strMonth = format.substr(beg, len - beg);
+    m_tm->tm_mon = atoi(strMonth.c_str()) - 1;
     
     // 日
     beg = len + 1;
     len = format.find(' ', beg);
-    string strDay = format.substr(beg, len - beg);
-    m_tm->tm_mday = stoi(strDay);
+    std::string strDay = format.substr(beg, len - beg);
+    m_tm->tm_mday = atoi(strDay.c_str());
     
     // 时
     beg = len + 1;
     len = format.find(':', beg);
-    string strHour = format.substr(beg, len - beg);
-    m_tm->tm_hour = stoi(strHour);
+    std::string strHour = format.substr(beg, len - beg);
+    m_tm->tm_hour = atoi(strHour.c_str());
     
     // 分
     beg = len + 1;
     len = format.find(':', beg);
-    string strMin = format.substr(beg, len - beg);
-    m_tm->tm_min = stoi(strMin);
+    std::string strMin = format.substr(beg, len - beg);
+    m_tm->tm_min = atoi(strMin.c_str());
     
     // 秒
     beg = len + 1;
-    string strSec = format.substr(beg);
-    m_tm->tm_sec = stoi(strSec);
+    std::string strSec = format.substr(beg);
+    m_tm->tm_sec = atoi(strSec.c_str());
     
     m_time = std::mktime(m_tm);
     *m_tm = *std::localtime(&m_time);
@@ -119,7 +118,7 @@ void YHDate::addTimeInterval(float32 timeInterval)
     *m_tm = *localtime(&m_time);
 }
 
-string YHDate::toString(char * format) const
+std::string YHDate::toString(char * format) const
 {
     char buf[64] = {};
     if (format != nullptr)

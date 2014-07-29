@@ -57,6 +57,7 @@
 #include <errno.h>
 #include <netdb.h>
 #include <arpa/inet.h>
+#include <strings.h>
 
 /******************************************************************************/
 /* Include class header file.                                                 */
@@ -480,7 +481,7 @@ IPAddress::operator==(const IPAddress &cOtherAddr) const
 {
     return ((iAddressType == cOtherAddr.iAddressType) &&
             (iAddressLength == cOtherAddr.iAddressLength) &&
-            (bcmp(pcAddress, cOtherAddr.pcAddress, iAddressLength) == 0));
+            (memcmp(pcAddress, cOtherAddr.pcAddress, iAddressLength) == 0));
 }
 
 /******************************************************************************/

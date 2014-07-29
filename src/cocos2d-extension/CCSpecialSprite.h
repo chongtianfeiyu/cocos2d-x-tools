@@ -12,11 +12,19 @@ class AnimatorModuleData;
  * 特殊的 Sprite 类, 为的是解决能在 CCSpriteBatchNode 中使用, 能够设置 contentSize, 但是又不贴图的需求.
  * @author Zhenyu Yao
  */
-class CCSpecialSprite : public CCSprite
+class CCSpecialSprite : public Sprite
 {
 public:
 	
-    using CCSprite::init;
+    virtual bool init() override;
+    virtual bool initWithTexture(Texture2D * texture) override;
+    virtual bool initWithTexture(Texture2D * texture, const Rect & rect) override;
+    virtual bool initWithTexture(Texture2D * texture, const Rect & rect, bool rotated) override;
+    virtual bool initWithSpriteFrame(SpriteFrame * pSpriteFrame) override;
+    virtual bool initWithSpriteFrameName(const std::string & spriteFrameName) override;
+    virtual bool initWithFile(const std::string & filename) override;
+    virtual bool initWithFile(const std::string & filename, const Rect & rect) override;
+    
 	bool init(CCDictionary * moduleDict);
 	bool init(AnimatorModuleData * moduleData);
 	
@@ -39,8 +47,16 @@ public: // Override Functions
     virtual void                setBlendFunc(const BlendFunc & blendFunc) override;
 	
 	/// 添加进容器的时候负责给子节点着色和设置透明度
-    using CCSprite::addChild;
-	virtual void				addChild(CCNode *pChild, int zOrder, int tag) override;
+    /* override */
+    virtual void addChild(cocos2d::Node * child) override;
+    virtual void addChild(cocos2d::Node * child, int localZOrder) override;
+    virtual void addChild(cocos2d::Node * child, int localZOrder, int tag) override;
+    virtual void addChild(cocos2d::Node * child, int localZOrder, const std::string &name) override;
+    
+private:
+    
+    /// 为添加的 child 节点做些事情
+    void forChildDoSth(cocos2d::Node * node);
 	
 };
 

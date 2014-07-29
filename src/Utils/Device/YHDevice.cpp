@@ -7,14 +7,26 @@
 //
 
 #include <Utils/Device/YHDevice.h>
-#include <Utils/Device/YHDevice-iOS.h>
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    #include <Utils/Device/YHDevice-Android.h>
+#else
+    #include <Utils/Device/YHDevice-iOS.h>
+#endif
 
 static YHDevice * s_instance = NULL;
 
 YHDevice * YHDevice::sharedInstance()
 {
 	if (s_instance == NULL)
-		s_instance = new YHDevice_iOS();
+    {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        s_instance = new YHDevice_Android();
+#else
+        s_instance = new YHDevice_iOS();
+#endif
+    }
+		
 	return s_instance;
 }
 

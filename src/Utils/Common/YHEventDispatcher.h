@@ -31,7 +31,14 @@ class YHEvent : public YHObject
 public:
 	YHEvent(string & type);
 	YHEvent(const string & type);
-	virtual ~YHEvent() {}
+    YHEvent(const YHEvent & origin);
+    
+    virtual ~YHEvent()
+    {
+        CC_SAFE_RELEASE_NULL(m_ref);
+    }
+    
+    YHEvent & operator = (const YHEvent & origin);
 	
 	/// 事件类型
 	string				getType() const { return m_type; }
@@ -43,10 +50,20 @@ public:
 	void *				getUserData() const { return m_userData; }
 	void				setUserData(void * userData) { m_userData = userData; }
 	
+    /// 关联的数据, 会 retain
+    cocos2d::Ref *      getRef() const { return m_ref; }
+    void                setRef(cocos2d::Ref * ref)
+    {
+        CC_SAFE_RELEASE_NULL(m_ref);
+        m_ref = ref;
+        CC_SAFE_RETAIN(m_ref);
+    }
+    
 private:
 	string					m_type;
 	YHObject *				m_target;
 	void *					m_userData;
+    cocos2d::Ref *          m_ref = nullptr;
 	
 	friend class YHEventDispatcher;
 };

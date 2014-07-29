@@ -24,11 +24,12 @@ const std::string YHDataManager::ASYN = "Asyn";
 YHDataManager * YHDataManager::create(const std::string & type)
 {
 	YHDataManagerImp * imp = NULL;
-	if (type.compare(DEFAULT) == 0)
-		imp = new YHSchedulerDataManagerImp();
-    else if (type.compare(ASYN) == 0)
-        imp = new YHAsynDataManagerImp();
-	
+//	if (type.compare(DEFAULT) == 0)
+//		imp = new YHSchedulerDataManagerImp();
+//    else if (type.compare(ASYN) == 0)
+//        imp = new YHAsynDataManagerImp();
+    
+    imp = new YHSchedulerDataManagerImp();
     imp->init();
 	imp->autorelease();
 	
