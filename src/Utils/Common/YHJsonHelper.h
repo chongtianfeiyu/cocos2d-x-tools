@@ -9,8 +9,11 @@
 #ifndef __MonsterHunter__YHDictionaryHelper__
 #define __MonsterHunter__YHDictionaryHelper__
 
-#include <libs/jsoncpp/include/json/json.h>
 #include <YHTypes.h>
+
+#if (ENABLED_JSONCPP)
+
+#include <json/json.h>
 
 /// Json -> CCDictionary
 extern cocos2d::CCDictionary * dictionaryFromJson(const Json::Value & root);
@@ -23,12 +26,6 @@ extern Json::Value jsonFromDictionary(cocos2d::CCDictionary * root);
 
 /// CCArray -> Json
 extern Json::Value jsonFromArray(cocos2d::CCArray * root);
-
-/// cocos2d::CCDictionary -> cocos2d::ValueMap
-extern cocos2d::ValueMap valueMapFromDictionary(cocos2d::CCDictionary * root);
-
-/// cocos2d::CCArray -> cocos2d::ValueVector
-extern cocos2d::ValueVector valueVectorFromArray(cocos2d::CCArray * root);
 
 /// json -> std::vector
 extern std::vector<std::string> STDVectorFromJson(const Json::Value & root);
@@ -59,6 +56,14 @@ extern void jsonDoubleToSingleQuotes(std::string & origin);
 
 /// 单引号转双引号
 extern void jsonSingleToDoubleQuotes(std::string & origin);
+
+#endif // ENABLED_JSONCPP
+
+/// cocos2d::CCDictionary -> cocos2d::ValueMap
+extern cocos2d::ValueMap valueMapFromDictionary(cocos2d::CCDictionary * root);
+
+/// cocos2d::CCArray -> cocos2d::ValueVector
+extern cocos2d::ValueVector valueVectorFromArray(cocos2d::CCArray * root);
 
 #endif /* defined(__MonsterHunter__YHJsonHelper__) */
 

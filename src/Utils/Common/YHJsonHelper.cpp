@@ -10,6 +10,8 @@
 
 USING_NS_CC;
 
+#if (ENABLED_JSONCPP)
+
 using namespace Json;
 
 static void parseFromJsonToArray(const Json::Value & jsonNode, CCArray * arrayNode);
@@ -223,103 +225,6 @@ Json::Value jsonFromArray(CCArray * root)
 	return jsonNode;
 }
 
-ValueMap valueMapFromDictionary(CCDictionary * root)
-{
-    assert(root != NULL);
-    
-    ValueMap map;
-    CCDictElement * e = NULL;
-    CCDICT_FOREACH(root, e)
-    {
-        CCObject * obj = e->getObject();
-        if (dynamic_cast<CCString *>(obj) != NULL)
-        {
-            CCString * str = (CCString *)obj;
-            map[e->getStrKey()] = cocos2d::Value(str->getCString());
-        }
-        else if (dynamic_cast<CCFloat *>(obj) != NULL)
-        {
-            CCFloat * val = (CCFloat *)obj;
-            map[e->getStrKey()] = cocos2d::Value(val->getValue());
-        }
-        else if (dynamic_cast<CCDouble *>(obj) != NULL)
-        {
-            CCDouble * val = (CCDouble *)obj;
-            map[e->getStrKey()] = cocos2d::Value(val->getValue());
-        }
-        else if (dynamic_cast<CCInteger *>(obj) != NULL)
-        {
-            CCInteger * val = (CCInteger *)obj;
-            map[e->getStrKey()] = cocos2d::Value(val->getValue());
-        }
-        else if (dynamic_cast<CCBool *>(obj) != NULL)
-        {
-            CCBool * val = (CCBool *)obj;
-            map[e->getStrKey()] = cocos2d::Value(val->getValue());
-        }
-        else if (dynamic_cast<CCDictionary *>(obj) != NULL)
-        {
-            CCDictionary * dict = (CCDictionary *)obj;
-            map[e->getStrKey()] = cocos2d::Value(valueMapFromDictionary(dict));
-        }
-        else if (dynamic_cast<CCArray *>(obj) != NULL)
-        {
-            CCArray * arr = (CCArray *)obj;
-            map[e->getStrKey()] = cocos2d::Value(valueVectorFromArray(arr));
-        }
-    }
-    
-    return map;
-}
-
-ValueVector valueVectorFromArray(CCArray * root)
-{
-    assert(root != NULL);
-    
-    ValueVector vec;
-    CCObject * obj = NULL;
-    CCARRAY_FOREACH(root, obj)
-    {
-        if (dynamic_cast<CCString *>(obj) != NULL)
-        {
-            CCString * str = (CCString *)obj;
-            vec.push_back(cocos2d::Value(str->getCString()));
-        }
-        else if (dynamic_cast<CCFloat *>(obj) != NULL)
-        {
-            CCFloat * val = (CCFloat *)obj;
-            vec.push_back(cocos2d::Value(val->getValue()));
-        }
-        else if (dynamic_cast<CCDouble *>(obj) != NULL)
-        {
-            CCDouble * val = (CCDouble *)obj;
-            vec.push_back(cocos2d::Value(val->getValue()));
-        }
-        else if (dynamic_cast<CCInteger *>(obj) != NULL)
-        {
-            CCInteger * val = (CCInteger *)obj;
-            vec.push_back(cocos2d::Value(val->getValue()));
-        }
-        else if (dynamic_cast<CCBool *>(obj) != NULL)
-        {
-            CCBool * val = (CCBool *)obj;
-            vec.push_back(cocos2d::Value(val->getValue()));
-        }
-        else if (dynamic_cast<CCDictionary *>(obj) != NULL)
-        {
-            CCDictionary * dict = (CCDictionary *)obj;
-            vec.push_back(cocos2d::Value(valueMapFromDictionary(dict)));
-        }
-        else if (dynamic_cast<CCArray *>(obj) != NULL)
-        {
-            CCArray * arr = (CCArray *)obj;
-            vec.push_back(cocos2d::Value(valueVectorFromArray(arr)));
-        }
-    }
-    
-    return vec;
-}
-
 std::vector<std::string> STDVectorFromJson(const Json::Value & root)
 {
     assert(root.type() == Json::arrayValue);
@@ -464,9 +369,104 @@ void jsonSingleToDoubleQuotes(std::string & origin)
     jsonReplaceQuotes(origin, '"', '\'');
 }
 
+#endif // ENABLED_JSONCPP
 
+ValueMap valueMapFromDictionary(CCDictionary * root)
+{
+    assert(root != NULL);
+    
+    ValueMap map;
+    CCDictElement * e = NULL;
+    CCDICT_FOREACH(root, e)
+    {
+        CCObject * obj = e->getObject();
+        if (dynamic_cast<CCString *>(obj) != NULL)
+        {
+            CCString * str = (CCString *)obj;
+            map[e->getStrKey()] = cocos2d::Value(str->getCString());
+        }
+        else if (dynamic_cast<CCFloat *>(obj) != NULL)
+        {
+            CCFloat * val = (CCFloat *)obj;
+            map[e->getStrKey()] = cocos2d::Value(val->getValue());
+        }
+        else if (dynamic_cast<CCDouble *>(obj) != NULL)
+        {
+            CCDouble * val = (CCDouble *)obj;
+            map[e->getStrKey()] = cocos2d::Value(val->getValue());
+        }
+        else if (dynamic_cast<CCInteger *>(obj) != NULL)
+        {
+            CCInteger * val = (CCInteger *)obj;
+            map[e->getStrKey()] = cocos2d::Value(val->getValue());
+        }
+        else if (dynamic_cast<CCBool *>(obj) != NULL)
+        {
+            CCBool * val = (CCBool *)obj;
+            map[e->getStrKey()] = cocos2d::Value(val->getValue());
+        }
+        else if (dynamic_cast<CCDictionary *>(obj) != NULL)
+        {
+            CCDictionary * dict = (CCDictionary *)obj;
+            map[e->getStrKey()] = cocos2d::Value(valueMapFromDictionary(dict));
+        }
+        else if (dynamic_cast<CCArray *>(obj) != NULL)
+        {
+            CCArray * arr = (CCArray *)obj;
+            map[e->getStrKey()] = cocos2d::Value(valueVectorFromArray(arr));
+        }
+    }
+    
+    return map;
+}
 
-
+ValueVector valueVectorFromArray(CCArray * root)
+{
+    assert(root != NULL);
+    
+    ValueVector vec;
+    CCObject * obj = NULL;
+    CCARRAY_FOREACH(root, obj)
+    {
+        if (dynamic_cast<CCString *>(obj) != NULL)
+        {
+            CCString * str = (CCString *)obj;
+            vec.push_back(cocos2d::Value(str->getCString()));
+        }
+        else if (dynamic_cast<CCFloat *>(obj) != NULL)
+        {
+            CCFloat * val = (CCFloat *)obj;
+            vec.push_back(cocos2d::Value(val->getValue()));
+        }
+        else if (dynamic_cast<CCDouble *>(obj) != NULL)
+        {
+            CCDouble * val = (CCDouble *)obj;
+            vec.push_back(cocos2d::Value(val->getValue()));
+        }
+        else if (dynamic_cast<CCInteger *>(obj) != NULL)
+        {
+            CCInteger * val = (CCInteger *)obj;
+            vec.push_back(cocos2d::Value(val->getValue()));
+        }
+        else if (dynamic_cast<CCBool *>(obj) != NULL)
+        {
+            CCBool * val = (CCBool *)obj;
+            vec.push_back(cocos2d::Value(val->getValue()));
+        }
+        else if (dynamic_cast<CCDictionary *>(obj) != NULL)
+        {
+            CCDictionary * dict = (CCDictionary *)obj;
+            vec.push_back(cocos2d::Value(valueMapFromDictionary(dict)));
+        }
+        else if (dynamic_cast<CCArray *>(obj) != NULL)
+        {
+            CCArray * arr = (CCArray *)obj;
+            vec.push_back(cocos2d::Value(valueVectorFromArray(arr)));
+        }
+    }
+    
+    return vec;
+}
 
 
 

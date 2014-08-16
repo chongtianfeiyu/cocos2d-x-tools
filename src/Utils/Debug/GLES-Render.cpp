@@ -18,8 +18,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include "GLES-Render.h"
-#include "cocos2d.h"
+#include <Utils/Debug/GLES-Render.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>
@@ -27,22 +26,19 @@
 USING_NS_CC;
 
 GLESDebugDraw::GLESDebugDraw()
-    : mRatio( 1.0f )
 {
     this->initShader();
 }
 
-GLESDebugDraw::GLESDebugDraw( float32 ratio )
-    : mRatio( ratio )
+GLESDebugDraw::GLESDebugDraw(float32 ratio)
 {
     this->initShader();
 }
 
-void GLESDebugDraw::initShader( void )
+void GLESDebugDraw::initShader()
 {
     mShaderProgram = CCShaderCache::sharedShaderCache()->programForKey(kCCShader_Position_uColor);
-
-    mColorLocation = glGetUniformLocation( mShaderProgram->getProgram(), "u_color");
+    mColorLocation = glGetUniformLocation(mShaderProgram->getProgram(), "u_color");
 }
 
 void GLESDebugDraw::DrawPolygon(const b2Vec2* old_vertices, int vertexCount, const b2Color& color)
@@ -221,9 +217,6 @@ void GLESDebugDraw::DrawPoint(const b2Vec2& p, float32 size, const b2Color& colo
 
 void GLESDebugDraw::DrawString(int x, int y, const char *string, ...)
 {
-//    NSLog(@"DrawString: unsupported: %s", string);
-    //printf(string);
-    /* Unsupported as yet. Could replace with bitmap font renderer at a later date */
 }
 
 void GLESDebugDraw::DrawAABB(b2AABB* aabb, const b2Color& color)
@@ -246,5 +239,4 @@ void GLESDebugDraw::DrawAABB(b2AABB* aabb, const b2Color& color)
     CC_INCREMENT_GL_DRAWS(1);
 
     CHECK_GL_ERROR_DEBUG();
-    
 }

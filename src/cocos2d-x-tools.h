@@ -66,9 +66,13 @@
 #include <cocos2d-extension/CCGeometry-Extension.h>
 
 // third party
-#include <libs/jsoncpp/include/json/json.h>
-#include <libs/pthreadcc/pthreadcc.h>
-#include <libs/socketcc/socketcc.h>
+
+#if (ENABLED_JSONCPP)
+#include <json/json.h>
+#endif // ENABLED_JSONCPP
+
+#include <pthreadcc.h>
+#include <socketcc.h>
 
 #endif // COCOS2D_X_TOOLS_H
 

@@ -10,6 +10,7 @@
 #define AndroidaBooM_YHTypes_h
 
 #define ENABLED_BOX2D 1
+#define ENABLED_JSONCPP 0
 
 #include <cocos2d.h>
 #include <cocos-ext.h>
