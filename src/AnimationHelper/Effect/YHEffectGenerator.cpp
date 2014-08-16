@@ -99,37 +99,12 @@ void YHEffectFactory::cleanAll()
 
 YHDefaultFiniteEffect * YHEffectFactory::finiteEffectFromCache()
 {
-//	CCSetIterator beg = m_effectCache->begin();
-//	CCSetIterator end = m_effectCache->end();
-//	for (; beg != end; ++beg)
-//	{
-//		YHDefaultFiniteEffect * fe = static_cast<YHDefaultFiniteEffect *>(*beg);
-//		if (!fe->isActive())
-//		{
-//			return fe;
-//		}
-//	}
-	
-	// 缓存中没有适合对象, 则生成新的对象
-//	YHDefaultFiniteEffect * fe = YHDefaultFiniteEffect::create();
-//	m_effectCache->addObject(fe);
-//	return fe;
-    
     return YHDefaultFiniteEffect::create();
 }
 
 void YHEffectFactory::adjustSprite(CCSprite * sp, const YHEffectDefiner * definer)
 {
     definer->getSpriteDefiner().assignToSprite(sp);
-    Vector<CCNode *>::iterator beg = sp->getChildren().begin();
-    Vector<CCNode *>::iterator end = sp->getChildren().end();
-    for (; beg != end; ++beg)
-    {
-        if (dynamic_cast<CCSprite *>(*beg) != NULL)
-        {
-            ((CCSprite *)(*beg))->setBlendFunc(definer->getSpriteDefiner().getBlendFunc());
-        }
-    }
 }
 
 CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * definer)

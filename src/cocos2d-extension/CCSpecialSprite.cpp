@@ -34,20 +34,6 @@ void CCSpecialSprite::setOpacity(GLubyte opacity)
     }
 }
 
-void CCSpecialSprite::setBlendFunc(const cocos2d::BlendFunc & blendFunc)
-{
-    CCSprite::setBlendFunc(blendFunc);
-    
-    Vector<CCNode *>::const_iterator beg = _children.begin();
-    Vector<CCNode *>::const_iterator end = _children.end();
-    for (; beg != end; ++beg)
-    {
-        CCBlendProtocol * blend = dynamic_cast<CCBlendProtocol *>(*beg);
-        if (blend != NULL)
-            blend->setBlendFunc(blendFunc);
-    }
-}
-
 void CCSpecialSprite::addChild(cocos2d::Node * child)
 {
     Sprite::addChild(child);

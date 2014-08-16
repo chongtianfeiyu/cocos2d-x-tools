@@ -42,9 +42,6 @@ public: // Override Functions
 	
 	/// 设置子节点的透明度
 	virtual void				setOpacity(GLubyte opacity) override;
-    
-    /// 设置子节点的 BlendFunc
-    virtual void                setBlendFunc(const BlendFunc & blendFunc) override;
 	
 	/// 添加进容器的时候负责给子节点着色和设置透明度
     /* override */

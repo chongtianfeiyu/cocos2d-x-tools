@@ -47,7 +47,7 @@ typedef cocos2d::ReverseTime CCReverseTime;
 #define CCPointFromString PointFromString
 #define CCSizeFromString SizeFromString
 
-#define Default_BlendFunc BlendFunc::ALPHA_NON_PREMULTIPLIED
+#define Default_BlendFunc BlendFunc::ALPHA_PREMULTIPLIED
 
 /**
  * 接口继承此类, 以得到实现此接口的 CCObject 对象, 非 CCObject 对象实现时 返回 NULL.
