@@ -6,10 +6,10 @@
 //
 //
 
-#include <Utils/Manager/DataManager/YHDataManager.h>
-#include <Utils/Manager/DataManager/YHDataManagerImp.h>
-#include <Utils/Manager/DataManager/YHSchedulerDataManagerImp.h>
-#include <Utils/Manager/DataManager/YHAsynDataManagerImp.h>
+#include "YHDataManager.h"
+#include "YHDataManagerImp.h"
+#include "YHSchedulerDataManagerImp.h"
+#include "YHAsynDataManagerImp.h"
 
 USING_NS_CC;
 using namespace std;

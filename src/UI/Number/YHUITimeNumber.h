@@ -2,7 +2,7 @@
 #ifndef YHUITimeNumber_h__
 #define YHUITimeNumber_h__
 
-#include <UI/Number/YHUISpriteNumber.h>
+#include "YHUISpriteNumber.h"
 
 /**
  * 时间格式的数字显示, 显示的格式为 hh:mm:ss
@@ -32,7 +32,7 @@ public:
     void setIconAndInterval(cocos2d::CCSprite * icon, float32 interval);
     
     /// 布局格式
-    void setAlignType(YHISpriteNumber::AlignType alignType);
+    void setAlignType(YHSpriteNumber_AlignType alignType);
 	
     /// 设置 时 的可见
     void setHourVisible(bool visible);
@@ -81,7 +81,7 @@ private:
 private:
     
     cocos2d::CCSize m_fontSize;
-    YHISpriteNumber::AlignType m_alignType = YHISpriteNumber::kAlignType_Center;
+    YHSpriteNumber_AlignType m_alignType = YHSpriteNumber_AlignType::kAlignType_Center;
     
     cocos2d::CCSprite * m_icon = nullptr;
     float32 m_iconInterval = 0.0f;

@@ -6,12 +6,12 @@
 //
 //
 
-#include <Utils/Device/YHDevice.h>
+#include "YHDevice.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    #include <Utils/Device/YHDevice-Android.h>
+    #include "YHDevice-Android.h"
 #else
-    #include <Utils/Device/YHDevice-iOS.h>
+    #include "YHDevice-iOS.h"
 #endif
 
 static YHDevice * s_instance = NULL;

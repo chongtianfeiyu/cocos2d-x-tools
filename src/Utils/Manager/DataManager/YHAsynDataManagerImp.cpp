@@ -6,13 +6,13 @@
 //
 //
 
-#include <Utils/Manager/DataManager/YHAsynDataManagerImp.h>
-#include <Utils/Buffer/YHByteArray.h>
+#include "YHAsynDataManagerImp.h"
+#include "Utils/Buffer/YHByteArray.h"
 
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//#include "platform/android/jni/JniHelper.h"
-//#include <jni.h>
-//#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#include "platform/android/jni/JniHelper.h"
+#include <jni.h>
+#endif
 
 USING_NS_CC;
 

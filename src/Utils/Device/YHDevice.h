@@ -9,7 +9,7 @@
 #ifndef __MonsterHunter__YHDevice__
 #define __MonsterHunter__YHDevice__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 /**
  * 与设备相关的功能, 因各个平台不同会有不同的返回值

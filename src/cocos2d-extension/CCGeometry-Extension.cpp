@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Mog Gen. All rights reserved.
 //
 
-#include <cocos2d-extension/CCGeometry-Extension.h>
+#include "CCGeometry-Extension.h"
 
 USING_NS_CC;
 

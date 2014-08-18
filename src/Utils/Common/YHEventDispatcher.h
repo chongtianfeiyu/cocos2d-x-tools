@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 using namespace std;
 using namespace cocos2d;

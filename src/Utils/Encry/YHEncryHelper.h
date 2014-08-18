@@ -9,8 +9,8 @@
 #ifndef __MonsterHunter__YHEncryHelper__
 #define __MonsterHunter__YHEncryHelper__
 
-#include <YHTypes.h>
-#include <Utils/Buffer/YHByteArray.h>
+#include "YHTypes.h"
+#include "Utils/Buffer/YHByteArray.h"
 
 /**
  * 文件加密/界面的助手

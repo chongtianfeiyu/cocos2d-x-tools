@@ -6,8 +6,8 @@
 //
 //
 
-#include <AnimationHelper/Avatar/AvatarComponent.h>
-#include <AnimationHelper/Animation/YHAnimationHelper.h>
+#include "AvatarComponent.h"
+#include "AnimationHelper/Animation/YHAnimationHelper.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Public Functions

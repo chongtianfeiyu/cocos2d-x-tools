@@ -1,6 +1,6 @@
 
-#include <cocos2d-extension/CCSpecialSprite.h>
-#include <AnimationHelper/Action/AnimationTypes.h>
+#include "CCSpecialSprite.h"
+#include "AnimationHelper/Action/AnimationTypes.h"
 
 void CCSpecialSprite::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)
 {

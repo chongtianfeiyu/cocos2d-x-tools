@@ -9,8 +9,8 @@
 #ifndef __cocos2d_x_Utils__YHHttpClient__
 #define __cocos2d_x_Utils__YHHttpClient__
 
-#include <YHTypes.h>
-#include <Utils/Buffer/YHByteArray.h>
+#include "YHTypes.h"
+#include "Utils/Buffer/YHByteArray.h"
 
 using namespace cocos2d::network;
 

@@ -9,7 +9,7 @@
 #ifndef __AndroidaBooM__YHUIDecimalNumber__
 #define __AndroidaBooM__YHUIDecimalNumber__
 
-#include <UI/Number/YHISpriteNumber.h>
+#include "YHISpriteNumber.h"
 
 class YHUISpriteNumber;
 
@@ -53,7 +53,7 @@ public:
 	m_iconDot(NULL),
 	m_fontSize(cocos2d::CCSizeZero),
 	m_interval(0),
-	m_alignType(kAlignType_Left),
+	m_alignType(YHSpriteNumber_AlignType::kAlignType_Left),
 	m_iconContentWidth(0),
 	m_places(2)
 	{};
@@ -88,7 +88,7 @@ public:
 	virtual void							setNumber(uint32 number);
 	virtual void							setNumber(const std::string & strNumbers);
 	virtual void							setIcon(cocos2d::CCSprite * icon);
-	virtual void 							setAlignType(AlignType alignType);
+	virtual void 							setAlignType(YHSpriteNumber_AlignType alignType);
 	virtual void							setInterval(float32 interval);
 	virtual void							setIconInterval(float32 iconInterval);
 	virtual float32							getNumberFontWidth();
@@ -136,7 +136,7 @@ protected:
 	cocos2d::CCSprite *						m_iconDot;
 	cocos2d::CCSize							m_fontSize;
 	float32									m_interval;
-	AlignType								m_alignType;
+	YHSpriteNumber_AlignType				m_alignType;
 	float32									m_iconContentWidth;
 	uint32									m_places;					// 显示小数点的位数, 默认是 2 位
 };

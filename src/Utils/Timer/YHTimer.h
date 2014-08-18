@@ -1,7 +1,7 @@
 #ifndef __AndroidaBooM_YHTimer__
 #define __AndroidaBooM_YHTimer__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 /**
  * 计时器接口
@@ -88,7 +88,7 @@ private:
  * 计时器缓存类
  * @author Zhenyu Yao
  */
-class YHTimerCache
+class YHTimerCache : public YHObject
 {
 public:
 	

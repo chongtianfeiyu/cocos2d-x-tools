@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 Zhenyu Yao. All rights reserved.
 //
 
-#include <Utils/Buffer/YHByteArray.h>
 #include <assert.h>
+#include "YHByteArray.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Interface - YHIByteBuffer

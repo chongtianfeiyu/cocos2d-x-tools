@@ -6,10 +6,10 @@
 //
 //
 
-#include <AnimationHelper/Animation/YHAnimationHelper.h>
-#include <AnimationHelper/Action/AnimationTypes.h>
-#include <Utils/Common/CommonUtils.h>
-#include <Utils/Common/YHJsonHelper.h>
+#include "YHAnimationHelper.h"
+#include "AnimationHelper/Action/AnimationTypes.h"
+#include "Utils/Common/CommonUtils.h"
+#include "Utils/Common/YHJsonHelper.h"
 
 using namespace std;
 
@@ -30,21 +30,6 @@ YHAnimationFrameDefiner::YHAnimationFrameDefiner(CCDictionary * dict)
 	// UserData
     if (dynamic_cast<CCDictionary *>(dict->objectForKey("UserInfo")) != NULL)
         m_userInfo = valueMapFromDictionary((CCDictionary *)(dict->objectForKey("UserInfo")));
-}
-
-YHAnimationFrameDefiner::YHAnimationFrameDefiner(const YHAnimationFrameDefiner & definer)
-{
-	m_index = definer.getIndex();
-	m_delayUnit = definer.getDelayUnit();
-	m_userInfo = definer.getUserInfo();
-}
-
-YHAnimationFrameDefiner & YHAnimationFrameDefiner::operator = (const YHAnimationFrameDefiner & definer) 
-{
-	m_index = definer.getIndex();
-	m_delayUnit = definer.getDelayUnit();
-	m_userInfo = definer.getUserInfo();
-	return *this;
 }
 
 YHAnimationFrameDefiner::~YHAnimationFrameDefiner()
@@ -184,7 +169,7 @@ CCAnimation * YHAnimationHelper::createAnimation(const YHAnimationDefiner & defi
 	vector<YHAnimationFrameDefiner>::const_iterator frameEnd = definer.getFrameDefines().end();
 	for(; frameBeg != frameEnd; ++frameBeg)
 	{
-		YHAnimationFrameDefiner frameDefiner = *frameBeg;
+		const YHAnimationFrameDefiner & frameDefiner = *frameBeg;
 		CCAnimationFrame * animationFrame = static_cast<CCAnimationFrame *>(animationFrames.at(frameDefiner.getIndex()));
 		animationFrame->setDelayUnits(frameDefiner.getDelayUnit());
 		animationFrame->setUserInfo(frameDefiner.getUserInfo());
@@ -193,6 +178,11 @@ CCAnimation * YHAnimationHelper::createAnimation(const YHAnimationDefiner & defi
 	CCAnimation * animation = CCAnimation::create(animationFrames, definer.getDelay(), definer.getLoop());
 	animation->setRestoreOriginalFrame(definer.getRestoreOriginFrame());
 	return animation;
+}
+
+CCAnimation * YHAnimationHelper::createAnimationWithPoint(const YHAnimationDefiner * definer)
+{
+    return createAnimation(*definer);
 }
 
 YHAnimationDefiner YHAnimationHelper::createAnimationDefiner_Ver1(CCDictionary * dict)
@@ -207,6 +197,20 @@ YHAnimationDefiner YHAnimationHelper::createAnimationDefiner_Ver2(CCDictionary *
 	YHAnimationDefiner definer;
 	definer.parse_ver2(dict);
 	return definer;
+}
+
+YHAnimationDefiner * YHAnimationHelper::createAnimationDefinerPoint_Ver1(CCDictionary * dict)
+{
+    YHAnimationDefiner * ad = YHAnimationDefiner::create();
+    ad->parse_ver1(dict);
+    return ad;
+}
+
+YHAnimationDefiner * YHAnimationHelper::createAnimationDefinerPoint_Ver2(CCDictionary * dict)
+{
+    YHAnimationDefiner * ad = YHAnimationDefiner::create();
+    ad->parse_ver2(dict);
+    return ad;
 }
 
 CCAnimate * YHAnimationHelper::createAnimate(CCAnimation * animation)

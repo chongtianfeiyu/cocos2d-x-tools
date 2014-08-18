@@ -6,13 +6,13 @@
 //
 //
 
-#include <AnimationHelper/Action/ActionContext.h>
-#include <AnimationHelper/Action/ParseActionInterval.h>
-#include <AnimationHelper/Action/ParseActionInstant.h>
-#include <AnimationHelper/Action/ParseActionEase.h>
-#include <AnimationHelper/Action/ParseActionGrid3D.h>
-#include <AnimationHelper/Action/ParseActionSpecial.h>
-#include <AnimationHelper/Action/ParseActionTiledGrid3D.h>
+#include "ActionContext.h"
+#include "ParseActionInterval.h"
+#include "ParseActionInstant.h"
+#include "ParseActionEase.h"
+#include "ParseActionGrid3D.h"
+#include "ParseActionSpecial.h"
+#include "ParseActionTiledGrid3D.h"
 
 USING_NS_CC;
 

@@ -1,6 +1,6 @@
 
-#include <AnimationHelper/Animation/YHAnimationCache.h>
-#include <AnimationHelper/Animation/YHAnimationHelper.h>
+#include "YHAnimationCache.h"
+#include "YHAnimationHelper.h"
 
 using namespace cocos2d;
 

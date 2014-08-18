@@ -9,8 +9,8 @@
 #ifndef __BSD_Socket_Client__YHByteArray__
 #define __BSD_Socket_Client__YHByteArray__
 
-#include <Utils/Buffer/YHIByteBuffer.h>
-#include <Utils/Common/YHAllocator.h>
+#include "YHIByteBuffer.h"
+#include "Utils/Common/YHAllocator.h"
 
 /**
  * YHByteArray 对 YHIByteBuffer 的实现, order 默认为 BigEndian

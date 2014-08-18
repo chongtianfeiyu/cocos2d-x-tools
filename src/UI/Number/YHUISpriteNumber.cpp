@@ -7,9 +7,8 @@
 //
 
 #include <string>
-
-#include <UI/Number/YHUISpriteNumber.h>
-#include <Utils/Common/CommonUtils.h>
+#include "YHUISpriteNumber.h"
+#include "Utils/Common/CommonUtils.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -71,7 +70,7 @@ YHUISpriteNumber::YHUISpriteNumber()
 	m_interval = 0.0f;
 	m_iconInterval = 0.0f;
     m_numberOffset = CCPointZero;
-	m_alignType = kAlignType_Left;
+	m_alignType = YHSpriteNumber_AlignType::kAlignType_Left;
 }
 
 YHUISpriteNumber::~YHUISpriteNumber()
@@ -93,7 +92,7 @@ bool YHUISpriteNumber::init(CCTexture2D * tex, const CCPoint & offset, const CCS
 	m_fontSize = fontSize;
 	m_interval = interval;
 	m_iconInterval = interval;
-	m_alignType = kAlignType_Left;
+	m_alignType = YHSpriteNumber_AlignType::kAlignType_Left;
 	
 	setNumber(0);
 	
@@ -159,7 +158,7 @@ void YHUISpriteNumber::setIcon(CCSprite * icon)
 	layout();
 }
 
-void YHUISpriteNumber::setAlignType(AlignType alignType)
+void YHUISpriteNumber::setAlignType(YHSpriteNumber_AlignType alignType)
 {
 	m_alignType = alignType;
 	layout();
@@ -318,14 +317,14 @@ float32 YHUISpriteNumber::calculateBeginX()
     
 	switch (m_alignType)
 	{
-		case kAlignType_Left:
+		case YHSpriteNumber_AlignType::kAlignType_Left:
 			break;
 			
-		case kAlignType_Right:
+		case YHSpriteNumber_AlignType::kAlignType_Right:
 			beginX -= width;
 			break;
 			
-		case kAlignType_Center:
+		case YHSpriteNumber_AlignType::kAlignType_Center:
 			beginX -= width * 0.5f;
 			break;
 	}

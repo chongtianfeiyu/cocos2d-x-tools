@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 Mog Gen. All rights reserved.
 //
 
-#include <Utils/Device/YHGameBasicInfo-iOS.h>
+#include "YHGameBasicInfo-iOS.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Override Functions

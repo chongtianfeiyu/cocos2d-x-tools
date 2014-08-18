@@ -9,13 +9,13 @@
 #ifndef __AndroidaBooM__YHCCActionHelper__
 #define __AndroidaBooM__YHCCActionHelper__
 
-#include <cocos2d.h>
+#include "YHTypes.h"
 
 /**
  * 创建 CCAction 对象的辅助类
  * @author Zhenyu Yao
  */
-class YHCCActionHelper
+class YHCCActionHelper : public YHObject
 {
 public:
 	

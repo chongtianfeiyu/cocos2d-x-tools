@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__ParseActionInstant__
 #define __cocos2d_x_Utils__ParseActionInstant__
 
-#include <AnimationHelper/Action/ActionParseBase.h>
+#include "ActionParseBase.h"
 
 /**
  * CCShow

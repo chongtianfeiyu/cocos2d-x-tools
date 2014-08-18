@@ -9,8 +9,8 @@
 #ifndef __HelloWorld_3_0__AvatarComponent__
 #define __HelloWorld_3_0__AvatarComponent__
 
-#include <AnimationHelper/Action/AnimationTypes.h>
-#include <AnimationHelper/Animation/YHAnimationKeyEvents.h>
+#include "AnimationHelper/Action/AnimationTypes.h"
+#include "AnimationHelper/Animation/YHAnimationKeyEvents.h"
 
 /**
  * 纸娃娃关节组件, 主要持有 3 个数据, CCAnimation, YHKeyTimeCallback, AnimatorData

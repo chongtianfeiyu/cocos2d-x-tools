@@ -9,7 +9,7 @@
 #ifndef __GeometryLibrary__YHEntity__
 #define __GeometryLibrary__YHEntity__
 
-#include <Utils/Geometry/YHVector2.h>
+#include "YHVector2.h"
 
 class YHEntity
 {

@@ -9,7 +9,7 @@
 #ifndef __MGBX__YHGameBasicInfo__
 #define __MGBX__YHGameBasicInfo__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 /**
  * 游戏基础信息基类
@@ -19,7 +19,6 @@ class YHGameBasicInfo : public YHObject
 {
 public:
     
-    YHGameBasicInfo() {}
     virtual ~YHGameBasicInfo() {}
     
     /// YHGameBasicInfo 对象
@@ -33,6 +32,10 @@ public:
     
     /// 当前的游戏名
     virtual std::string name() = 0;
+    
+protected:
+    
+    YHGameBasicInfo() {}
 };
 
 #endif /* defined(__MGBX__YHGameBasicInfo__) */

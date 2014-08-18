@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 Mog Gen. All rights reserved.
 //
 
-#include <Utils/Device/YHGameBasicInfo.h>
+#include "YHGameBasicInfo.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    #include <Utils/Device/YHGameBasicInfo-Android.h>
+    #include "YHGameBasicInfo-Android.h"
 #else
-    #include <Utils/Device/YHGameBasicInfo-iOS.h>
+    #include "YHGameBasicInfo-iOS.h"
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

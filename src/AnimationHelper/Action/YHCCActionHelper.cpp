@@ -6,8 +6,8 @@
 //
 //
 
-#include <AnimationHelper/Action/YHCCActionHelper.h>
-#include <AnimationHelper/Animation/YHAnimationHelper.h>
+#include "YHCCActionHelper.h"
+#include "AnimationHelper/Animation/YHAnimationHelper.h"
 
 using namespace cocos2d;
 

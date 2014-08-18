@@ -6,7 +6,7 @@
 //
 //
 
-#include <AnimationHelper/Action/ParseActionInstant.h>
+#include "ParseActionInstant.h"
 
 CCAction* ParserShow::parseAction(cocos2d::CCDictionary *dict)
 {

@@ -9,8 +9,8 @@
 #ifndef __cocos2d_x_Utils__YHSocketConnectHelper__
 #define __cocos2d_x_Utils__YHSocketConnectHelper__
 
-#include <YHTypes.h>
-#include <libs/socketcc/socketcc.h>
+#include "YHTypes.h"
+#include "libs/socketcc/socketcc.h"
 
 class YHSocketConnectManager;
 

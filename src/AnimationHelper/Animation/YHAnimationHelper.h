@@ -9,8 +9,8 @@
 #ifndef __AndroidaBooM__YHAnimationHelper__
 #define __AndroidaBooM__YHAnimationHelper__
 
-#include <YHTypes.h>
-#include <AnimationHelper/Animation/YHAnimationKeyEvents.h>
+#include "YHTypes.h"
+#include "YHAnimationKeyEvents.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -27,16 +27,22 @@ class AnimatorAnimData;
  *		<DelayUnits/>				<!-- 设置帧的单位延迟, 每一帧的延迟 = Delay * DelayUnits, 默认值 1.0 -->
  *		<UserInfo/>					<!-- 设置帧保存的其他信息 -->
  */
-class YHAnimationFrameDefiner
+class YHAnimationFrameDefiner : public YHObject
 {
 public:
+    
+    /// 创建 YHAnimationFrameDefiner 对象
+    static YHAnimationFrameDefiner * create(CCDictionary * dict)
+    {
+        YHAnimationFrameDefiner * instance = new YHAnimationFrameDefiner(dict);
+        if (instance != nullptr)
+            instance->autorelease();
+        return instance;
+    }
+    
 	YHAnimationFrameDefiner(CCDictionary * dict);
-	YHAnimationFrameDefiner(const YHAnimationFrameDefiner & definer);
 	~YHAnimationFrameDefiner();
-
-	/// 重载 = 操作符
-	YHAnimationFrameDefiner & operator = (const YHAnimationFrameDefiner & definer);
-
+    
 	/// 获得索引
 	uint32					getIndex() const  { return m_index; }
 
@@ -58,12 +64,22 @@ private:
  * 动画定义器, 保存从 CCDictionary 中解析出的数据
  * @author Zhenyu Yao
  */
-class YHAnimationDefiner
+class YHAnimationDefiner : public YHObject
 {
 public:
+    
+    /// 创建 YHAnimationDefiner 对象
+    static YHAnimationDefiner * create()
+    {
+        YHAnimationDefiner * instance = new YHAnimationDefiner();
+        if (instance != nullptr)
+            instance->autorelease();
+        return instance;
+    }
+    
 	YHAnimationDefiner() : m_delay(0), m_loop(1), m_restoreOriginFrame(false) {};
 	~YHAnimationDefiner() {};
-
+    
 	/** 
 	 * 方式 1 解析
      * @code -------- NSDictionary 格式说明 --------
@@ -99,6 +115,9 @@ public:
 
 	/// 每一帧的特别定义
 	const vector<YHAnimationFrameDefiner> &			getFrameDefines() const { return m_frameDefiners; }
+    
+    /// 每一帧的特别定义, 数组的指针
+    const vector<YHAnimationFrameDefiner> *         getFrameDefinersPoint() const { return &m_frameDefiners; }
 
 private:
 	float											m_delay;
@@ -112,10 +131,28 @@ private:
  * 精灵的定义器, 从 CCDictionary 中解析出数据
  * @author Zhenyu Yao
  */
-class YHSpriteDefiner
+class YHSpriteDefiner : public YHObject
 {
 public:
 
+    /// 创建 YHSpriteDefiner 对象
+    static YHSpriteDefiner * create()
+    {
+        YHSpriteDefiner * instance = new YHSpriteDefiner();
+        if (instance != nullptr)
+            instance->autorelease();
+        return instance;
+    }
+    
+    /// 创建 YHSpriteDefiner 对象
+    static YHSpriteDefiner * create(CCDictionary * dict)
+    {
+        YHSpriteDefiner * instance = new YHSpriteDefiner(dict);
+        if (instance != nullptr)
+            instance->autorelease();
+        return instance;
+    }
+    
 	YHSpriteDefiner() :
 	m_anchorPoint(ccp(0.5f, 0.5f)),
 	m_position(CCPointZero),
@@ -182,7 +219,7 @@ public:
  * 主要负责从 CCDictionary 对象解析出 CCAnimation 对象, 并且针对 CCAnimation 对象的一些列操作
  * @author Zhenyu Yao
  */
-class YHAnimationHelper
+class YHAnimationHelper : public YHObject
 {
 public:		/** Static Functions **/
 
@@ -197,9 +234,18 @@ public:		/** Static Functions **/
 
 	/// 使用版本 2 的解析方式创建 YHAnimationDefiner 对象
 	static YHAnimationDefiner createAnimationDefiner_Ver2(CCDictionary * dict);
+    
+    /// 使用版本 1 的解析方式创建 YHAnimationDefiner 对象, 返回 YHAnimationDefiner * 指针对象
+    static YHAnimationDefiner * createAnimationDefinerPoint_Ver1(CCDictionary * dict);
+    
+    /// 使用版本 2 的解析方式创建 YHAnimationDefiner 对象, 返回 YHAnimationDefiner * 指针对象
+    static YHAnimationDefiner * createAnimationDefinerPoint_Ver2(CCDictionary * dict);
 
 	/// 根据 YHAnimationDefiner 对象创建 CCAnimation 对象
 	static CCAnimation * createAnimation(const YHAnimationDefiner & definer);
+    
+    /// 根据 YHAnimationDefiner 指针对象创建 CCAnimation 对象
+    static CCAnimation * createAnimationWithPoint(const YHAnimationDefiner * definer);
 
 	/**
 	 * 创建 CCAnimate 对象

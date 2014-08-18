@@ -1,6 +1,6 @@
 
-#include <UI/Number/YHUITimeNumber.h>
-#include <UI/Number/YHUISpriteNumber.h>
+#include "YHUITimeNumber.h"
+#include "YHUISpriteNumber.h"
 
 USING_NS_CC;
 
@@ -12,11 +12,9 @@ typedef enum
 	
 }TimeNumberLayer;
 
-
 YHUITimeNumber::YHUITimeNumber(void)
 {
 }
-
 
 YHUITimeNumber::~YHUITimeNumber(void)
 {
@@ -93,9 +91,9 @@ bool YHUITimeNumber::init(cocos2d::CCSprite * iconHour, float hourInterval,
 		m_minNumber = YHUISpriteNumber::create(fontName.c_str(), fontSize, fontInterval);
 		m_secNumber = YHUISpriteNumber::create(fontName.c_str(), fontSize, fontInterval);
 		
-        m_hourNumber->setAlignType(YHISpriteNumber::kAlignType_Left);
-        m_minNumber->setAlignType(YHISpriteNumber::kAlignType_Left);
-        m_secNumber->setAlignType(YHISpriteNumber::kAlignType_Left);
+        m_hourNumber->setAlignType(YHSpriteNumber_AlignType::kAlignType_Left);
+        m_minNumber->setAlignType(YHSpriteNumber_AlignType::kAlignType_Left);
+        m_secNumber->setAlignType(YHSpriteNumber_AlignType::kAlignType_Left);
         
 		addChild(m_hourNumber, kTimeNumberLayer_Number);
 		addChild(m_minNumber, kTimeNumberLayer_Number);
@@ -188,7 +186,7 @@ void YHUITimeNumber::setIconAndInterval(cocos2d::CCSprite * icon, float32 interv
     layout();
 }
 
-void YHUITimeNumber::setAlignType(YHISpriteNumber::AlignType alignType)
+void YHUITimeNumber::setAlignType(YHSpriteNumber_AlignType alignType)
 {
     m_alignType = alignType;
     layout();
@@ -226,12 +224,12 @@ void YHUITimeNumber::layout()
     
     switch (m_alignType)
     {
-        case YHISpriteNumber::kAlignType_Left:
+        case YHSpriteNumber_AlignType::kAlignType_Left:
             break;
-        case YHISpriteNumber::kAlignType_Center:
+        case YHSpriteNumber_AlignType::kAlignType_Center:
             beginX -= width * 0.5f;
             break;
-        case YHISpriteNumber::kAlignType_Right:
+        case YHSpriteNumber_AlignType::kAlignType_Right:
             beginX -= width;
             break;
     }

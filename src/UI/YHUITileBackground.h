@@ -9,7 +9,19 @@
 #ifndef __AndroidaBooM__YHUITileBackground__
 #define __AndroidaBooM__YHUITileBackground__
 
-#include <cocos2d.h>
+#include "cocos2d.h"
+
+/**
+ * 背景格子的类型
+ * @author Zhenyu Yao
+ */
+enum class TileBackground_TileType
+{
+    kTileType_2,
+    kTileType_4,
+};
+
+typedef TileBackground_TileType TileType;
 
 /**
  * 由1个方块拼接成背景图片
@@ -18,13 +30,6 @@
  */
 class YHUITileBackground : public cocos2d::CCSprite
 {
-public:
-	typedef enum TileType
-	{
-		kTileType_2,
-		kTileType_4,
-	}TileType;
-	
 public:
 	
 	/// 初始化

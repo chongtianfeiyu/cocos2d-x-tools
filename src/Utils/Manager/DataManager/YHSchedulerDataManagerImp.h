@@ -9,7 +9,7 @@
 #ifndef __MonsterHunter__YHSchedulerDataManagerImp__
 #define __MonsterHunter__YHSchedulerDataManagerImp__
 
-#include <Utils/Manager/DataManager/YHDataManagerImp.h>
+#include "YHDataManagerImp.h"
 
 /**
  * 使用 CCScheduler 的实现

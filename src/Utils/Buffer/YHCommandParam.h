@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__YHCommandParam__
 #define __cocos2d_x_Utils__YHCommandParam__
 
-#include <Utils/Buffer/YHByteArray.h>
+#include "YHByteArray.h"
 
 /**
  * 为了减少内存的拷贝, 持有 YHByteArray 对象, 对 YHByteArray 的进一步封装, 使 YHByteArray 对象能直接从 loc 位置读取实际使用的数据.

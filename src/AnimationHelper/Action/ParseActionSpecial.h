@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__ParseActionSpecial__
 #define __cocos2d_x_Utils__ParseActionSpecial__
 
-#include <AnimationHelper/Action/ActionParseBase.h>
+#include "ActionParseBase.h"
 
 /**
  * CCRepeatForever

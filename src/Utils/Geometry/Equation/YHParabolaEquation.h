@@ -9,7 +9,7 @@
 #ifndef __GeometryLibrary__YHParabolaEquation__
 #define __GeometryLibrary__YHParabolaEquation__
 
-#include <Utils/Geometry/YHGeometry.h>
+#include "Utils/Geometry/YHGeometry.h"
 
 /**
  * 抛物线方程式

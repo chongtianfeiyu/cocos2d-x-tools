@@ -2,7 +2,7 @@
 #ifndef __YHFontManager_H__
 #define __YHFontManager_H__
 
-#include <cocos2d.h>
+#include "YHTypes.h"
 
 using namespace cocos2d;
 
@@ -10,7 +10,7 @@ using namespace cocos2d;
  * 字体管理类
  * @author Zhenyu Yao
  */
-class YHFontManager
+class YHFontManager : public YHObject
 {
 public:
 	

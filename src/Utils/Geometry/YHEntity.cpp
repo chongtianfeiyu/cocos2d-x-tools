@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Zhenyu Yao. All rights reserved.
 //
 
-#include <Utils/Geometry/YHEntity.h>
+#include "YHEntity.h"
 
 void YHEntity::updateWithEuler(float dt)
 {

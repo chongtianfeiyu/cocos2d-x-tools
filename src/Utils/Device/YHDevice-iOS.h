@@ -9,7 +9,7 @@
 #ifndef __MonsterHunter__YHDevice_iOS__
 #define __MonsterHunter__YHDevice_iOS__
 
-#include <Utils/Device/YHDevice.h>
+#include "YHDevice.h"
 
 /**
  * iOS 平台设备

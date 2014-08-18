@@ -9,14 +9,13 @@
 #ifndef __MGBX__CCEncryptNumber__
 #define __MGBX__CCEncryptNumber__
 
-#include <cocos2d.h>
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 /**
  * 加密的数字对象
  * @author Zhenyu Yao
  */
-class CCEncryptNumber : public cocos2d::CCObject
+class CCEncryptNumber : public YHObject
 {
 public:
     

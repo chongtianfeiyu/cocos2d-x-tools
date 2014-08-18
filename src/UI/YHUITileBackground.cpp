@@ -6,7 +6,7 @@
 //
 //
 
-#include <UI/YHUITileBackground.h>
+#include "YHUITileBackground.h"
 
 using namespace cocos2d;
 
@@ -15,7 +15,7 @@ bool YHUITileBackground::init(TileType tileType, const char * spriteFrameName)
 	bool result = CCSprite::initWithSpriteFrameName(spriteFrameName);
 	this->setTextureRect(CCRectZero);
 	
-	if (tileType == kTileType_2)
+	if (tileType == TileBackground_TileType::kTileType_2)
 	{
 		const CCSize contentSize = this->getContentSize();
 		
@@ -32,7 +32,7 @@ bool YHUITileBackground::init(TileType tileType, const char * spriteFrameName)
 		rBG->setAnchorPoint(ccp(1.0f, 0.5f));
 		this->addChild(rBG);
 	}
-	else if (tileType == kTileType_4)
+	else if (tileType == TileBackground_TileType::kTileType_4)
 	{
 		// top left
 		CCSprite * tlBG = CCSprite::createWithSpriteFrameName(spriteFrameName);

@@ -6,8 +6,8 @@
 //
 //
 
-#include <cocos2d-extension/CCKeyTimeCallbackSprite.h>
-#include <AnimationHelper/Animation/YHAnimationHelper.h>
+#include "CCKeyTimeCallbackSprite.h"
+#include "AnimationHelper/Animation/YHAnimationHelper.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Public Functions

@@ -12,8 +12,8 @@
 #define ENABLED_BOX2D 1
 #define ENABLED_JSONCPP 0
 
-#include <cocos2d.h>
-#include <cocos-ext.h>
+#include "cocos2d.h"
+#include "cocos-ext.h"
 #include "HttpClient.h"
 
 #if (ENABLED_BOX2D)

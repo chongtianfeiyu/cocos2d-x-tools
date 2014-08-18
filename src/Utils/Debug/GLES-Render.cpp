@@ -18,7 +18,7 @@
  * 3. This notice may not be removed or altered from any source distribution.
  */
 
-#include <Utils/Debug/GLES-Render.h>
+#include "GLES-Render.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <string.h>

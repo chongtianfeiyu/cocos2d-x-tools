@@ -9,7 +9,7 @@
 #ifndef __AndroidaBooM__YHUIProductNumber__
 #define __AndroidaBooM__YHUIProductNumber__
 
-#include <UI/Number/YHUISpriteNumber.h>
+#include "YHUISpriteNumber.h"
 
 /**
  * 带乘号的数字

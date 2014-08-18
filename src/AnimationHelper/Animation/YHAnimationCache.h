@@ -1,8 +1,8 @@
 #ifndef __AndroidaBoom_YHAnimationCache__
 #define __AndroidaBoom_YHAnimationCache__
 
-#include <cocos2d.h>
-#include <AnimationHelper/Animation/YHAnimationHelper.h>
+#include "cocos2d.h"
+#include "YHAnimationHelper.h"
 
 /**
  * 管理 CCAnimation 对象, 首先负责加载动画的配置文件, 然后可以根据动画的 key 得到指定的 CCAnimation 对象

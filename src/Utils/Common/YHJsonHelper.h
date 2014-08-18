@@ -9,11 +9,11 @@
 #ifndef __MonsterHunter__YHDictionaryHelper__
 #define __MonsterHunter__YHDictionaryHelper__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 #if (ENABLED_JSONCPP)
 
-#include <json/json.h>
+#include "libs/jsoncpp/include/json/json.h"
 
 /// Json -> CCDictionary
 extern cocos2d::CCDictionary * dictionaryFromJson(const Json::Value & root);

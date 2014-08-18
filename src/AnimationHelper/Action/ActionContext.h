@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__ActionContext__
 #define __cocos2d_x_Utils__ActionContext__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 /**
  * CCAction 解析的上下文, 负责决定使用什么类型的解析对象

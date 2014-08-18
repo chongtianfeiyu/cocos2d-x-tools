@@ -7,8 +7,7 @@
 //
 
 #include <assert.h>
-
-#include <Utils/Common/YHEventDispatcher.h>
+#include "YHEventDispatcher.h"
 
 using namespace std;
 using namespace cocos2d;

@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__ParseActionTiledGrid3D__
 #define __cocos2d_x_Utils__ParseActionTiledGrid3D__
 
-#include <AnimationHelper/Action/ActionParseBase.h>
+#include "ActionParseBase.h"
 
 /**
  * CCFadeOut*Tiles 基类

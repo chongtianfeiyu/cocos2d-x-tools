@@ -9,7 +9,7 @@
 #ifndef __MonsterHunter__YHAbstractDataSetting__
 #define __MonsterHunter__YHAbstractDataSetting__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 /**
  * 配置数据的抽象类

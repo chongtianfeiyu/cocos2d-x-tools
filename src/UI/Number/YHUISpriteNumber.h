@@ -9,7 +9,7 @@
 #ifndef __AndroidaBooM__YHUISpriteNumber__
 #define __AndroidaBooM__YHUISpriteNumber__
 
-#include <UI/Number/YHISpriteNumber.h>
+#include "YHISpriteNumber.h"
 
 /**
  * 数字贴图, 不能向该容器内添加其他的显示对象
@@ -51,7 +51,7 @@ public:
 	virtual void					setNumber(uint32 number);
 	virtual void					setNumber(const std::string & strNumbers);
 	virtual void					setIcon(cocos2d::CCSprite * icon);
-	virtual void					setAlignType(AlignType alignType);
+	virtual void					setAlignType(YHSpriteNumber_AlignType alignType);
 	virtual void 					setInterval(float32 interval);
 	virtual void					setIconInterval(float32 interval);
 	virtual float32					getNumberFontWidth();
@@ -87,7 +87,7 @@ protected:
 	float32							m_interval;
 	float32							m_iconInterval;				// Icon 与接下来第一个字符间的距离, 默认等于 0
     cocos2d::CCPoint                m_numberOffset;				// 数字与 Icon 的偏移量
-	AlignType						m_alignType;
+    YHSpriteNumber_AlignType        m_alignType;
 };
 
 #endif /* defined(__AndroidaBooM__YHUISpriteNumber__) */

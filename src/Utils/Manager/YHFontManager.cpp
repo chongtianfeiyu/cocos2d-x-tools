@@ -1,6 +1,5 @@
 
-#include <Utils/Manager/YHFontManager.h>
-#include <YHTypes.h>
+#include "YHFontManager.h"
 
 USING_NS_CC;
 

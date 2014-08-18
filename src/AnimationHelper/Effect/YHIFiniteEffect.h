@@ -2,8 +2,8 @@
 #ifndef __YHIFiniteEffect_H__
 #define __YHIFiniteEffect_H__
 
-#include <cocos2d.h>
-#include <Utils/Common/CommonUtils.h>
+#include "cocos2d.h"
+#include "Utils/Common/CommonUtils.h"
 
 /**
  * 在限定时间内播放的特效的接口定义

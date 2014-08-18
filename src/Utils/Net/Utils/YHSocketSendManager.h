@@ -9,9 +9,9 @@
 #ifndef __cocos2d_x_Utils__YHSocketSendManager__
 #define __cocos2d_x_Utils__YHSocketSendManager__
 
-#include <Utils/Buffer/YHByteArray.h>
-#include <libs/pthreadcc/pthreadcc.h>
-#include <libs/socketcc/socketcc.h>
+#include "Utils/Buffer/YHByteArray.h"
+#include "libs/pthreadcc/pthreadcc.h"
+#include "libs/socketcc/socketcc.h"
 
 class YHSocketSendManager;
 class YHSocketConnectManager;

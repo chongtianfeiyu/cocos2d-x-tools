@@ -9,10 +9,10 @@
 #ifndef __cocos2d_x_Utils__YHSocketRecvManager__
 #define __cocos2d_x_Utils__YHSocketRecvManager__
 
-#include <Utils/Net/Utils/YHSocketConnectManager.h>
-#include <Utils/Buffer/YHByteArray.h>
-#include <libs/pthreadcc/pthreadcc.h>
-#include <libs/socketcc/socketcc.h>
+#include "YHSocketConnectManager.h"
+#include "Utils/Buffer/YHByteArray.h"
+#include "libs/pthreadcc/pthreadcc.h"
+#include "libs/socketcc/socketcc.h"
 
 class YHSocketRecvManager;
 

@@ -9,8 +9,8 @@
 #ifndef __HelloWorld_3_0__CCKeyTimeCallbackSprite__
 #define __HelloWorld_3_0__CCKeyTimeCallbackSprite__
 
-#include <cocos2d.h>
-#include <AnimationHelper/Animation/YHAnimationKeyEvents.h>
+#include "cocos2d.h"
+#include "AnimationHelper/Animation/YHAnimationKeyEvents.h"
 
 /**
  * 处理关键时间回调的显示对象

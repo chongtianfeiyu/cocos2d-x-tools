@@ -6,8 +6,8 @@
 //
 //
 
-#include <AnimationHelper/Action/ParseActionEase.h>
-#include <AnimationHelper/Action/ActionContext.h>
+#include "ParseActionEase.h"
+#include "ActionContext.h"
 
 CCAction* ParserEaseBackIn::parseAction(cocos2d::CCDictionary *dict)
 {

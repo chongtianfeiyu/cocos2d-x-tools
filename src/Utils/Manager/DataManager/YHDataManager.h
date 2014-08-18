@@ -9,7 +9,7 @@
 #ifndef __MonsterHunter__YHDataManager__
 #define __MonsterHunter__YHDataManager__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 class YHByteArray;
 class YHDataManagerImp;

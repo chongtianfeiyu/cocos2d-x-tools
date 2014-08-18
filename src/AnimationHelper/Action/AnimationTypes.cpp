@@ -6,10 +6,10 @@
 //
 //
 
-#include <AnimationHelper/Action/AnimationTypes.h>
-#include <AnimationHelper/Action/ActionContext.h>
-#include <AnimationHelper/Action/ActionParseBase.h>
-#include <cocos2d-extension/CCSpecialSprite.h>
+#include "AnimationTypes.h"
+#include "ActionContext.h"
+#include "ActionParseBase.h"
+#include "cocos2d-extension/CCSpecialSprite.h"
 
 std::string convertKeyFromFile(const std::string& file)
 {

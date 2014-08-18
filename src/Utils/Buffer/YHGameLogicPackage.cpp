@@ -6,7 +6,7 @@
 //
 //
 
-#include <Utils/Buffer/YHGameLogicPackage.h>
+#include "YHGameLogicPackage.h"
 
 USING_NS_CC;
 

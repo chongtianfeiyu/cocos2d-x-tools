@@ -10,8 +10,8 @@
 #define __cocos2d_x_Utils__ActionParseBase__
 
 #include <iostream>
-#include <cocos2d.h>
-#include <YHTypes.h>
+#include "cocos2d.h"
+#include "YHTypes.h"
 
 using namespace cocos2d;
 

@@ -21,7 +21,7 @@
 #ifndef RENDER_H
 #define RENDER_H
 
-#include <Box2D/Box2D.h>
+#include "Box2D/Box2D.h"
 #include "cocos2d.h"
 
 // This class implements debug drawing callbacks that are invoked

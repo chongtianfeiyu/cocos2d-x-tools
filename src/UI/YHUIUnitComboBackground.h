@@ -1,13 +1,13 @@
 #ifndef __AndroidaBoom_YHUIUnitComboBackground__
 #define __AndroidaBoom_YHUIUnitComboBackground__
 
-#include <cocos2d.h>
+#include "cocos2d.h"
 
 /**
  * 单元图形组成背景生成
  * @author wangtiwei
  */
-class YHUIUnitComboBackground :public cocos2d::CCSprite
+class YHUIUnitComboBackground : public cocos2d::CCSprite
 {
 public:
 	YHUIUnitComboBackground(void);

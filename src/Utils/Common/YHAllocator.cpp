@@ -8,8 +8,7 @@
 
 #include <math.h>
 #include <stdlib.h>
-
-#include <Utils/Common/YHAllocator.h>
+#include "YHAllocator.h"
 
 USING_NS_CC;
 

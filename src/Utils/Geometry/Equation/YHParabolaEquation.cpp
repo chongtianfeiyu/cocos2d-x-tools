@@ -7,7 +7,7 @@
 //
 
 #include <math.h>
-#include <Utils/Geometry/Equation/YHParabolaEquation.h>
+#include "YHParabolaEquation.h"
 
 /* YHParabolaEquation */
 

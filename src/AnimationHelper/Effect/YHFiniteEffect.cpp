@@ -1,5 +1,5 @@
 
-#include <AnimationHelper/Effect/YHFiniteEffect.h>
+#include "YHFiniteEffect.h"
 
 using namespace cocos2d;
 

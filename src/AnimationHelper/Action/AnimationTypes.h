@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__AnimationTypes__
 #define __cocos2d_x_Utils__AnimationTypes__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 USING_NS_CC;
 

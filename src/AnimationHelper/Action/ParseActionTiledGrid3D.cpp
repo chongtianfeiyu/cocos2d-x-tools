@@ -6,7 +6,7 @@
 //
 //
 
-#include <AnimationHelper/Action/ParseActionTiledGrid3D.h>
+#include "ParseActionTiledGrid3D.h"
 
 CCAction* ParserFadeOutTRTiles::parseAction(cocos2d::CCDictionary *dict)
 {

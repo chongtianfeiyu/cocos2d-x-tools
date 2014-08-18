@@ -6,8 +6,8 @@
 //
 //
 
-#include <UI/Number/YHUIPercentNumber.h>
-#include <UI/Number/YHUISpriteNumber.h>
+#include "YHUIPercentNumber.h"
+#include "YHUISpriteNumber.h"
 
 using namespace cocos2d;
 

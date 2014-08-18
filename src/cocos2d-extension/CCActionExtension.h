@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__CCActionExtension__
 #define __cocos2d_x_Utils__CCActionExtension__
 
-#include <cocos2d.h>
+#include "cocos2d.h"
 
 using namespace cocos2d;
 

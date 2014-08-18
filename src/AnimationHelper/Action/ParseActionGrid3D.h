@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__ParseActionGrid3D__
 #define __cocos2d_x_Utils__ParseActionGrid3D__
 
-#include <AnimationHelper/Action/ActionParseBase.h>
+#include "ActionParseBase.h"
 
 /**
  * CCFlipX3D

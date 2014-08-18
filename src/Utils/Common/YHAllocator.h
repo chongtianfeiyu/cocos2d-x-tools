@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__YHAllocator__
 #define __cocos2d_x_Utils__YHAllocator__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 #define MEMORY_DEFAULT_SIZE 256
 

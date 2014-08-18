@@ -9,7 +9,14 @@
 #ifndef __AndroidaBooM__YHISpriteNumber__
 #define __AndroidaBooM__YHISpriteNumber__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
+
+enum class YHSpriteNumber_AlignType
+{
+    kAlignType_Left,		// 左对齐, 默认左对齐
+    kAlignType_Center,		// 居中
+    kAlignType_Right,		// 右对齐
+};
 
 /**
  * 数字显示内容的接口
@@ -17,16 +24,6 @@
  */
 class YHISpriteNumber : public cocos2d::CCSprite
 {
-public:
-	
-	/// 对齐方式
-	typedef enum AlignType
-	{
-		kAlignType_Left,		// 左对齐, 默认左对齐
-		kAlignType_Center,		// 居中
-		kAlignType_Right,		// 右对齐
-	}AlignType;
-	
 public:
 	
 	virtual ~YHISpriteNumber() { this->cleanup(); }
@@ -49,7 +46,7 @@ public:
 	/**
 	 * 设置对齐方式
 	 */
-	virtual void				setAlignType(AlignType alignType) = 0;
+	virtual void				setAlignType(YHSpriteNumber_AlignType alignType) = 0;
 	
 	/**
 	 * 设置数字间间隔

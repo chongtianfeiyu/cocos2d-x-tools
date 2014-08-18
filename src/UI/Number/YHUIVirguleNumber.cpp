@@ -1,6 +1,6 @@
 
-#include <UI/Number/YHUIVirguleNumber.h>
-#include <UI/Number/YHUISpriteNumber.h>
+#include "YHUIVirguleNumber.h"
+#include "YHUISpriteNumber.h"
 
 USING_NS_CC;
 
@@ -73,7 +73,7 @@ void YHUIVirguleNumber::setVirguleInterval(float32 interval)
     realign();
 }
 
-void YHUIVirguleNumber::setAlignType(YHISpriteNumber::AlignType alignType)
+void YHUIVirguleNumber::setAlignType(YHSpriteNumber_AlignType alignType)
 {
     m_alignType = alignType;
     realign();
@@ -180,14 +180,14 @@ void YHUIVirguleNumber::realign()
     
     switch (m_alignType)
     {
-        case YHISpriteNumber::kAlignType_Left:
+        case YHSpriteNumber_AlignType::kAlignType_Left:
             break;
             
-        case YHISpriteNumber::kAlignType_Center:
+        case YHSpriteNumber_AlignType::kAlignType_Center:
             begin -= width * 0.5f;
             break;
             
-        case YHISpriteNumber::kAlignType_Right:
+        case YHSpriteNumber_AlignType::kAlignType_Right:
             begin -= width;
             break;
     }

@@ -6,7 +6,7 @@
 //
 //
 
-#include <AnimationHelper/Action/ParseActionGrid3D.h>
+#include "ParseActionGrid3D.h"
 
 CCAction* ParserFlipX3D::parseAction(cocos2d::CCDictionary *dict)
 {

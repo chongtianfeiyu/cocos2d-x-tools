@@ -6,8 +6,8 @@
 //
 //
 
-#include <AnimationHelper/Action/ActionParseBase.h>
-#include <AnimationHelper/Action/ActionContext.h>
+#include "ActionParseBase.h"
+#include "ActionContext.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Public Functions

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 Zhenyu Yao. All rights reserved.
 //
 
-#include <Utils/Geometry/YHRect.h>
+#include "YHRect.h"
 
 bool YHRect::containsPoint(const YHVector2 & point) const
 {

@@ -6,9 +6,9 @@
 //
 //
 
-#include <UI/Number/YHUIDecimalNumber.h>
-#include <UI/Number/YHUISpriteNumber.h>
-#include <Utils/Common/CommonUtils.h>
+#include "YHUIDecimalNumber.h"
+#include "YHUISpriteNumber.h"
+#include "Utils/Common/CommonUtils.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -84,7 +84,7 @@ bool YHUIDecimalNumber::init(CCTexture2D * tex, const CCPoint & offset,
 	
 	m_fontSize = fontSize;
 	m_interval = interval;
-	m_alignType = kAlignType_Left;
+	m_alignType = YHSpriteNumber_AlignType::kAlignType_Left;
 	
 	m_iconDot = iconDot;
 	this->addChild(m_iconDot);
@@ -145,7 +145,7 @@ void YHUIDecimalNumber::setIcon(CCSprite * icon)
 	layout();
 }
 
-void YHUIDecimalNumber::setAlignType(AlignType alignType)
+void YHUIDecimalNumber::setAlignType(YHSpriteNumber_AlignType alignType)
 {
 	m_alignType = alignType;
 	layout();
@@ -183,14 +183,14 @@ void YHUIDecimalNumber::layout()
 	float beginX = 0.0f;
 	switch (m_alignType)
 	{
-		case kAlignType_Left:
+		case YHSpriteNumber_AlignType::kAlignType_Left:
 			break;
 			
-		case kAlignType_Right:
+		case YHSpriteNumber_AlignType::kAlignType_Right:
 			beginX -= width;
 			break;
 			
-		case kAlignType_Center:
+		case YHSpriteNumber_AlignType::kAlignType_Center:
 			beginX -= width * 0.5f;
 			break;
 	}

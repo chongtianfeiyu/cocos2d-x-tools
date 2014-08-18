@@ -9,10 +9,10 @@
 #ifndef __cocos2d_x_Utils__YHSocketClient__
 #define __cocos2d_x_Utils__YHSocketClient__
 
-#include <YHTypes.h>
-#include <Utils/Net/Utils/YHSocketConnectManager.h>
-#include <Utils/Net/Utils/YHSocketSendManager.h>
-#include <Utils/Net/Utils/YHSocketRecvManager.h>
+#include "YHTypes.h"
+#include "Utils/YHSocketConnectManager.h"
+#include "Utils/YHSocketSendManager.h"
+#include "Utils/YHSocketRecvManager.h"
 
 /**
  * Socket 通信功能封装

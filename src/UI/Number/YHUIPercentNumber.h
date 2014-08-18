@@ -9,7 +9,7 @@
 #ifndef __AndroidaBooM__YHUIPercentNumber__
 #define __AndroidaBooM__YHUIPercentNumber__
 
-#include <UI/Number/YHUIDecimalNumber.h>
+#include "YHUIDecimalNumber.h"
 
 /**
  * 百分比数字显示

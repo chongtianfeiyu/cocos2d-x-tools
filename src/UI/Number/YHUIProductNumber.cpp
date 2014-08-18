@@ -6,7 +6,7 @@
 //
 //
 
-#include <UI/Number/YHUIProductNumber.h>
+#include "YHUIProductNumber.h"
 
 using namespace cocos2d;
 
@@ -114,14 +114,14 @@ void YHUIProductNumber::layout()
     
 	switch (m_alignType)
 	{
-		case kAlignType_Left:
+		case YHSpriteNumber_AlignType::kAlignType_Left:
 			break;
 			
-		case kAlignType_Right:
+		case YHSpriteNumber_AlignType::kAlignType_Right:
 			beginX -= width;
 			break;
 			
-		case kAlignType_Center:
+		case YHSpriteNumber_AlignType::kAlignType_Center:
 			beginX -= width * 0.5f;
 			break;
 	}

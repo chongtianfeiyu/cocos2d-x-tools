@@ -1,7 +1,7 @@
 
-#include <YHTypes.h>
-#include <AnimationHelper/Effect/YHEffectGenerator.h>
-#include <AnimationHelper/Animation/YHAnimationCache.h>
+#include "YHTypes.h"
+#include "YHEffectGenerator.h"
+#include "AnimationHelper/Animation/YHAnimationCache.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // YHEffectDefiner
@@ -34,7 +34,7 @@ YHEffectDefiner::YHEffectDefiner(CCDictionary * dict)
 	CCString * name = dynamic_cast<CCString *>(dict->objectForKey("PieceKey"));
 	m_animationName = string(name->getCString());
 	
-	m_spriteDefiner = YHSpriteDefiner((CCDictionary *)dict->objectForKey("SpriteDefiner"));
+    setSpriteDefiner(YHSpriteDefiner::create((CCDictionary *)dict->objectForKey("SpriteDefiner")));
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ YHDefaultFiniteEffect * YHEffectFactory::finiteEffectFromCache()
 
 void YHEffectFactory::adjustSprite(CCSprite * sp, const YHEffectDefiner * definer)
 {
-    definer->getSpriteDefiner().assignToSprite(sp);
+    definer->getSpriteDefiner()->assignToSprite(sp);
 }
 
 CCSprite * YHEffectFactory::effectSpriteForDefiner(const YHEffectDefiner * definer)

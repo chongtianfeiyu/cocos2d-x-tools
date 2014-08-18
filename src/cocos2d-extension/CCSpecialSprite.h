@@ -2,8 +2,8 @@
 #ifndef __CCSpecialSprite_H__
 #define __CCSpecialSprite_H__
 
-#include <cocos2d.h>
-#include <Utils/Common/CommonUtils.h>
+#include "cocos2d.h"
+#include "Utils/Common/CommonUtils.h"
 
 using namespace cocos2d;
 

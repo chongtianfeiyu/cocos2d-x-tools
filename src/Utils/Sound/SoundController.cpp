@@ -6,7 +6,7 @@
 //
 //
 
-#include <Utils/Sound/SoundController.h>
+#include "SoundController.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -148,31 +148,16 @@ std::vector<std::string> SoundController::allFiles()
     return ret;
 }
 
-void SoundController::preloadBackgroundMusic(const char * pszFilePath, bool useSubPath)
+void SoundController::preloadBackgroundMusic(const char * pszFilePath)
 {
-	CHECK_INITIALIZED;
-    if (useSubPath)
-        m_engine->preloadBackgroundMusic((m_subpath + pszFilePath).c_str());
-    else
-        m_engine->preloadBackgroundMusic(pszFilePath);
+    CHECK_INITIALIZED;
+    m_engine->preloadBackgroundMusic(pszFilePath);
 }
 
-void SoundController::playBackgroundMusic(const char * pszFilePath, bool bLoop, bool useSubPath)
+void SoundController::playBackgroundMusic(const char * pszFilePath, bool bLoop)
 {
 	CHECK_INITIALIZED;
-    if (useSubPath)
-        m_engine->playBackgroundMusic((m_subpath + pszFilePath).c_str(), bLoop);
-    else
-        m_engine->playBackgroundMusic(pszFilePath);
-}
-
-void SoundController::playBackgroundMusic(const char * pszFilePath, bool useSubPath)
-{
-	CHECK_INITIALIZED;
-    if (useSubPath)
-        m_engine->playBackgroundMusic((m_subpath + pszFilePath).c_str());
-    else
-        m_engine->playBackgroundMusic(pszFilePath);
+    m_engine->playBackgroundMusic(pszFilePath, bLoop);
 }
 
 void SoundController::stopBackgroundMusic(bool bReleaseData)
@@ -244,23 +229,10 @@ void SoundController::setEffectsVolume(float volume)
 }
 
 uint32 SoundController::playEffect(const char * pszFilePath, bool bLoop,
-                                   float pitch, float pan, float gain,
-                                   bool useSubPath)
+                                   float pitch, float pan, float gain)
 {
 	CHECK_INITIALIZED_P(0xffffffff);
-    if (useSubPath)
-        return m_engine->playEffect((m_subpath + pszFilePath).c_str(), bLoop, pitch, pan, gain);
-    else
-        return m_engine->playEffect(pszFilePath, bLoop, pitch, pan, gain);
-}
-
-uint32 SoundController::playEffect(const char * pszFilePath, bool useSubPath)
-{
-	CHECK_INITIALIZED_P(0xffffffff);
-    if (useSubPath)
-        return m_engine->playEffect((m_subpath + pszFilePath).c_str());
-    else
-        return m_engine->playEffect(pszFilePath);
+    return m_engine->playEffect(pszFilePath, bLoop, pitch, pan, gain);
 }
 
 void SoundController::pauseEffect(uint32 soundID)

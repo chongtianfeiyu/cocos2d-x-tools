@@ -1,6 +1,5 @@
 
-#include <Utils/Manager/YHLanguageManager.h>
-#include <YHTypes.h>
+#include "YHLanguageManager.h"
 
 using namespace cocos2d;
 

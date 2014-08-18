@@ -9,8 +9,8 @@
 #ifndef __MonsterHunter__YHAsynDataManagerImp__
 #define __MonsterHunter__YHAsynDataManagerImp__
 
-#include <Utils/Manager/DataManager/YHDataManagerImp.h>
-#include <libs/pthreadcc/pthreadcc.h>
+#include "YHDataManagerImp.h"
+#include "libs/pthreadcc/pthreadcc.h"
 
 /**
  * 使用异步装载文件的管理器

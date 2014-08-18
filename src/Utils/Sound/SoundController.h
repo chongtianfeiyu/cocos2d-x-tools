@@ -9,8 +9,8 @@
 #ifndef __AndroidaBooM__SoundController__
 #define __AndroidaBooM__SoundController__
 
-#include <SimpleAudioEngine.h>
-#include <YHTypes.h>
+#include "SimpleAudioEngine.h"
+#include "YHTypes.h"
 
 /**
  * 音频控制器类, 对 SimpleAudioEngine 的再一次封装, 其实主要是为了实现淡入/淡出音效效果而封装的
@@ -77,11 +77,9 @@ public: /** Functions **/
 	
 public: /** SimpleAudioEngine 的功能相同 **/
 	
-	void								preloadBackgroundMusic(const char * pszFilePath, bool useSubPath = true);
+	void								preloadBackgroundMusic(const char * pszFilePath);
 	
-	void								playBackgroundMusic(const char * pszFilePath, bool bLoop, bool useSubPath = true);
-	
-	void								playBackgroundMusic(const char * pszFilePath, bool useSubPath = true);
+	void								playBackgroundMusic(const char * pszFilePath, bool bLoop);
 	
 	void								stopBackgroundMusic(bool bReleaseData);
 	
@@ -106,10 +104,7 @@ public: /** SimpleAudioEngine 的功能相同 **/
 	void								setEffectsVolume(float volume);
 	
 	uint32								playEffect(const char * pszFilePath, bool bLoop,
-                                                   float pitch = 1.0f, float pan = 0.0f, float gain = 1.0f,
-                                                   bool useSubPath = true);
-	
-	uint32								playEffect(const char * pszFilePath, bool useSubPath = true);
+                                                   float pitch = 1.0f, float pan = 0.0f, float gain = 1.0f);
 	
 	void								pauseEffect(uint32 soundID);
 	

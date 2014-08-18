@@ -9,8 +9,8 @@
 #ifndef __GeometryLibrary__YHRect__
 #define __GeometryLibrary__YHRect__
 
-#include <Utils/Geometry/YHSize.h>
-#include <Utils/Geometry/YHVector2.h>
+#include "YHSize.h"
+#include "YHVector2.h"
 
 /**
  * Rectangle

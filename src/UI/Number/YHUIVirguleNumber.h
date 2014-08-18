@@ -1,8 +1,8 @@
 #ifndef YHUIVirguleNumber_h__
 #define YHUIVirguleNumber_h__
 
-#include <cocos2d-extension/CCSpecialSprite.h>
-#include <UI/Number/YHISpriteNumber.h>
+#include "cocos2d-extension/CCSpecialSprite.h"
+#include "YHISpriteNumber.h"
 
 class YHUISpriteNumber;
 
@@ -41,7 +41,7 @@ public:
     virtual void setVirguleInterval(float32 interval);
     
     /// 设置对齐布局方式
-    virtual void setAlignType(YHISpriteNumber::AlignType alignType);
+    virtual void setAlignType(YHSpriteNumber_AlignType alignType);
     
     /// 设置 Icon
     virtual void setIcon(cocos2d::Sprite * icon);
@@ -93,7 +93,7 @@ private:
 private:
     
     float32 m_virguleInterval = 0.0f;
-    YHISpriteNumber::AlignType m_alignType = YHISpriteNumber::kAlignType_Left;
+    YHSpriteNumber_AlignType m_alignType = YHSpriteNumber_AlignType::kAlignType_Left;
     cocos2d::Sprite * m_icon = nullptr;
     float32 m_iconInterval = 0.0f;
 	cocos2d::Sprite * m_virgule = nullptr;

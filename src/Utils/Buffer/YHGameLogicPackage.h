@@ -9,7 +9,7 @@
 #ifndef __cocos2d_x_Utils__YHGameLogicPackage__
 #define __cocos2d_x_Utils__YHGameLogicPackage__
 
-#include <Utils/Buffer/YHCommandParam.h>
+#include "YHCommandParam.h"
 
 /**
  * 游戏逻辑使用数据包. writeXXX 的操作将会添加一个 YHCommandParam 对象, readXXX 的操作将会删除一个 YHCommandParam 对象.

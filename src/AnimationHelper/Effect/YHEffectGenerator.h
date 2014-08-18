@@ -2,11 +2,11 @@
 #ifndef __YHEffectGenerator_H__
 #define __YHEffectGenerator_H__
 
-#include <cocos2d.h>
-#include <cocos2d-extension/CCSpecialSprite.h>
-#include <AnimationHelper/Effect/YHFiniteEffect.h>
-#include <AnimationHelper/Animation/YHAnimationHelper.h>
-#include <AnimationHelper/Animation/YHAnimationCache.h>
+#include "cocos2d.h"
+#include "cocos2d-extension/CCSpecialSprite.h"
+#include "YHFiniteEffect.h"
+#include "AnimationHelper/Animation/YHAnimationHelper.h"
+#include "AnimationHelper/Animation/YHAnimationCache.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -29,9 +29,19 @@ typedef enum _YHEffectDefineType_
 class YHEffectDefiner : public YHObject
 {
 public:
-	YHEffectDefiner(YHEffectDefineType type, const char * name) : m_type(type), m_animationName(name) {}
+    
+	YHEffectDefiner(YHEffectDefineType type, const char * name)
+        : m_type(type), m_animationName(name)
+    {
+        setSpriteDefiner(YHSpriteDefiner::create());
+    }
+    
 	YHEffectDefiner(CCDictionary * dict);
-	~YHEffectDefiner() {}
+    
+	~YHEffectDefiner()
+    {
+        CC_SAFE_RELEASE_NULL(m_spriteDefiner);
+    }
 	
 	/// 获得 特效定义的类型
 	YHEffectDefineType		getType() const { return m_type; }
@@ -39,9 +49,9 @@ public:
 	/// getter/setter 动画的名字
 	const char *			getAnimationName() const { return m_animationName.c_str(); }
 	void					setAnimationName(const char * name) { m_animationName = name; }
-	
-	/// getter/setter YHSpriteDefiner
-	CC_SYNTHESIZE_PASS_BY_REF(YHSpriteDefiner, m_spriteDefiner, SpriteDefiner);
+    
+    /// getter/setter YHSpriteDefiner
+    CC_SYNTHESIZE_RETAIN(YHSpriteDefiner *, m_spriteDefiner, SpriteDefiner);
 	
 private:
 	YHEffectDefineType		m_type;

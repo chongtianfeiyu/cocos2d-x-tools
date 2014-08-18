@@ -6,8 +6,8 @@
 //
 //
 
-#include <AnimationHelper/Action/ParseActionSpecial.h>
-#include <AnimationHelper/Action/ActionContext.h>
+#include "ParseActionSpecial.h"
+#include "ActionContext.h"
 
 CCAction* ParserRepeatForever::parseAction(cocos2d::CCDictionary *dict)
 {

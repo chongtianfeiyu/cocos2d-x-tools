@@ -9,8 +9,8 @@
 #ifndef __MonsterHunter__YHDataManagerImp__
 #define __MonsterHunter__YHDataManagerImp__
 
-#include <YHTypes.h>
-#include <Utils/Common/YHAbstractDataSetting.h>
+#include "YHTypes.h"
+#include "Utils/Common/YHAbstractDataSetting.h"
 
 class YHByteArray;
 

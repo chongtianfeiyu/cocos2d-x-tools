@@ -6,9 +6,9 @@
 //
 //
 
-#include <AnimationHelper/Action/ParseActionInterval.h>
-#include <cocos2d-extension/CCActionExtension.h>
-#include <AnimationHelper/Action/ActionContext.h>
+#include "ParseActionInterval.h"
+#include "cocos2d-extension/CCActionExtension.h"
+#include "ActionContext.h"
 
 CCAction* ParserAnchorPointTo::parseAction(cocos2d::CCDictionary *dict)
 {

@@ -9,7 +9,7 @@
 #ifndef __MGBX__CCGeometry_Extension__
 #define __MGBX__CCGeometry_Extension__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 
 /**
  * 判断 rect1 是否包含 rect2

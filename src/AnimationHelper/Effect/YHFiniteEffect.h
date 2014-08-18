@@ -2,7 +2,7 @@
 #ifndef __YHFiniteEffect_H__
 #define __YHFiniteEffect_H__
 
-#include <AnimationHelper/Effect/YHIFiniteEffect.h>
+#include "YHIFiniteEffect.h"
 
 using namespace cocos2d;
 

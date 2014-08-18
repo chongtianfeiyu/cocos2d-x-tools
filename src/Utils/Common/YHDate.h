@@ -9,7 +9,7 @@
 #ifndef __MGBX__YHDate__
 #define __MGBX__YHDate__
 
-#include <YHTypes.h>
+#include "YHTypes.h"
 #include <ctime>
 
 /// 一天的秒数

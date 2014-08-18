@@ -9,7 +9,7 @@
 #ifndef __MGBX__YHGameBasicInfo_iOS__
 #define __MGBX__YHGameBasicInfo_iOS__
 
-#include <Utils/Device/YHGameBasicInfo.h>
+#include "YHGameBasicInfo.h"
 
 /**
  * iOS 平台实现
